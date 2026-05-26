@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>Problem</title>
+
+  <script>
+
+  window.MathJax = {
+
+    tex: {
+
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+
+    }
+
+  };
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+
+<style>
+
+  body {
+
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+
+    background: #f4f6f8;
+
+    margin: 0;
+
+    padding: 40px;
+
+  }
+
+  .container {
+
+    max-width: 900px;
+
+    margin: 0 auto;
+
+    background: white;
+
+    padding: 36px;
+
+    border-radius: 18px;
+
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+
+  }
+
+  a {
+
+    color: #2563eb;
+
+    text-decoration: none;
+
+  }
+
+  h1 {
+
+    font-size: 40px;
+
+    margin-bottom: 20px;
+
+  }
+
+  h2 {
+
+    margin-top: 32px;
+
+    border-left: 6px solid #2563eb;
+
+    padding-left: 12px;
+
+  }
+
+  .meta {
+
+    color: #555;
+
+    margin: 8px 0;
+
+  }
+
+  .tag {
+
+    display: inline-block;
+
+    background: #e0ecff;
+
+    color: #1d4ed8;
+
+    padding: 5px 12px;
+
+    border-radius: 999px;
+
+    margin-right: 6px;
+
+    font-size: 14px;
+
+  }
+
+  .section {
+
+    line-height: 1.8;
+
+    font-size: 18px;
+
+    margin-top: 12px;
+
+  }
+
+</style>
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <p><a href="/">← 一覧に戻る</a></p>
+
+    <div id="content">Loading...</div>
+
+  </div>
+
+<script>
+
+const path = window.location.pathname;
+
+const problemId = path.split("/").pop();
+
+fetch("/problems")
+
+  .then(response => response.json())
+
+  .then(data => {
+
+    const content = document.getElementById("content");
+
+    const index = data.findIndex(p => p.id === problemId);
+
+    const problem = data[index];
+
+    if (!problem) {
+
+      content.innerHTML = "<h1>Problem not found</h1>";
+
+      return;
+
+    }
+
+    const prev = data[index - 1];
+
+    const next = data[index + 1];
+
+    const topics = Array.isArray(problem.topics)
+
+      ? problem.topics.map(t => `<span class="tag">${t}</span>`).join("")
+
+      : "";
+
+    content.innerHTML = `
+
+      <h1>${problem.id}</h1>
+
+      <p class="meta"><b>Year:</b> ${problem.year || ""}</p>
+
+      <p class="meta"><b>Type:</b> ${problem.type || ""}</p>
+
+      <div>${topics}</div>
+
+      <h2>Common Text</h2>
+
+      <div class="section">${problem.common_text || ""}</div>
+
+      <h2>Problem</h2>
+
+      <div class="section">${problem.problem_text || ""}</div>
+
+      <h2>Solution</h2>
+
+      <div class="section">${problem.solution_text || ""}</div>
+
+      <hr>
+
+      <div style="display:flex; justify-content:space-between; margin-top:24px;">
+
+        <div>${prev ? `<a href="/problem/${prev.id}">← ${prev.id}</a>` : ""}</div>
+
+        <div>${next ? `<a href="/problem/${next.id}">${next.id} →</a>` : ""}</div>
+
+      </div>
+
+    `;
+
+    MathJax.typesetPromise();
+
+  })
+
+  .catch(error => {
+
+    document.getElementById("content").innerHTML =
+
+      "<h1>Error</h1><pre>" + error + "</pre>";
+
+  });
+
+</script>
+
+</body>
+
+</html>

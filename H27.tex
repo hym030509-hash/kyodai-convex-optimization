@@ -1,0 +1,94 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{color}
+\usepackage[utf-8]{inputenc}
+\usepackage{xeCJK}
+
+\setCJKmainfont{Hiragino Sans GB}
+
+\title{京都大学大学院 数理工学専攻}
+\author{凸最適化 過去問}
+\date{H27 (OR)}
+
+\begin{document}
+
+\maketitle
+
+\section*{問題 (i)}
+
+$\lambda$ をラグランジュ乗数とする。$P(z)$ のKKT条件は
+\begin{align}
+\begin{cases}
+\nabla f(z) + (z^* - z) + \lambda \partial = 0 \\
+0 \leq z^* - b = 0
+\end{cases}
+\end{align}
+
+これから，$z^* = - \nabla f(z) + \lambda$ より，$0 \leq z^* \partial$ に従い入する。
+
+\[-\nabla f(z)^T \partial + 0z - \lambda 0z - b = 0\]
+
+\[\lambda = - \frac{\nabla f(z)^T \partial}{0z - \partial} \quad (\because 0z = b)\]
+
+また，$y^* = -\nabla f(x) + z \cdot \frac{\nabla f(z) \partial}{0z - \partial}$
+
+この$y^*$と$\lambda$はKKT条件を満たす。したがって，$\bar{y}_1(z) = -\nabla f(x) + z + \frac{\nabla f(z)\partial}{0z - \partial} x$
+
+\section*{問題 (ii)}
+
+\textbf{① 文は P の最適解 $\rightarrow$ 任意の実行可能解 $x_c$ について $f(x_c) \leq f(x^*)$}
+
+\textbf{② P は凹計画，かつ $x$ がKKT条件を満たす。}
+
+$\nu$ をラグランジュ乗数とするとき，$P$ のKKT条件は
+\begin{align}
+\begin{cases}
+\nabla f(x) + \lambda \partial = 0 \\
+0z x - b = 0
+\end{cases}
+\end{align}
+
+(i) より $\bar{y}(x) = -x$ のとき，$\nabla f(x) - \frac{\nabla f}{0z} \partial = 0$，また，$x \in S$
+
+よって，$x^* = x$，$\lambda^* = -\frac{\nabla f}{0z}$ ここに言えば，このの$x^*$と$\lambda^*$は P のKKT条件を満たす。
+P は凹計画なので，$x^* = x$ が最適解である。
+
+\section*{問題 (iii)}
+
+不等式を不等号に，制御できる領域 $\rightarrow$ ① 実行可能解$x$と最適解$x^*$について
+
+\textbf{② $f_0$ が凸性なら $f(\alpha x + (1-\alpha)y) \geq \alpha f(x) + (1-\alpha)f(y)$}
+
+令回は $P(x)$ の最適解が $\bar{x}$ であるとする。0 の 
+$\bar{y}(x) \in S$，$x \in S$ が $f(x) \geq f(x^*)$となる
+
+\[\nabla f(x)^T \bar{y}(x) + \frac{1}{2}(\bar{x}(x) - x)^T(\bar{x}(x) - x) \leq \nabla f(x)^T x\]
+
+また 
+\[\nabla f(x)^T(\bar{x}(x) - x) < -\frac{1}{2}(\bar{x}(x) - x)^T(\bar{x}(x) - x) < 0\]
+
+$\bar{z}$，$\bar{y}(x) \in S$，$x \in S$ より $0z(\bar{y}(x) - x) = b - b = 0$
+
+\section*{問題 (iv)}
+
+$x$ が最適解ではなし $\rightarrow$ 十(s) $< f(x)$ とある必要可能な解がある
+
+$\rightarrow$ 凹計画問題の場合，$x$ はKKT条件を満たさない。
+
+$x$ が $P$ の最適解であると仮定する。ある $\lambda \in \mathbb{R}$ が存在して
+\[\nabla f(x) + \lambda \partial = 0, \quad 0z x = b\]
+と満たす ゆえ $(\bar{x}(x) - x)$ を考えて
+
+\[\nabla f(x)^T(\bar{x}(x) - x) + \lambda 0z (\bar{x}(x) - x) = 0\]
+
+$x$ は最適解かなり，$x \in S$ であり，$\bar{z}(x) \in S$ も
+
+(iii)より $0z(\bar{x}(x) - x) = 0$ 不になら $f$
+
+\[\nabla f(x)^T(\bar{x}(x) - x) = 0\]
+
+これは(iii)で予備する。したがって，$x$ は最適解である。
+
+\end{document}

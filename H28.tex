@@ -1,0 +1,113 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{color}
+\usepackage[utf-8]{inputenc}
+\usepackage{xeCJK}
+
+\setCJKmainfont{Hiragino Sans GB}
+
+\title{京都大学大学院 数理工学専攻}
+\author{凸最適化 過去問}
+\date{H28 (OR)}
+
+\begin{document}
+
+\maketitle
+
+\section*{問題 (i)}
+
+不等式を不等号に。
+
+\begin{enumerate}
+  \item[\textcircled{1}] $x^*$ が定行可能解ですか。最適解 $\alpha$ はあり，$f(x^*) \leq f(x)$
+  
+  \item[\textcircled{2}] $f$ が凸性から 
+  \[f(\alpha x + (1-t)y) \leq \alpha f(x) + (1-t)f(y)\]
+  
+  \item[\textcircled{3}] 以前の小問の不等式に適当な値を代入
+\end{enumerate}
+
+式と不等式を解で判断する。令回は $0$
+
+\[(x^* - x^k)^T(x^T - x^k) \leq I \text{ より } x^k \text{ は } P(k) \text{ の実行可能解である。}\]
+
+したがって，$f_k(x^*) \leq f_k(x^k)$
+
+令 $0$ と $x^* = 0$ $f$ で考え $f_k(x^*) \leq f(x^*)$ より $f_k(x^*) \leq f(x^*)$
+
+\section*{問題 (ii)}
+
+\[\lim_k k(\omega x^k) = \bar{\lambda} \text{ より } \lim_k k(\rho x^k) \text{ か考え有限の他入に与えるが}\]
+
+\[\omega t x^k = \frac{\bar{\lambda}}{k} + o\left(\frac{1}{k}\right) \text{ が必要である（$o$ はランダウの記号 - ）}\]
+
+したがって，
+\[\lim \partial \omega x^k = \partial \bar{x} = 0\]
+
+手札：$\partial \omega \bar{x} = 0$ より $\bar{x}$ は $P$ の実行可能解である。
+
+(ii)より 
+\[\lim f_u(x^k) = f(\bar{x}) + \frac{1}{2}(\bar{x} - x^k)^T(\bar{x} - x^k) \leq f(x^k)\]
+
+もし $\bar{x} \neq x^k$ ならば $(\bar{x} - x^k)^T(\bar{x} - x^k) > 0$ ゆえ $x^k$ が $P$ の大局的最適解である
+ここに矛盾 $f$。したがって，$\bar{x} = x^k$
+
+\section*{問題 (iii)}
+
+$\lambda$ をうがランジュ乗数とするとき，$P(k)$ のKKT条件は
+\begin{align}
+\begin{cases}
+\nabla f_k(x) + 2\lambda(x - x^k) = 0 \\
+(x - x^k)^T(x - x^k) - I \leq 0, \quad \lambda \geq 0, \quad \lambda((x - x^k)^T(x - x^k) - 1) = 0
+\end{cases}
+\tag{★}
+\end{align}
+
+\section*{問題 (iv)}
+
+$x^*$ はKKT条件と誤差が $\nabla f(x^k) + 2\lambda(x^k - x^k) = 0$，$\lambda = 0$ を示したい。
+
+$\rightarrow$ 相対性優 KKT条件 $\lambda((x^k - x^k)^T(x^k - x^k) - 1) = 0$ より $\lambda = 0$ を示す。
+
+$x^k$ は $P(k)$ の最適解が KKT条件と満たすので入が合致して
+\[\nabla f_k(x^k) + 2\lambda(x^k - x^k) = 0\]
+
+令(ii)より $x^k \to x^k$（$k \to \infty$）をかく十分大きく に対して 
+\[(x^k - x^k)^T(x^k - x^k) < 1\]
+
+となる。この時，$\lambda((x^k - x^k)^T(x^k - x^k) - 1) = 0$ より $\lambda = 0$
+
+したがって，$2$，$k$ が十分大きいとき，$\nabla f_k(x^k) = 0$
+
+\section*{問題 (v)}
+
+(iv)より 十分大きな$k$に対して $\nabla f_k(x^k) = 0$，より
+\[\nabla f(x^k) + k \partial \omega x^k \partial \omega + (x^k - x^k) = 0\]
+
+$k \to \infty$の和限度として(ii)より $\lim_{k \to \infty} x^k = x^k$である
+
+\[\nabla f(x^k) + \bar{\lambda} \partial \omega = 0\]
+
+\newpage
+
+\section*{Remind}
+
+\subsection*{ランダウの記号}
+
+\[f(x) = O(x^2) + 2x^c\]
+
+の如く，$x$が十分大きいと。その挙動は $O(x^2)$と呼称する。こんなランダウの\textbf{ビッグオー} - $\mathcal{O}$ を用いて示す。
+
+\[f(x) = O(\omega^2) \quad (x \to \infty)\]
+
+また，$f(x)$は$x$が十分大きいと，$\omega x^k$よりも$3$分の$1$小さいのこれを
+ランダウの\textbf{小記号} - $o$ と用いて示す。
+
+\[f(x) = o(x^4) \quad (x \to \infty)\]
+
+逆に対$0$に連いては
+\[f(x) = O(x) \quad (x \to 0), \quad f(x) = o(x) \quad (x \to 0)\]
+
+\end{document}

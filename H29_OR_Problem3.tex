@@ -1,0 +1,74 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage[utf-8]{inputenc}
+\usepackage{xeCJK}
+
+\setCJKmainfont{Hiragino Sans GB}
+
+\title{オペレーションズ・リサーチ}
+\author{問題 3}
+
+\begin{document}
+
+\maketitle
+
+\section*{問題}
+
+$A$ を $n \times n$ の正定値対称行列とする。さらに，関数 $f: \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}$, $g: \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}$, $h: \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}$ を以下のように定義する。
+
+\begin{align}
+f(x,z) &= -x^T x + z^T A x \\
+g(x,z) &= x^T x + z^T A x + z^T z \\
+h(x,y) &= x^T x + y^T y
+\end{align}
+
+ただし，$\mathsf{T}$ は転置記号である。
+
+$z \in \mathbb{R}^n$ をパラメータにもつ次の非線形計画問題を考える。
+
+\begin{align}
+\text{P1}(z): \quad & \text{Maximize} \quad f(x,z) \\
+& \text{subject to} \quad x^T x \leq 1
+\end{align}
+
+\begin{align}
+\text{P2}(z): \quad & \text{Minimize} \quad g(x,z) \\
+& \text{subject to} \quad x \in \mathbb{R}^n
+\end{align}
+
+\begin{align}
+\text{P3}(z): \quad & \text{Minimize} \quad h(x,y) \\
+& \text{subject to} \quad x + y = z
+\end{align}
+
+ただし，P1$(z)$ と P2$(z)$ の決定変数は $x \in \mathbb{R}^n$ であり，P3$(z)$ の決定変数は $(x,y) \in \mathbb{R}^n \times \mathbb{R}^n$ である。
+
+任意のパラメータ $z \in \mathbb{R}^n$ に対して P1$(z)$, P2$(z)$, P3$(z)$ は唯一の最適解をもつ。P1$(z)$, P2$(z)$, P3$(z)$ の最適解をそれぞれ $x^1(z)$, $x^2(z)$, $(x^3(z), y^3(z))$ とする。
+
+以下の問いに答えよ。
+
+\section*{(i) P1(z)の最適解}
+
+$z^T A^T A z \leq 4$ とする。カルーシュ・キューン・タッカー（Karush-Kuhn-Tucker）条件を用いて P1$(z)$ の最適解 $x^1(z)$ を求めよ。
+
+（P1$(z)$ が最大化問題であることに注意すること。）
+
+\section*{(ii) P3(z)の最適解}
+
+カルーシュ・キューン・タッカー条件を用いて P3$(z)$ の最適解 $(x^3(z), y^3(z))$ を求めよ。
+
+\section*{(iii) 命題の真偽判定}
+
+次の命題について，真であれば証明し，偽であれば反例を与えよ。
+
+\begin{enumerate}
+\item[(a)] 関数 $p: \mathbb{R}^n \to \mathbb{R}$ を $p(z) = f(x^1(z), z)$ とするとき，関数 $p$ は凸関数である。
+
+\item[(b)] 関数 $q: \mathbb{R}^n \to \mathbb{R}$ を $q(z) = g(x^2(z), z)$ とするとき，関数 $q$ は凸関数である。
+
+\item[(c)] 関数 $r: \mathbb{R}^n \to \mathbb{R}$ を $r(z) = h(x^3(z), y^3(z))$ とするとき，関数 $r$ は凸関数である。
+\end{enumerate}
+
+\end{document}

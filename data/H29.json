@@ -1,0 +1,89 @@
+[
+
+
+  {
+
+    "year": "2017",
+    "common_text":"$A$ を $n \\times n$ の正定値対称行列とする。さらに，関数 $f: \\mathbb{R}^n \\times \\mathbb{R}^n \\to \\mathbb{R}$, $g: \\mathbb{R}^n \\times \\mathbb{R}^n \\to \\mathbb{R}$, $h: \\mathbb{R}^n \\times \\mathbb{R}^n \\to \\mathbb{R}$ を以下のように定義する。\n\n\\[\\begin{aligned} f(x,z) &= -x^T x + z^T A x \\\\ g(x,z) &= x^T x + z^T A x + z^T z \\\\ h(x,y) &= x^T x + y^T y \\end{aligned}\\]\n\nただし，$\\mathsf{T}$ は転置記号である。\n\n$z \\in \\mathbb{R}^n$ をパラメータにもつ次の非線形計画問題を考える。\n\n\\[\\begin{aligned} \\text{P1}(z): \\quad & \\text{Maximize} \\quad f(x,z) \\\\ & \\text{subject to} \\quad x^T x \\leq 1 \\end{aligned}\\]\n\n\\[\\begin{aligned} \\text{P2}(z): \\quad & \\text{Minimize} \\quad g(x,z) \\\\ & \\text{subject to} \\quad x \\in \\mathbb{R}^n \\end{aligned}\\]\n\n\\[\\begin{aligned} \\text{P3}(z): \\quad & \\text{Minimize} \\quad h(x,y) \\\\ & \\text{subject to} \\quad x + y = z \\end{aligned}\\]\n\nただし，$P1(z)$ と $P2(z)$ の決定変数は $x \\in \\mathbb{R}^n$ であり，$P3(z)$ の決定変数は $(x,y) \\in \\mathbb{R}^n \\times \\mathbb{R}^n$ である。\n\n",
+    "id":"H29-i",
+    "problem":"i",
+    "type":"calculation",
+    "topics": [
+      "KKT",
+      "最適解を求める"
+    ],
+    "keywords":[
+      "Stationary condition",
+      "Complementary slackness"]
+      ,    "difficulty":"3",
+    "problem_text":"カルーシュ・キューン・タッカー条件を用いて $P_1(z)$ の最適解 $x^1(z)$ を求めよ。",
+    "solution_text":"$P(z)$ は凹計画問題であって適応できないとし，一般性を失わないとする。\nラグランジュ乗数法を使い，$P(z)$ のKKT条件は\n\\[\n\\begin{cases}\n-2x + A_z + \\lambda_x = 0 \\\\\nx_i x - 1 \\leq 0, \\quad \\lambda \\geq 0, \\quad \\lambda(x_i x - 1) = 0\n\\end{cases}\n\\]\n$x = \\frac{1}{2}A_z$, $\\lambda = 0$ のとき,これはKKT条件を満たす。",
+    "latex_source":"H29.tex"
+
+  },
+
+
+
+
+  {
+    "year":"2017",
+    "common_text":"$A$ を $n \\times n$ の正定値対称行列とする。さらに，関数 $f: \\mathbb{R}^n \\times \\mathbb{R}^n \\to \\mathbb{R}$, $g: \\mathbb{R}^n \\times \\mathbb{R}^n \\to \\mathbb{R}$, $h: \\mathbb{R}^n \\times \\mathbb{R}^n \\to \\mathbb{R}$ を以下のように定義する。\n\n\\[\\begin{aligned} f(x,z) &= -x^T x + z^T A x \\\\ g(x,z) &= x^T x + z^T A x + z^T z \\\\ h(x,y) &= x^T x + y^T y \\end{aligned}\\]\n\nただし，$\\mathsf{T}$ は転置記号である。\n\n$z \\in \\mathbb{R}^n$ をパラメータにもつ次の非線形計画問題を考える。\n\n\\[\\begin{aligned} \\text{P1}(z): \\quad & \\text{Maximize} \\quad f(x,z) \\\\ & \\text{subject to} \\quad x^T x \\leq 1 \\end{aligned}\\]\n\n\\[\\begin{aligned} \\text{P2}(z): \\quad & \\text{Minimize} \\quad g(x,z) \\\\ & \\text{subject to} \\quad x \\in \\mathbb{R}^n \\end{aligned}\\]\n\n\\[\\begin{aligned} \\text{P3}(z): \\quad & \\text{Minimize} \\quad h(x,y) \\\\ & \\text{subject to} \\quad x + y = z \\end{aligned}\\]\n\nただし，$P1(z)$ と $P2(z)$ の決定変数は $x \\in \\mathbb{R}^n$ であり，$P3(z)$ の決定変数は $(x,y) \\in \\mathbb{R}^n \\times \\mathbb{R}^n$ である。\n\n",
+    "id":"H29-ii",
+    "problem":"ii",
+    "type":"calculation",
+    "topics":[
+      "KKT", 
+      "最適解を求めること"
+    ],
+    "keywords":[
+      "Stationary condition"
+    ],
+    "difficulty":"2",
+    "problem_text":"カルーシュ・キューン・タッカー条件を用いて $P_3(z)$ の最適解 $(x^3(z), y^3(z))$ を求めよ。",
+    "solution_text": "\\[\\nabla h(x,z) = \\begin{bmatrix} 2x \\\\ z \\end{bmatrix}, \\quad \\nabla^2 h(x,z) = \\begin{bmatrix} 1 & 0 \\\\ 0 & 1 \\end{bmatrix}\\]\n$I$ は正定値行列であり，$\\nabla^2 h(x,z)$ も正定値である。",
+    "latex_source":"H29.tex"
+    
+  },
+
+
+  {
+    "id":"H29-iii(a)",
+    "year":"2017",
+    "common_text":"$A$ を $n \\times n$ の正定値対称行列とする。さらに，関数 $f: \\mathbb{R}^n \\times \\mathbb{R}^n \\to \\mathbb{R}$, $g: \\mathbb{R}^n \\times \\mathbb{R}^n \\to \\mathbb{R}$, $h: \\mathbb{R}^n \\times \\mathbb{R}^n \\to \\mathbb{R}$ を以下のように定義する。\n\n\\[\\begin{aligned} f(x,z) &= -x^T x + z^T A x \\\\ g(x,z) &= x^T x + z^T A x + z^T z \\\\ h(x,y) &= x^T x + y^T y \\end{aligned}\\]\n\nただし，$\\mathsf{T}$ は転置記号である。\n\n$z \\in \\mathbb{R}^n$ をパラメータにもつ次の非線形計画問題を考える。\n\n\\[\\begin{aligned} \\text{P1}(z): \\quad & \\text{Maximize} \\quad f(x,z) \\\\ & \\text{subject to} \\quad x^T x \\leq 1 \\end{aligned}\\]\n\n\\[\\begin{aligned} \\text{P2}(z): \\quad & \\text{Minimize} \\quad g(x,z) \\\\ & \\text{subject to} \\quad x \\in \\mathbb{R}^n \\end{aligned}\\]\n\n\\[\\begin{aligned} \\text{P3}(z): \\quad & \\text{Minimize} \\quad h(x,y) \\\\ & \\text{subject to} \\quad x + y = z \\end{aligned}\\]\n\nただし，$P1(z)$ と $P2(z)$ の決定変数は $x \\in \\mathbb{R}^n$ であり，$P3(z)$ の決定変数は $(x,y) \\in \\mathbb{R}^n\\times\\mathbb{R}^n$ である。\n\n",
+    "id":"H29-iii(b)",
+    "year":"2017",
+    "problem":"iii(b)",
+    "type":"proof",
+    "topics":["convex function"],
+    "keywords":["Hessian matrix","negative definite"],
+    "difficulty":"3",
+     "problem_text":"関数 $q: \\mathbb{R}^n \\to \\mathbb{R}$ を $q(z) = g(x^2(z), z)$ とするとき，関数 $q$ は凸関数である。",
+     "solution_text":"$\\nabla^2 q(x,z) = 2I - \\nabla^2 q$ は凹計画である。\n\n$P_2(z)$ のKKT条件は $2x + A_z = 0$.\n\nしたがって, $x = -\\frac{1}{2}A_z$ で最適解である。\n\nこの場合,$q_2(z) = z(I - \\frac{1}{4}A^T A)z$ \n\nよって$\\nabla^2 q_2(z) = 2I - \\frac{1}{2}A^T A$.\n\n例えば $A = 3I$ ならば $\\nabla^2 q_2(z)$ は正定値でない、これは反例である。\n\nしたがって、偽である。",
+    "latex_source":"H29.tex"
+    
+  },
+
+
+  {
+    "id":"H29-iii(c)",
+    "year":"2017",
+    "common_text":"$A$ を $n \\times n$ の正定値対称行列とする。さらに，関数 $f: \\mathbb{R}^n \\times \\mathbb{R}^n \\to \\mathbb{R}$, $g: \\mathbb{R}^n \\times \\mathbb{R}^n \\to \\mathbb{R}$, $h: \\mathbb{R}^n \\times \\mathbb{R}^n \\to \\mathbb{R}$ を以下のように定義する。\n\n\\[\\begin{aligned} f(x,z) &= -x^T x + z^T A x \\\\ g(x,z) &= x^T x + z^T A x + z^T z \\\\ h(x,y) &= x^T x + y^T y \\end{aligned}\\]\n\nただし，$\\mathsf{T}$ は転置記号である。\n\n$z \\in \\mathbb{R}^n$ をパラメータにもつ次の非線形計画問題を考える。\n\n\\[\\begin{aligned} \\text{P1}(z): \\quad & \\text{Maximize} \\quad f(x,z) \\\\ & \\text{subject to} \\quad x^T x \\leq 1 \\end{aligned}\\]\n\n\\[\\begin{aligned} \\text{P2}(z): \\quad & \\text{Minimize} \\quad g(x,z) \\\\ & \\text{subject to} \\quad x \\in \\mathbb{R}^n \\end{aligned}\\]\n\n\\[\\begin{aligned} \\text{P3}(z): \\quad & \\text{Minimize} \\quad h(x,y) \\\\ & \\text{subject to} \\quad x + y = z \\end{aligned}\\]\n\nただし，$P1(z)$ と $P2(z)$ の決定変数は $x \\in \\mathbb{R}^n$ であり，$P3(z)$ の決定変数は $(x,y) \\in \\mathbb{R}^n\\times\\mathbb{R}^n$ である。\n\n",
+    "problem":"iii(c)",
+    "type":"proof",
+    "topics":["convex function"],
+    "keywords":[
+      "Hessian matrix",
+      "positive definite"
+    ],
+    "difficulty":"1",
+    "problem_text":"関数 $r: \\mathbb{R}^n \\to \\mathbb{R}$ を $r(z) = h(x^3(z), y^3(z))$ とするとき，関数 $r$ は凸関数である。",
+   "solution_text": "\\[r(z)=\\frac{1}{2}z^Tz,\\quad \\nabla r(z)=z,\\quad \\nabla^2 r(z)=I\\]\n\nしたがって，$\\nabla^2 r(z)$ は正定値であり凸関数である。よって，真である。",
+    "latex_source":"H29.tex"
+  }
+]
+
+
+
+
+
+

@@ -1,0 +1,93 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage[utf-8]{inputenc}
+\usepackage{xeCJK}
+
+\setCJKmainfont{Hiragino Sans GB}
+
+\title{京都大学大学院 数理工学専攻}
+\author{凸最適化 過去問}
+\date{H29 (OR)}
+
+\begin{document}
+
+\maketitle
+
+\section*{問題 (i)}
+
+$P(z)$ は凹計画問題であって適応できないとし，一般性を失わないとする。
+ラグランジュ乗数法を使い，$P(z)$ のKKT条件は
+\begin{align}
+\begin{cases}
+-2x + A_z + \lambda_x = 0 \\
+x_i x - 1 \leq 0, \quad \lambda \geq 0, \quad \lambda(x_i x - 1) = 0
+\end{cases}
+\end{align}
+
+$x = \frac{1}{2}A_z$, $\lambda = 0$ のとき，そしてのみこれはKKT条件を満たす。
+
+$\phi'(z) = \frac{1}{2}A_z$ の目的関数を $-f(x,z)$ と考えたときは
+凹計画領域である。したがって，$x = \frac{1}{2}A_z$ は $P(z)$ の最適解である。
+
+\section*{問題 (ii)}
+
+\[\nabla h(x,z) = \begin{bmatrix} 2x \\ z \end{bmatrix}, \quad \nabla^2 h(x,z) = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}\]
+
+$I$ は正定値行列であり $\nabla^2 h(x,z)$ も正定値である。したがって，$h(x,z)$ は凹函数である。
+
+$P_J(z)$ のKKT条件は $\lambda_1, \cdots, \lambda_n$ を使い，
+\begin{align}
+\begin{cases}
+2x_k + \lambda_z = 0, \quad 2y_k + \lambda_z = 0 & (k = 1, \cdots, n) \\
+\lambda_k + y_k - z_k = 0 & (k = 1, \cdots, n)
+\end{cases}
+\end{align}
+
+$x_k = \frac{1}{2}z_k$, $y_k = \frac{1}{2}z_k$, $\lambda_k = -z_k$ のとき，この式はKKT条件を満たす。
+
+したがって，$(x^*(z), y^*(z)) = (\frac{1}{2}z, \frac{1}{2}z)$
+
+\section*{問題 (iii)}
+
+\subsection*{(a)}
+
+\[P(z) = \frac{1}{2}z^T A z, \quad \nabla P(z) = \frac{1}{2}A^T A z, \quad \nabla^2 P(z) = \frac{1}{2}A^T A\]
+
+したがって，$\nabla^2 P(z)$ は正定値であり，$P$ は凹計画である。この真
+
+\subsection*{(b)}
+
+$\nabla^2 q(x,z) = zI - \nabla^2 q$ は凹計画である。
+
+$P_2(z)$ のKKT条件は $2x + A_z = 0$
+
+したがって，$x = -\frac{1}{2}A_z$ で最適解である。
+
+この場合，$q_2(z) = z(I - \frac{1}{2}A^T A)z$ とし，$\nabla q_2(z) = zI - \frac{1}{2}A^T A$
+
+付与は $A = I$ ならば $\nabla^2 q_2(z)$ は正定値であり，これは定符号である。したがって場合
+
+\subsection*{(c)}
+
+\[r(z) = \frac{1}{2}z^T z, \quad \nabla r(z) = z\]
+
+したがって，$\nabla^2 r(z)$ は正定値であり凹函数である。最後
+
+\newpage
+
+\section*{Remind}
+
+\subsection*{凹函数の定義}
+
+$f$ が凹函数 $\Leftrightarrow$ ${}^\forall x, \alpha \in \mathbb{R}^n, \alpha \in [0,1]$ について
+\[f[\alpha x + (1-\alpha)y] \leq \alpha f(x) + (1-\alpha)f(y)\]
+
+\subsection*{また …}
+
+$f$ が凹函数 $\Leftrightarrow$ $\nabla f(x)$ が半正定値
+
+(例: $I, A^T A$ など)
+
+\end{document}

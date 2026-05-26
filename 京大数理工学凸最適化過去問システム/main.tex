@@ -1,0 +1,58 @@
+% Simple English article template for LaTeX
+    % All section headings are left-aligned (default in LaTeX is centered)
+
+\documentclass[12pt]{article}
+
+% Basic packages for font encoding and language support
+\usepackage[utf8]{inputenc}          % Accept UTF-8 input
+\usepackage[T1]{fontenc}             % Use T1 font encoding
+\usepackage{lmodern}                 % Latin Modern font (vector-based)
+\usepackage[english]{babel}          % English hyphenation and localization
+\usepackage{titlesec}                % Customize section heading formats
+\usepackage{lipsum}                  % For generating placeholder text (remove in final version)
+\usepackage{amsfonts}
+\usepackage{amsmath} 
+\usepackage{amssymb}
+
+% Left-align section titles
+% Syntax: \titleformat{<command>}{<format>}{<label>}{<sep>}{<before-code>}
+\titleformat{\section}
+{\normalfont\Large\bfseries}       % Format: normal weight, large, bold
+{\thesection}                      % Section number
+{1em}                              % Horizontal space between number and title
+{}                                 % Code before the title text (none here)
+
+% Adjust spacing around section titles
+% Syntax: \titlespacing*{<command>}{<left>}{<before-sep>}{<after-sep>}
+\titlespacing*{\section}
+{0pt}                              % Left margin (0 = flush left)
+{3.5ex plus 1ex minus .2ex}        % Space before the title
+{2.3ex plus .2ex}                  % Space after the title
+
+% Optional: set page margins
+\usepackage[a4paper, margin=1in]{geometry}
+
+% Set document language explicitly (redundant but clear)
+\selectlanguage{english}
+
+% Document metadata
+\title{My Simple Article}
+\author{Author Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+\lipsum[1] % Replace this with your actual content
+
+
+\section{Background}
+\lipsum[2]
+
+\section{Conclusion}
+This is the conclusion of the paper.
+
+% End of document
+\end{document}

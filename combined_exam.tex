@@ -1,0 +1,271 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{color}
+\usepackage[utf-8]{inputenc}
+\usepackage{xeCJK}
+
+\setCJKmainfont{Hiragino Sans GB}
+
+\title{京都大学大学院 数理工学専攻}
+\author{凸最適化 過去問}
+\date{H27・H28・H29 (OR)}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\part*{H27 凸最適化}
+
+\section*{問題 (i)}
+
+$\lambda$ をラグランジュ乗数とする。$P(z)$ のKKT条件は
+\begin{align}
+\begin{cases}
+\nabla f(z) + (z^* - z) + \lambda \partial = 0 \\
+0 \leq z^* - b = 0
+\end{cases}
+\end{align}
+
+これから，$z^* = - \nabla f(z) + \lambda$ より，$0 \leq z^* \partial$ に従い入する。
+
+\[-\nabla f(z)^T \partial + 0z - \lambda 0z - b = 0\]
+
+\[\lambda = - \frac{\nabla f(z)^T \partial}{0z - \partial}\quad (\because 0z = b)\]
+
+また，$y^* = -\nabla f(x) + z \cdot \frac{\nabla f(z) \partial}{0z - \partial}$
+
+この$y^*$と$\lambda$はKKT条件を満たす。したがって，$y_1(z) = -\nabla f(x) + z + \frac{\nabla f(z)\partial}{0z - \partial} x$
+
+\section*{問題 (ii)}
+
+\textbf{文は P の最適解 $\rightarrow$ ① 任意の実行可能解 $x_c$ について $f(x_c) \leq f(x^*)$}
+
+\textbf{② P は凹計画，かつ $x$ がKKT条件を満たす。}
+
+$\nu$ をラグランジュ乗数とするとき，$P$ のKKT条件は
+\begin{align}
+\begin{cases}
+\nabla f(x) + \lambda \partial = 0 \\
+0z x - b = 0
+\end{cases}
+\end{align}
+
+(i) より $\bar{y}(x) = -x$ のとき，$\nabla f(x) - \frac{\nabla f}{0z} \partial = 0$，また，$x \in S$
+
+よって，$x^* = x$，$\lambda^* = -\frac{\nabla f}{0z}$ ここに言えば，このの$x^*$と$\lambda^*$は P のKKT条件を満たす
+P は凹計画なので，$x^* = x$ が最適解である。
+
+\section*{問題 (iii)}
+
+不等式を不等号に，制御できる領域 $\rightarrow$ ① 実行可能解$x$と最適解$x^*$について
+
+\textbf{② $f_0$ が凸性なら $f(\alpha x + (1-\alpha)y) \geq \alpha f(x) + (1-\alpha)f(y)$}
+
+令回は $P(x)$ の最適解が $\bar{x}$ であるとする。0 の 
+$\bar{y}(x) \in S$，$x \in S$ が $f(x) \geq f(x^*)$となる
+
+\[\nabla f(x)^T \bar{y}(x) + \frac{1}{2}(\bar{x}(x) - x)^T(\bar{x}(x) - x) \leq \nabla f(x)^T x\]
+
+また \[\nabla f(x)^T(\bar{x}(x) - x) < -\frac{1}{2}(\bar{x}(x) - x)^T(\bar{x}(x) - x) < 0\]
+
+$\bar{z}$，$\bar{y}(x) \in S$，$x \in S$ より $0z(\bar{y}(x) - x) = b - b = 0$
+
+\section*{問題 (iv)}
+
+$x$ が最適解ではなし $\rightarrow$ 十(s) $< f(x)$ とある必要可能な
+解がある
+
+$\rightarrow$ 凹計画問題の場合，$x$ はKKT条件
+を満たさない。
+
+$x$ が $P$ の最適解であると仮定する。ある $\lambda \in \mathbb{R}$ が存在して
+\[\nabla f(x) + \lambda \partial = 0, \quad 0z x = b\]
+と満たす ゆえ $(\bar{x}(x) - x)$ を考えて
+
+\[\nabla f(x)^T(\bar{x}(x) - x) + \lambda 0z (\bar{x}(x) - x) = 0\]
+
+$x$ は最適解かなり，$x \in S$ であり，$\bar{z}(x) \in S$ も
+
+(iii)より $0z(\bar{x}(x) - x) = 0$ 不になら $f$
+
+\[\nabla f(x)^T(\bar{x}(x) - x) = 0\]
+
+これは(iii)で予備する。したがって，$x$ は最適解である。
+
+\newpage
+
+\part*{H28 凸最適化}
+
+\section*{問題 (i)}
+
+不等式を不等号に。
+
+\begin{enumerate}
+  \item[\textcircled{1}] $x^*$ が定行可能解ですか。最適解 $\alpha$ はあり，$f(x^*) \leq f(x)$
+  
+  \item[\textcircled{2}] $f$ が凸性から 
+  \[f(\alpha x + (1-t)y) \leq \alpha f(x) + (1-t)f(y)\]
+  
+  \item[\textcircled{3}] 以前の小問の不等式に適当な値を代入
+\end{enumerate}
+
+式と不等式を解で判断する。令回は $0$
+
+\[(x^* - x^k)^T(x^T - x^k) \leq I \text{ より } x^k \text{ は } P(k) \text{ の実行可能解である。}\]
+
+したがって，$f_k(x^*) \leq f_k(x^k)$
+
+令 $0$ と $x^* = 0$ $f$ で考え $f_k(x^*) \leq f(x^*)$ より $f_k(x^*) \leq f(x^*)$
+
+\section*{問題 (ii)}
+
+\[\lim_k k(\omega x^k) = \bar{\lambda} \text{ より } \lim_k k(\rho x^k) \text{ か考え有限の他入に与えるが}\]
+
+\[\omega t x^k = \frac{\bar{\lambda}}{k} + o\left(\frac{1}{k}\right) \text{ が必要である（$o$ はランダウの記号 - ）}\]
+
+したがって，
+\[\lim \partial \omega x^k = \partial \bar{x} = 0\]
+
+手札：$\partial \omega \bar{x} = 0$ より $\bar{x}$ は $P$ の実行可能解である。
+
+(ii)より 
+\[\lim f_u(x^k) = f(\bar{x}) + \frac{1}{2}(\bar{x} - x^k)^T(\bar{x} - x^k) \leq f(x^k)\]
+
+もし $\bar{x} \neq x^k$ ならば $(\bar{x} - x^k)^T(\bar{x} - x^k) > 0$ ゆえ $x^k$ が $P$ の大局的最適解である
+ここに矛盾 $f$。したがって，$\bar{x} = x^k$
+
+\section*{問題 (iii)}
+
+$\lambda$ をうがランジュ乗数とするとき，$P(k)$ のKKT条件は
+\begin{align}
+\begin{cases}
+\nabla f_k(x) + 2\lambda(x - x^k) = 0 \\
+(x - x^k)^T(x - x^k) - I \leq 0, \quad \lambda \geq 0, \quad \lambda((x - x^k)^T(x - x^k) - 1) = 0
+\end{cases}
+\tag{★}
+\end{align}
+
+\section*{問題 (iv)}
+
+$x^*$ はKKT条件と誤差が $\nabla f(x^k) + 2\lambda(x^k - x^k) = 0$，$\lambda = 0$ を示したい。
+
+$\rightarrow$ 相対性優 KKT条件 $\lambda((x^k - x^k)^T(x^k - x^k) - 1) = 0$ より $\lambda = 0$ を示す。
+
+$x^k$ は $P(k)$ の最適解が KKT条件と満たすので入が合致して
+\[\nabla f_k(x^k) + 2\lambda(x^k - x^k) = 0\]
+
+令(ii)より $x^k \to x^k$（$k \to \infty$）をかく十分大きく に対して 
+\[(x^k - x^k)^T(x^k - x^k) < 1\]
+
+となる。この時，$\lambda((x^k - x^k)^T(x^k - x^k) - 1) = 0$ より $\lambda = 0$
+
+したがって，$2$，$k$ が十分大きいとき，$\nabla f_k(x^k) = 0$
+
+\section*{問題 (v)}
+
+(iv)より 十分大きな$k$に対して $\nabla f_k(x^k) = 0$，より
+\[\nabla f(x^k) + k \partial \omega x^k \partial \omega + (x^k - x^k) = 0\]
+
+$k \to \infty$の和限度として(ii)より $\lim_{k \to \infty} x^k = x^k$である
+
+\[\nabla f(x^k) + \bar{\lambda} \partial \omega = 0\]
+
+\newpage
+
+\part*{H29 凸最適化}
+
+\section*{問題 (i)}
+
+$P(z)$ は凹計画問題であって適応できないとし，一般性を失わないとする。
+ラグランジュ乗数法を使い，$P(z)$ のKKT条件は
+\begin{align}
+\begin{cases}
+-2x + A_z + \lambda_x = 0 \\
+x_i x - 1 \leq 0, \quad \lambda \geq 0, \quad \lambda(x_i x - 1) = 0
+\end{cases}
+\end{align}
+
+$x = \frac{1}{2}A_z$, $\lambda = 0$ のとき，そしてのみこれはKKT条件を満たす。
+
+$\phi'(z) = \frac{1}{2}A_z$ の目的関数を $-f(x,z)$ と考えたときは
+凹計画領域である。したがって，$x = \frac{1}{2}A_z$ は $P(z)$ の最適解である。
+
+\section*{問題 (ii)}
+
+\[\nabla h(x,z) = \begin{bmatrix} 2x \\ z \end{bmatrix}, \quad \nabla^2 h(x,z) = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}\]
+
+$I$ は正定値行列であり $\nabla^2 h(x,z)$ も正定値である。したがって，$h(x,z)$ は凹函数である。
+
+$P_J(z)$ のKKT条件は $\lambda_1, \cdots, \lambda_n$ を使い，
+\begin{align}
+\begin{cases}
+2x_k + \lambda_z = 0, \quad 2y_k + \lambda_z = 0 & (k = 1, \cdots, n) \\
+\lambda_k + y_k - z_k = 0 & (k = 1, \cdots, n)
+\end{cases}
+\end{align}
+
+$x_k = \frac{1}{2}z_k$, $y_k = \frac{1}{2}z_k$, $\lambda_k = -z_k$ のとき，この式はKKT条件を満たす。
+
+したがって，$(x^*(z), y^*(z)) = (\frac{1}{2}z, \frac{1}{2}z)$
+
+\section*{問題 (iii)}
+
+\subsection*{(a)}
+
+\[P(z) = \frac{1}{2}z^T A z, \quad \nabla P(z) = \frac{1}{2}A^T A z, \quad \nabla^2 P(z) = \frac{1}{2}A^T A\]
+
+したがって，$\nabla^2 P(z)$ は正定値であり，$P$ は凹計画である。この真
+
+\subsection*{(b)}
+
+$\nabla^2 q(x,z) = zI - \nabla^2 q$ は凹計画である。
+
+$P_2(z)$ のKKT条件は $2x + A_z = 0$
+
+したがって，$x = -\frac{1}{2}A_z$ で最適解である。
+
+この場合，$q_2(z) = z(I - \frac{1}{2}A^T A)z$ とし，$\nabla q_2(z) = zI - \frac{1}{2}A^T A$
+
+付与は $A = I$ ならば $\nabla^2 q_2(z)$ は正定値であり，これは定符号である。したがって場合
+
+\subsection*{(c)}
+
+\[r(z) = \frac{1}{2}z^T z, \quad \nabla r(z) = z\]
+
+したがって，$\nabla^2 r(z)$ は正定値であり凹函数である。最後
+
+\newpage
+
+\section*{Remind}
+
+\subsection*{ランダウの記号}
+
+\[f(x) = O(x^2) + 2x^c\]
+
+の如く，$x$が十分大きいと。その挙動は $O(x^2)$と呼称する。こんなランダウの\textbf{ビッグオー} - $\mathcal{O}$ を用いて示す。
+
+\[f(x) = O(\omega^2) \quad (x \to \infty)\]
+
+また，$f(x)$は$x$が十分大きいと，$\omega x^k$よりも$3$分の$1$小さいのこれを
+ランダウの\textbf{小記号} - $o$ と用いて示す。
+
+\[f(x) = o(x^4) \quad (x \to \infty)\]
+
+逆に対$0$に連いては
+\[f(x) = O(x) \quad (x \to 0), \quad f(x) = o(x) \quad (x \to 0)\]
+
+\subsection*{凹函数の定義（H29から）}
+
+$f$ が凹函数 $\Leftrightarrow$ ${}^\forall x, \alpha \in \mathbb{R}^n, \alpha \in [0,1]$ について
+\[f[\alpha x + (1-\alpha)y] \leq \alpha f(x) + (1-\alpha)f(y)\]
+
+また $f$ が凹函数 $\Leftrightarrow$ $\nabla f(x)$ が半正定値
+
+(例: $I, A^T A$ など)
+
+\end{document}

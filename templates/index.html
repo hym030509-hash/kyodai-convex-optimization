@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>京大数理工学 凸最適化過去問</title>
+
+  <style>
+nav {
+  max-width: 900px;
+  margin: 0 auto 24px auto;
+  display: flex;
+  gap: 16px;
+}
+
+nav a {
+  background: white;
+  color: #2563eb;
+  padding: 10px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+    body {
+
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+
+      background: #f6f7f9;
+
+      margin: 0;
+
+      padding: 32px;
+
+    }
+
+    h1 {
+
+      margin-bottom: 24px;
+
+    }
+
+    .card {
+
+      background: white;
+
+      border-radius: 12px;
+
+      padding: 20px;
+
+      margin-bottom: 16px;
+
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+    }
+
+    .id {
+
+      font-size: 24px;
+
+      font-weight: bold;
+
+      margin-bottom: 8px;
+
+    }
+
+    .meta {
+
+      color: #555;
+
+      margin-bottom: 8px;
+
+    }
+
+    .tag {
+
+      display: inline-block;
+
+      background: #e8f0fe;
+
+      color: #174ea6;
+
+      padding: 4px 10px;
+
+      border-radius: 999px;
+
+      margin-right: 6px;
+
+      margin-top: 4px;
+
+      font-size: 14px;
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <h1>京大数理工学 凸最適化過去問</h1>
+  <input
+
+  id="search"
+
+  placeholder="KKT, Hessian, H29 などで検索"
+
+  style="width:100%; padding:12px; font-size:16px; margin-bottom:20px;"
+
+>
+
+  <div id="container"></div>
+
+<script>
+
+let allProblems = [];
+
+fetch("/problems")
+
+  .then(response => response.json())
+
+  .then(data => {
+
+    allProblems = data;
+
+    renderProblems(allProblems);
+
+  });
+
+function renderProblems(problems) {
+
+  const container = document.getElementById("container");
+
+  container.innerHTML = "";
+
+  problems.forEach(problem => {
+
+    const card = document.createElement("div");
+
+    card.className = "card";
+
+    card.innerHTML = `
+
+      <h2>
+
+        <a href="/problem/${problem.id}">
+
+          ${problem.id}
+
+        </a>
+
+      </h2>
+
+      <p><b>Year:</b> ${problem.year || ""}</p>
+
+      <p><b>Type:</b> ${problem.type || ""}</p>
+
+      <p><b>Topics:</b> ${problem.topics || ""}</p>
+
+    `;
+
+    container.appendChild(card);
+
+  });
+
+}
+
+document.getElementById("search").addEventListener("input", function () {
+
+  const keyword = this.value.toLowerCase();
+
+  const filtered = allProblems.filter(problem => {
+
+    return (
+
+      String(problem.id || "").toLowerCase().includes(keyword) ||
+
+      String(problem.year || "").toLowerCase().includes(keyword) ||
+
+      String(problem.type || "").toLowerCase().includes(keyword) ||
+
+      String(problem.topics || "").toLowerCase().includes(keyword) ||
+
+      String(problem.problem_text || "").toLowerCase().includes(keyword)
+
+    );
+
+  });
+
+  renderProblems(filtered);
+
+});
+
+</script>
+
+</body>
+<nav>
+  <a href="/">Home</a>
+  <a href="/problems-page">Problems</a>
+</nav>
+
+</html>

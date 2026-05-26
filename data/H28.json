@@ -1,0 +1,63 @@
+[
+    {
+        "id":"H28-i",
+        "year":"H28",
+        "problem":"i",
+        "type":"proof",
+        "topics":["実行可能解"],
+        "keywords":"制約条件より",
+        "difficulty":"1",
+        "latex_source":"H28.tex"
+        
+    },
+
+
+
+    {
+        "id":"H28-ii",
+        "year":"H28",
+        "problem":"ii",
+        "type":"proof",
+        "topics":["実行可能解","大域的最適解"],
+        "keywords":"制約条件より",
+        "difficulty":"3",
+        "latex_source":"H28.tex"
+    },
+
+
+
+    {
+        "id":"H28-iii",
+        "year":"H28",
+        "problem":"iii",
+        "type":"derivation",
+        "topics":["KKT"],
+        "keywords":"条件を書け",
+        "difficulty":"2",
+        "latex_source":"H28.tex"
+    },
+
+
+
+    {
+        "id":"H28-iv",
+        "year":"H28",
+        "problem":"iv",
+        "type":"proof",
+        "topics":["KKT"],
+        "keywords":"Complementary slackness",
+        "difficulty":"1",
+        "latex_source":"H28.tex"
+    },
+
+
+
+    {
+        "id":"H28-v",
+        "year":"H28",
+        "problem":"v",
+        "type":"proof",
+        "topics":["KKT","極限"]
+    }
+]
+
