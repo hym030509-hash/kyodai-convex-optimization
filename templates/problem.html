@@ -1,221 +1,293 @@
 <!DOCTYPE html>
-
 <html lang="ja">
-
 <head>
-
   <meta charset="UTF-8">
-
-  <title>Problem</title>
-
+  <title>問題詳細</title>
   <script>
-
-  window.MathJax = {
-
-    tex: {
-
-      inlineMath: [['$', '$'], ['\\(', '\\)']],
-
-      displayMath: [['$$', '$$'], ['\\[', '\\]']]
-
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 40px;
+      color: #1f2933;
     }
-
-  };
-
-</script>
-
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-
-<style>
-
-  body {
-
-    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
-
-    background: #f4f6f8;
-
-    margin: 0;
-
-    padding: 40px;
-
-  }
-
-  .container {
-
-    max-width: 900px;
-
-    margin: 0 auto;
-
-    background: white;
-
-    padding: 36px;
-
-    border-radius: 18px;
-
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-
-  }
-
-  a {
-
-    color: #2563eb;
-
-    text-decoration: none;
-
-  }
-
-  h1 {
-
-    font-size: 40px;
-
-    margin-bottom: 20px;
-
-  }
-
-  h2 {
-
-    margin-top: 32px;
-
-    border-left: 6px solid #2563eb;
-
-    padding-left: 12px;
-
-  }
-
-  .meta {
-
-    color: #555;
-
-    margin: 8px 0;
-
-  }
-
-  .tag {
-
-    display: inline-block;
-
-    background: #e0ecff;
-
-    color: #1d4ed8;
-
-    padding: 5px 12px;
-
-    border-radius: 999px;
-
-    margin-right: 6px;
-
-    font-size: 14px;
-
-  }
-
-  .section {
-
-    line-height: 1.8;
-
-    font-size: 18px;
-
-    margin-top: 12px;
-
-  }
-
-</style>
-
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      padding: 36px;
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    a, .language-button {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .language-button {
+      margin-left: auto;
+      background: #f8fafc;
+      border: 1px solid #dbe3ef;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font: inherit;
+      cursor: pointer;
+    }
+    h1 {
+      font-size: 40px;
+      margin: 0 0 20px;
+    }
+    h2 {
+      margin-top: 32px;
+      border-left: 6px solid #2563eb;
+      padding-left: 12px;
+    }
+    .meta {
+      color: #475569;
+      margin: 8px 0;
+    }
+    .tag {
+      display: inline-block;
+      background: #e0ecff;
+      color: #1d4ed8;
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-right: 6px;
+      margin-top: 6px;
+      font-size: 14px;
+    }
+    .tag.skill {
+      background: #ecfdf5;
+      color: #047857;
+    }
+    .section {
+      line-height: 1.8;
+      font-size: 18px;
+      margin-top: 12px;
+    }
+    .pager {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    @media (max-width: 760px) {
+      body {
+        padding: 18px;
+      }
+      .container {
+        padding: 24px;
+      }
+      .topbar {
+        flex-wrap: wrap;
+      }
+      .language-button {
+        margin-left: 0;
+      }
+      .pager {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
-
 <body>
-
   <div class="container">
-
-    <p><a href="/">← 一覧に戻る</a></p>
-
-    <div id="content">Loading...</div>
-
+    <div class="topbar">
+      <a href="/problems-page" data-i18n="back">過去問一覧へ戻る</a>
+      <button id="languageButton" class="language-button" type="button">英語</button>
+    </div>
+    <div id="content">読み込み中...</div>
   </div>
 
 <script>
-
 const path = window.location.pathname;
-
 const problemId = path.split("/").pop();
+let currentLanguage = localStorage.getItem("language") || "ja";
+
+const messages = {
+  ja: {
+    documentTitle: "問題詳細",
+    back: "過去問一覧へ戻る",
+    languageButton: "英語",
+    loading: "読み込み中...",
+    notFound: "問題が見つかりません",
+    error: "読み込みに失敗しました",
+    year: "年度",
+    type: "題型",
+    difficulty: "難度",
+    commonText: "共通文",
+    problem: "問題",
+    solution: "解答例",
+    previous: id => `前の問題：${id}`,
+    next: id => `次の問題：${id}`
+  },
+  en: {
+    documentTitle: "Problem Details",
+    back: "Back to Problem List",
+    languageButton: "Japanese",
+    loading: "Loading...",
+    notFound: "Problem not found",
+    error: "Failed to load the problem",
+    year: "Year",
+    type: "Type",
+    difficulty: "Difficulty",
+    commonText: "Shared Statement",
+    problem: "Problem",
+    solution: "Sample Solution",
+    previous: id => `Previous: ${id}`,
+    next: id => `Next: ${id}`
+  }
+};
+
+const labels = {
+  ja: {
+    proof: "証明",
+    calculation: "計算",
+    derivation: "導出",
+    "convex function": "凸関数",
+    "最適解を求めること": "最適解の導出",
+    "最適解を求める": "最適解の導出",
+    "Stationary condition": "停留条件",
+    "Complementary slackness": "相補性条件",
+    "Hessian matrix": "ヘッセ行列",
+    "negative definite": "負定値",
+    "positive definite": "正定値",
+    stationarity: "停留条件",
+    complementary_slackness: "相補性条件",
+    constraint_qualification: "制約想定",
+    hessian_check: "ヘッセ行列の確認",
+    convexity_proof: "凸性の証明",
+    feasibility_check: "実行可能性の確認",
+    global_optimality: "大域的最適性"
+  },
+  en: {
+    proof: "Proof",
+    calculation: "Calculation",
+    derivation: "Derivation",
+    "実行可能解": "Feasible solution",
+    "大域的最適解": "Global optimum",
+    "最適解を求めること": "Finding an optimal solution",
+    "最適解を求める": "Finding an optimal solution",
+    "極限": "Limit",
+    "制約条件より": "Using the constraints",
+    "条件を書け": "State the conditions",
+    stationarity: "Stationarity",
+    complementary_slackness: "Complementary slackness",
+    constraint_qualification: "Constraint qualification",
+    hessian_check: "Hessian check",
+    convexity_proof: "Convexity proof",
+    feasibility_check: "Feasibility check",
+    global_optimality: "Global optimality"
+  }
+};
+
+let allProblems = [];
 
 fetch("/problems")
-
   .then(response => response.json())
-
   .then(data => {
-
-    const content = document.getElementById("content");
-
-    const index = data.findIndex(p => p.id === problemId);
-
-    const problem = data[index];
-
-    if (!problem) {
-
-      content.innerHTML = "<h1>Problem not found</h1>";
-
-      return;
-
-    }
-
-    const prev = data[index - 1];
-
-    const next = data[index + 1];
-
-    const topics = Array.isArray(problem.topics)
-
-      ? problem.topics.map(t => `<span class="tag">${t}</span>`).join("")
-
-      : "";
-
-    content.innerHTML = `
-
-      <h1>${problem.id}</h1>
-
-      <p class="meta"><b>Year:</b> ${problem.year || ""}</p>
-
-      <p class="meta"><b>Type:</b> ${problem.type || ""}</p>
-
-      <div>${topics}</div>
-
-      <h2>Common Text</h2>
-
-      <div class="section">${problem.common_text || ""}</div>
-
-      <h2>Problem</h2>
-
-      <div class="section">${problem.problem_text || ""}</div>
-
-      <h2>Solution</h2>
-
-      <div class="section">${problem.solution_text || ""}</div>
-
-      <hr>
-
-      <div style="display:flex; justify-content:space-between; margin-top:24px;">
-
-        <div>${prev ? `<a href="/problem/${prev.id}">← ${prev.id}</a>` : ""}</div>
-
-        <div>${next ? `<a href="/problem/${next.id}">${next.id} →</a>` : ""}</div>
-
-      </div>
-
-    `;
-
-    MathJax.typesetPromise();
-
+    allProblems = data;
+    renderProblem();
   })
-
   .catch(error => {
-
-    document.getElementById("content").innerHTML =
-
-      "<h1>Error</h1><pre>" + error + "</pre>";
-
+    document.getElementById("content").innerHTML = `<h1>${t("error")}</h1><pre>${escapeHtml(error)}</pre>`;
   });
 
+function t(key) {
+  return messages[currentLanguage][key];
+}
+
+function label(value) {
+  return labels[currentLanguage][value] || value;
+}
+
+function tagList(value) {
+  return Array.isArray(value) ? value : value ? [value] : [];
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function tags(values, className = "") {
+  return tagList(values)
+    .map(item => `<span class="tag ${className}">${escapeHtml(label(item))}</span>`)
+    .join("");
+}
+
+function applyStaticText() {
+  document.documentElement.lang = currentLanguage;
+  document.title = t("documentTitle");
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    element.textContent = t(element.dataset.i18n);
+  });
+  document.getElementById("languageButton").textContent = t("languageButton");
+}
+
+function renderProblem() {
+  applyStaticText();
+
+  const content = document.getElementById("content");
+  const index = allProblems.findIndex(p => p.id === problemId);
+  const problem = allProblems[index];
+
+  if (!problem) {
+    content.innerHTML = `<h1>${t("notFound")}</h1>`;
+    return;
+  }
+
+  const prev = allProblems[index - 1];
+  const next = allProblems[index + 1];
+
+  content.innerHTML = `
+    <h1>${escapeHtml(problem.id)}</h1>
+    <p class="meta"><b>${t("year")}:</b> ${escapeHtml(problem.year)}</p>
+    <p class="meta"><b>${t("type")}:</b> ${escapeHtml(label(problem.type))}</p>
+    <p class="meta"><b>${t("difficulty")}:</b> ${escapeHtml(problem.difficulty || "")}</p>
+    <div>${tags(problem.topics)}${tags(problem.keywords)}${tags(problem.proof_skills, "skill")}</div>
+    <h2>${t("commonText")}</h2>
+    <div class="section">${problem.common_text || ""}</div>
+    <h2>${t("problem")}</h2>
+    <div class="section">${problem.problem_text || ""}</div>
+    <h2>${t("solution")}</h2>
+    <div class="section">${problem.solution_text || ""}</div>
+    <hr>
+    <div class="pager">
+      <div>${prev ? `<a href="/problem/${escapeHtml(prev.id)}">${escapeHtml(t("previous")(prev.id))}</a>` : ""}</div>
+      <div>${next ? `<a href="/problem/${escapeHtml(next.id)}">${escapeHtml(t("next")(next.id))}</a>` : ""}</div>
+    </div>
+  `;
+
+  MathJax.typesetPromise();
+}
+
+document.getElementById("languageButton").addEventListener("click", () => {
+  currentLanguage = currentLanguage === "ja" ? "en" : "ja";
+  localStorage.setItem("language", currentLanguage);
+  renderProblem();
+});
+
+applyStaticText();
 </script>
-
 </body>
-
 </html>

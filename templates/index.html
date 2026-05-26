@@ -1,205 +1,392 @@
 <!DOCTYPE html>
-
 <html lang="ja">
-
 <head>
-
   <meta charset="UTF-8">
-
   <title>京大数理工学 凸最適化過去問</title>
-
   <style>
-nav {
-  max-width: 900px;
-  margin: 0 auto 24px auto;
-  display: flex;
-  gap: 16px;
-}
-
-nav a {
-  background: white;
-  color: #2563eb;
-  padding: 10px 16px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
     body {
-
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
-
-      background: #f6f7f9;
-
+      background: #f5f6f8;
+      color: #1f2933;
       margin: 0;
-
       padding: 32px;
-
     }
-
-    h1 {
-
+    nav, main {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       margin-bottom: 24px;
-
     }
-
-    .card {
-
+    nav a, .language-button {
       background: white;
-
-      border-radius: 12px;
-
-      padding: 20px;
-
-      margin-bottom: 16px;
-
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-
+      color: #2563eb;
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 16px;
+      text-decoration: none;
+      font: inherit;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+      cursor: pointer;
     }
-
-    .id {
-
-      font-size: 24px;
-
-      font-weight: bold;
-
-      margin-bottom: 8px;
-
+    .language-button {
+      margin-left: auto;
     }
-
-    .meta {
-
-      color: #555;
-
-      margin-bottom: 8px;
-
+    h1 {
+      margin: 0 0 18px;
     }
-
-    .tag {
-
-      display: inline-block;
-
-      background: #e8f0fe;
-
-      color: #174ea6;
-
-      padding: 4px 10px;
-
-      border-radius: 999px;
-
-      margin-right: 6px;
-
-      margin-top: 4px;
-
+    .toolbar {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    }
+    .search {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: white;
       font-size: 14px;
-
     }
-
+    .summary {
+      color: #64748b;
+      font-size: 14px;
+      margin: 0 0 14px;
+    }
+    .card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    }
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 22px;
+    }
+    .card a {
+      color: #1d4ed8;
+      text-decoration: none;
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      color: #475569;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    .tag {
+      display: inline-block;
+      background: #e8f0fe;
+      color: #174ea6;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-right: 6px;
+      margin-top: 4px;
+      font-size: 14px;
+    }
+    .tag.skill {
+      background: #ecfdf5;
+      color: #047857;
+    }
+    .empty {
+      background: white;
+      border: 1px dashed #cbd5e1;
+      border-radius: 8px;
+      padding: 28px;
+      text-align: center;
+      color: #64748b;
+    }
+    @media (max-width: 760px) {
+      body {
+        padding: 18px;
+      }
+      nav {
+        flex-wrap: wrap;
+      }
+      .language-button {
+        margin-left: 0;
+      }
+      .filters {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
   </style>
-
 </head>
-
 <body>
-
-  <h1>京大数理工学 凸最適化過去問</h1>
-  <input
-
-  id="search"
-
-  placeholder="KKT, Hessian, H29 などで検索"
-
-  style="width:100%; padding:12px; font-size:16px; margin-bottom:20px;"
-
->
-
-  <div id="container"></div>
+  <nav>
+    <a href="/" data-i18n="navHome">ホーム</a>
+    <a href="/problems-page" data-i18n="navProblems">過去問一覧</a>
+    <button id="languageButton" class="language-button" type="button">英語</button>
+  </nav>
+  <main>
+    <h1 data-i18n="title">京大数理工学 凸最適化過去問</h1>
+    <section class="toolbar">
+      <input id="search" class="search" placeholder="KKT，ヘッセ行列，H29 などで検索">
+      <div class="filters">
+        <select id="yearFilter"></select>
+        <select id="typeFilter"></select>
+        <select id="topicFilter"></select>
+        <select id="difficultyFilter"></select>
+      </div>
+    </section>
+    <p id="summary" class="summary"></p>
+    <div id="container"></div>
+  </main>
 
 <script>
-
 let allProblems = [];
+let currentLanguage = localStorage.getItem("language") || "ja";
+
+const messages = {
+  ja: {
+    documentTitle: "京大数理工学 凸最適化過去問",
+    navHome: "ホーム",
+    navProblems: "過去問一覧",
+    languageButton: "英語",
+    title: "京大数理工学 凸最適化過去問",
+    searchPlaceholder: "KKT，ヘッセ行列，H29 などで検索",
+    allYears: "すべての年度",
+    allTypes: "すべての題型",
+    allTopics: "すべての知識点",
+    allDifficulties: "すべての難度",
+    year: "年度",
+    type: "題型",
+    difficulty: "難度",
+    empty: "条件に合う問題がありません。",
+    count: (shown, total) => `${total}問中 ${shown}問を表示`
+  },
+  en: {
+    documentTitle: "Kyoto Mathematical Engineering Convex Optimization Archive",
+    navHome: "Home",
+    navProblems: "Problems",
+    languageButton: "Japanese",
+    title: "Kyoto Mathematical Engineering Convex Optimization Archive",
+    searchPlaceholder: "Search by KKT, Hessian, H29, and more",
+    allYears: "All years",
+    allTypes: "All problem types",
+    allTopics: "All topics",
+    allDifficulties: "All difficulty levels",
+    year: "Year",
+    type: "Type",
+    difficulty: "Difficulty",
+    empty: "No problems match the current filters.",
+    count: (shown, total) => `Showing ${shown} of ${total} problems`
+  }
+};
+
+const labels = {
+  ja: {
+    proof: "証明",
+    calculation: "計算",
+    derivation: "導出",
+    "convex function": "凸関数",
+    "最適解を求めること": "最適解の導出",
+    "最適解を求める": "最適解の導出",
+    "Stationary condition": "停留条件",
+    "Complementary slackness": "相補性条件",
+    "Hessian matrix": "ヘッセ行列",
+    "negative definite": "負定値",
+    "positive definite": "正定値",
+    stationarity: "停留条件",
+    complementary_slackness: "相補性条件",
+    constraint_qualification: "制約想定",
+    hessian_check: "ヘッセ行列の確認",
+    convexity_proof: "凸性の証明",
+    feasibility_check: "実行可能性の確認",
+    global_optimality: "大域的最適性"
+  },
+  en: {
+    proof: "Proof",
+    calculation: "Calculation",
+    derivation: "Derivation",
+    "実行可能解": "Feasible solution",
+    "大域的最適解": "Global optimum",
+    "最適解を求めること": "Finding an optimal solution",
+    "最適解を求める": "Finding an optimal solution",
+    "極限": "Limit",
+    "制約条件より": "Using the constraints",
+    "条件を書け": "State the conditions",
+    stationarity: "Stationarity",
+    complementary_slackness: "Complementary slackness",
+    constraint_qualification: "Constraint qualification",
+    hessian_check: "Hessian check",
+    convexity_proof: "Convexity proof",
+    feasibility_check: "Feasibility check",
+    global_optimality: "Global optimality"
+  }
+};
 
 fetch("/problems")
-
   .then(response => response.json())
-
   .then(data => {
-
     allProblems = data;
-
-    renderProblems(allProblems);
-
+    applyLanguage();
   });
 
-function renderProblems(problems) {
-
-  const container = document.getElementById("container");
-
-  container.innerHTML = "";
-
-  problems.forEach(problem => {
-
-    const card = document.createElement("div");
-
-    card.className = "card";
-
-    card.innerHTML = `
-
-      <h2>
-
-        <a href="/problem/${problem.id}">
-
-          ${problem.id}
-
-        </a>
-
-      </h2>
-
-      <p><b>Year:</b> ${problem.year || ""}</p>
-
-      <p><b>Type:</b> ${problem.type || ""}</p>
-
-      <p><b>Topics:</b> ${problem.topics || ""}</p>
-
-    `;
-
-    container.appendChild(card);
-
-  });
-
+function t(key) {
+  return messages[currentLanguage][key];
 }
 
-document.getElementById("search").addEventListener("input", function () {
+function label(value) {
+  return labels[currentLanguage][value] || value;
+}
 
-  const keyword = this.value.toLowerCase();
+function asList(value) {
+  return Array.isArray(value) ? value : value ? [value] : [];
+}
 
-  const filtered = allProblems.filter(problem => {
+function escapeHtml(value) {
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
 
-    return (
+function tags(values, className = "") {
+  return asList(values)
+    .map(value => `<span class="tag ${className}">${escapeHtml(label(value))}</span>`)
+    .join("");
+}
 
-      String(problem.id || "").toLowerCase().includes(keyword) ||
+function uniqueValues(field) {
+  const values = new Set();
+  allProblems.forEach(problem => asList(problem[field]).forEach(value => {
+    if (value !== null && value !== "") values.add(value);
+  }));
+  return Array.from(values).sort((a, b) => String(label(a)).localeCompare(String(label(b)), currentLanguage));
+}
 
-      String(problem.year || "").toLowerCase().includes(keyword) ||
-
-      String(problem.type || "").toLowerCase().includes(keyword) ||
-
-      String(problem.topics || "").toLowerCase().includes(keyword) ||
-
-      String(problem.problem_text || "").toLowerCase().includes(keyword)
-
-    );
-
+function populateSelect(id, values, messageKey) {
+  const select = document.getElementById(id);
+  const selected = select.value;
+  select.innerHTML = `<option value="">${t(messageKey)}</option>`;
+  values.forEach(value => {
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = label(value);
+    select.appendChild(option);
   });
+  select.value = selected;
+}
 
-  renderProblems(filtered);
+function populateFilters() {
+  populateSelect("yearFilter", uniqueValues("year"), "allYears");
+  populateSelect("typeFilter", uniqueValues("type"), "allTypes");
+  populateSelect("topicFilter", uniqueValues("topics"), "allTopics");
+  populateSelect("difficultyFilter", uniqueValues("difficulty"), "allDifficulties");
+}
 
+function matchesSearch(problem, keyword) {
+  if (!keyword) return true;
+  const values = [
+    problem.id,
+    problem.year,
+    problem.type,
+    label(problem.type),
+    problem.problem_text,
+    ...asList(problem.topics),
+    ...asList(problem.topics).map(label),
+    ...asList(problem.keywords),
+    ...asList(problem.keywords).map(label),
+    ...asList(problem.proof_skills),
+    ...asList(problem.proof_skills).map(label)
+  ];
+  return values.join(" ").toLowerCase().includes(keyword);
+}
+
+function getFilteredProblems() {
+  const keyword = document.getElementById("search").value.toLowerCase().trim();
+  const year = document.getElementById("yearFilter").value;
+  const type = document.getElementById("typeFilter").value;
+  const topic = document.getElementById("topicFilter").value;
+  const difficulty = document.getElementById("difficultyFilter").value;
+  return allProblems.filter(problem => (
+    matchesSearch(problem, keyword) &&
+    (!year || String(problem.year) === year) &&
+    (!type || String(problem.type) === type) &&
+    (!topic || asList(problem.topics).includes(topic)) &&
+    (!difficulty || String(problem.difficulty) === difficulty)
+  ));
+}
+
+function renderProblems(problems) {
+  const container = document.getElementById("container");
+  const summary = document.getElementById("summary");
+  summary.textContent = t("count")(problems.length, allProblems.length);
+  container.innerHTML = "";
+
+  if (problems.length === 0) {
+    container.innerHTML = `<div class="empty">${t("empty")}</div>`;
+    return;
+  }
+
+  problems.forEach(problem => {
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <h2><a href="/problem/${escapeHtml(problem.id)}">${escapeHtml(problem.id)}</a></h2>
+      <div class="meta-row">
+        <span><b>${t("year")}:</b> ${escapeHtml(problem.year)}</span>
+        <span><b>${t("type")}:</b> ${escapeHtml(label(problem.type))}</span>
+        <span><b>${t("difficulty")}:</b> ${escapeHtml(problem.difficulty || "")}</span>
+      </div>
+      <div>${tags(problem.topics)}${tags(problem.proof_skills, "skill")}</div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function applyLanguage() {
+  document.documentElement.lang = currentLanguage;
+  document.title = t("documentTitle");
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    element.textContent = t(element.dataset.i18n);
+  });
+  document.getElementById("languageButton").textContent = t("languageButton");
+  document.getElementById("search").placeholder = t("searchPlaceholder");
+  populateFilters();
+  renderProblems(getFilteredProblems());
+}
+
+function applyFilters() {
+  renderProblems(getFilteredProblems());
+}
+
+document.getElementById("languageButton").addEventListener("click", () => {
+  currentLanguage = currentLanguage === "ja" ? "en" : "ja";
+  localStorage.setItem("language", currentLanguage);
+  applyLanguage();
 });
 
+["search", "yearFilter", "typeFilter", "topicFilter", "difficultyFilter"].forEach(id => {
+  document.getElementById(id).addEventListener("input", applyFilters);
+});
 </script>
-
 </body>
-<nav>
-  <a href="/">Home</a>
-  <a href="/problems-page">Problems</a>
-</nav>
-
 </html>
