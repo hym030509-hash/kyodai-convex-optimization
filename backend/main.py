@@ -68,3 +68,13 @@ def get_problem(problem_id: str):
             return problem
 
     return {"error": "Problem not found"}
+
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+
+def root():
+
+    return {"message": "hello"}
