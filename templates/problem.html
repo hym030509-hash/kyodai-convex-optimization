@@ -83,6 +83,28 @@
       margin-top: 12px;
       white-space: normal;
     }
+    /* Allow long inline/display math and long words to wrap instead of overflowing */
+    .section {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+    /* MathJax v3 rendered elements: allow wrapping and constrain width */
+    .section .mjx-chtml, .section mjx-container, .section .MathJax, .section .mjx-math {
+      max-width: 100%;
+      display: inline-block;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      white-space: normal;
+      vertical-align: baseline;
+    }
+    /* For display math, allow it to break lines and not overflow container */
+    .section .mjx-chtml[display="true"], .section mjx-container[display="true"] {
+      display: block;
+      max-width: 100%;
+      overflow-x: auto;
+      word-break: break-word;
+    }
     .pager {
       display: flex;
       justify-content: space-between;
