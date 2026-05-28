@@ -121,8 +121,10 @@ def problem_page(problem_id: str):
 
 
 @app.get("/problems")
+
 def get_problems():
-    return load_all_problems()
+
+    return load_all_problems_from_db()
 
 
 @app.get("/problems/{problem_id}")
@@ -133,3 +135,50 @@ def get_problem(problem_id: str):
             return problem
 
     return {"error": "Problem not found"}
+
+import sqlite3
+DB_PATH = BASE_DIR / "site.db"
+
+def load_all_problems_from_db():
+
+    conn = sqlite3.connect(DB_PATH)
+
+    conn.row_factory = sqlite3.Row
+
+    cur = conn.cursor()
+
+    cur.execute("SELECT * FROM problems")
+
+    rows = cur.fetchall()
+
+    problems = []
+
+    for row in rows:
+
+        problem = dict(row)
+
+        cur.execute(
+
+            "SELECT topic FROM problem_topics WHERE problem_id = ?",
+
+            (problem["id"],)
+
+        )
+
+        problem["topics"] = [r["topic"] for r in cur.fetchall()]
+
+        cur.execute(
+
+            "SELECT keyword FROM problem_keywords WHERE problem_id = ?",
+
+            (problem["id"],)
+
+        )
+
+        problem["keywords"] = [r["keyword"] for r in cur.fetchall()]
+
+        problems.append(problem)
+
+    conn.close()
+
+    return problems
