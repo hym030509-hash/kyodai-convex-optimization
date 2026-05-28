@@ -1,0 +1,63 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage[utf-8]{inputenc}
+\usepackage{xeCJK}
+
+\setCJKmainfont{Hiragino Sans GB}
+
+\title{京都大学大学院 数理工学専攻}
+\author{凸最適化 過去問}
+\date{H28 (OR)}
+
+\begin{document}
+
+\maketitle
+
+関数 $f:\mathbb{R}^n \to \mathbb{R}$ は 2 回連続的に微分可能な関数とし，$a$ は $0$ でない $n$ 次元ベクトルとする。
+次の非線形計画問題を考える。
+
+\begin{align*}
+\text{P:} \quad & \text{Minimize} \quad f(x) \\
+& \text{subject to} \quad a^T x = 0
+\end{align*}
+
+ただし，$^T$ はベクトルの転置を表す。$x^*$ を問題 P の大域的最適解とする。
+さらに，次の非線形計画問題を考える。
+
+\begin{align*}
+\text{P}(k): \quad & \text{Minimize} \quad f_k(x) \\
+& \text{subject to} \quad (x - x^*)^T(x - x^*) \leq 1
+\end{align*}
+
+ただし，$k$ は非負の整数であり，$f_k:\mathbb{R}^n \to \mathbb{R}$ は以下に定義された関数である。
+
+\[f_k(x) = f(x) + \frac{k}{2}(a^T x)^2 + \frac{1}{2}(x - x^*)^T(x - x^*)\]
+
+問題 P(k) の大域的最適解を $x^k$ とする。さらに，
+\[\lim_{k \to \infty} x^k = \bar{x}, \qquad \lim_{k \to \infty} k(a^T x^k) = \bar{\lambda}
+\]
+と仮定する。以下の問いに答えよ。
+
+\section*{(i)}
+
+任意の非負の整数 $k$ に対して，$f_k(x^k) \leq f(x^*)$ が成り立つことを示せ。
+
+\section*{(ii)}
+
+$a^T \bar{x} = 0, \ \bar{x} = x^*$ となることを示せ。
+
+\section*{(iii)}
+
+問題 P(k) のカルーシュ・キューン・タッカー（Karush-Kuhn-Tucker）条件を書け。
+
+\section*{(iv)}
+
+十分大きな $k$ に対して，$\nabla f_k(x^k) = 0$ となることを示せ。
+
+\section*{(v)}
+
+$\nabla f(x^*) + \bar{\lambda} a = 0$ となることを示せ。
+
+\end{document}

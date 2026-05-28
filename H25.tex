@@ -1,0 +1,108 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage[utf-8]{inputenc}
+\usepackage{xeCJK}
+
+\setCJKmainfont{Hiragino Sans GB}
+
+\title{京都大学大学院 数理工学専攻}
+\author{凸最適化 過去問}
+\date{H25 (OR)}
+
+\begin{document}
+
+\maketitle
+
+\section*{解答 (H25)}
+
+\subsection*{(i)}
+
+$f$ と $g_j$ が凸関数であるため，$\ell(x)=f(x)+\sum_{j=1}^m\mu_j^*g_j(x)$ も凸関数である。
+凸関数の性質により，任意の $x,y\in\mathbb{R}^n$ に対して
+\[\ell(x) - \ell(y) \ge \nabla\ell(y)^T(x-y)\]
+が成り立つ。
+
+これは微分可能な凸関数の一階の充分条件である。
+具体的には，$z:=y+t(x-y)$ とおき ($0<t<1$) ，凸性の定義
+\[\ell(z) \le (1-t)\ell(y) + t\ell(x)\]
+から
+\[\frac{\ell(z)-\ell(y)}{t} \ge \ell(x) - \ell(y)\]
+を得て，$t\to 0$ とすれば所望の不等式が従う。
+
+\subsection*{(ii)}
+
+KKT 条件より $\nabla\ell(x^*) = \nabla f(x^*) + \sum_{j=1}^m\mu_j^*\nabla g_j(x^*) = 0$ が成り立つ。
+
+(i) の不等式に $y=x^*$ を代入すると
+\[\ell(x) - \ell(x^*) \ge 0 \cdot (x-x^*) = 0\]
+すなわち
+\[\ell(x) \ge \ell(x^*)\]
+が任意の $x\in\mathbb{R}^n$ に対して成り立つ。
+
+\subsection*{(iii)}
+
+任意の実行可能解 $x$ に対して $g_j(x)\le 0$ (すべての $j$) が成り立つ。
+さらに補完性条件 $\mu_j^*g_j(x^*)=0$ より，右辺に現れる $\sum_{j=1}^m\mu_j^*g_j(x^*)=0$ である。
+
+(ii) の結果を展開すると
+\begin{align*}
+f(x) + \sum_{j=1}^m\mu_j^*g_j(x) &\ge f(x^*) + \sum_{j=1}^m\mu_j^*g_j(x^*) \\
+f(x) + \sum_{j=1}^m\mu_j^*g_j(x) &\ge f(x^*).
+\end{align*}
+
+$x$ が実行可能ならば $g_j(x)\le 0$ で，$\mu_j^*\ge 0$ であるから
+\[\sum_{j=1}^m\mu_j^*g_j(x) \le 0.\]
+
+したがって
+\[f(x) \ge f(x^*) - \sum_{j=1}^m\mu_j^*g_j(x) \ge f(x^*)\]
+が成り立ち，$x^*$ は問題 P の大域的最適解である。
+
+\subsection*{(iv)}
+
+KKT 条件は
+\[
+\begin{pmatrix} x_1-1 \\ x_2-1 \end{pmatrix} + \mu_1^* \begin{pmatrix} -1 \\ 0 \end{pmatrix} + \mu_2^* \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+\]
+すなわち
+\begin{align*}
+x_1-1 - \mu_1^* + \mu_2^* &= 0, \\
+x_2-1 + \mu_2^* &= 0,
+\end{align*}
+ならびに
+\[
+-x_1 \le 0, \quad x_1+x_2-1 \le 0, \quad \mu_1^*\ge 0, \quad \mu_2^*\ge 0, \quad \mu_1^*(-x_1)=0, \quad \mu_2^*(x_1+x_2-1)=0.
+\]
+
+相補性条件を考察する。
+
+\paragraph{場合 (I): $\mu_1^*=0$}
+\begin{enumerate}
+\item[(I-a)] $\mu_1^*=0$ かつ $\mu_2^*=0$ のとき：
+  第1式から $x_1=1$，第2式から $x_2=1$ だが，$x_1+x_2-1=1\not\le 0$ で実行不可能。
+  
+\item[(I-b)] $\mu_1^*=0$ かつ $x_1+x_2-1=0$ のとき：
+  第1式から $\mu_2^*=1-x_1$，第2式から $\mu_2^*=1-x_2$ である。
+  両者が等しいので $x_1=x_2$。$x_1+x_2-1=0$ より $x_1=x_2=1/2$。
+  このとき $\mu_2^*=1/2>0$，$x_1=1/2>0$ より $-x_1<0$ も満たす。
+  したがって $x^*=(\tfrac{1}{2},\tfrac{1}{2})^T$，$\mu^*=(0,\tfrac{1}{2})^T$ が解となる。
+\end{enumerate}
+
+\paragraph{場合 (II): $-x_1=0$ (すなわち $x_1=0$)}
+\begin{enumerate}
+\item[(II-a)] $x_1=0$ かつ $\mu_2^*=0$ のとき：
+  第2式から $x_2=1$，第1式から $-1-\mu_1^*=0$ より $\mu_1^*=-1<0$，条件違反。
+  
+\item[(II-b)] $x_1=0$ かつ $x_1+x_2-1=0$ のとき：
+  $x_2=1$。第1式から $-1-\mu_1^*+\mu_2^*=0$，第2式から $\mu_2^*=0$ より
+  $\mu_1^*=-1<0$，条件違反。
+\end{enumerate}
+
+\paragraph{結論}
+
+唯一の解は
+\[
+x^* = \begin{pmatrix} 1/2 \\ 1/2 \end{pmatrix}, \qquad \mu^* = \begin{pmatrix} 0 \\ 1/2 \end{pmatrix}.\]
+
+\end{document}

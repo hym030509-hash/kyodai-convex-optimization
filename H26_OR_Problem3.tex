@@ -1,0 +1,60 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage[utf8]{inputenc}
+\usepackage{xeCJK}
+
+\setCJKmainfont{Hiragino Sans GB}
+
+\title{京都大学大学院 数理工学専攻}
+\author{凸最適化 過去問}
+\date{H26 (OR)}
+
+\begin{document}
+
+\maketitle
+
+集合 $I$ を $I=\{1,\dots,m\}$ とし，関数 $f:\mathbb{R}^n \to \mathbb{R}$ を次のように定義する。
+\[
+f(x)=\frac12 x^T M x + q^T x
+\]
+ただし，$M$ は $n\times n$ 対称行列，$q$ は $n$ 次元ベクトルであり，$^T$ は転置記号を表す。
+次の凸計画問題 $(P)$ を考える。
+\[
+\text{(P)}:\quad \text{Minimize}\quad f(x) \qquad \text{subject to}\quad (a^i)^T x \le b_i \ (i\in I)
+\]
+ここで，$a^i\ (i\in I)$ は $n$ 次元定数ベクトル，$b_i\ (i\in I)$ は定数である。
+
+問題 $(P)$ に対して，次のカルーシュ・キューン・タッカー（Karush--Kuhn--Tucker）条件を満たすベクトル
+$x^*\in\mathbb{R}^n$ と $\lambda^*=(\lambda_1^*,\dots,\lambda_m^*)^T\in\mathbb{R}^m$ が存在すると仮定する。
+\[
+\begin{cases}
+\nabla f(x^*) + \sum_{i=1}^m \lambda_i^* a^i = 0, \\
+(a^i)^T x^* \le b_i, \quad \lambda_i^* \ge 0, \quad ((a^i)^T x^* - b_i)\lambda_i^* = 0 \quad (i\in I).
+\end{cases}
+\]
+さらに，
+\[
+J=\{i\in I\mid (a^i)^T x^* = b_i\}, \qquad 
+C=\{d\in\mathbb{R}^n\mid (a^i)^T d \le 0\ (i\in J)\}, \qquad 
+C^0=\{d\in\mathbb{R}^n\mid (a^i)^T d = 0\ (i\in J)\}
+\]
+とする。以下の問 (i)-(v) に答えよ。
+
+\section*{(i)}
+任意の $d\in\mathbb{R}^n$ に対して，$f(x^*+d)-f(x^*) = \frac12 d^T M d + \nabla f(x^*)^T d$ となることを示せ。
+
+\section*{(ii)}
+任意の $d\in C$ に対して，$\nabla f(x^*)^T d \ge 0$ となることを示せ。
+
+\section*{(iii)}
+問題 $(P)$ の任意の実行可能解 $x$ に対して，$x-x^* \in C$ となることを示せ。
+
+\section*{(iv)}
+任意の $d\in C$ に対して $d^T M d \ge 0$ が成り立つとする。このとき，$x^*$ は問題 $(P)$ の大域的最適解となることを示せ。
+
+\section*{(v)}
+$x^*$ が問題 $(P)$ の局所的最適解であれば，任意の $d\in C^0$ に対して $d^T M d \ge 0$ が成り立つことを示せ。
+
+\end{document}

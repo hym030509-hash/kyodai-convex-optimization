@@ -1,0 +1,58 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage[utf8]{inputenc}
+\usepackage{xeCJK}
+
+\setCJKmainfont{Hiragino Sans GB}
+
+\title{京都大学大学院 数理工学専攻}
+\author{凸最適化 過去問}
+\date{H27 (OR)}
+
+\begin{document}
+
+\maketitle
+
+関数 $f:\mathbb{R}^n \to \mathbb{R}$ を連続的に微分可能な凸関数とし，
+$S=\{x\in\mathbb{R}^n\mid a^T x=b\}$ とする。
+ただし，$a$ は $0$ でない $n$ 次元ベクトル，$b$ はスカラー，$^T$ はベクトルの転置を表す。
+次の凸計画問題を考える。
+
+\[
+\text{(P)}:\quad\text{Minimize}\quad f(x)\quad
+\text{subject to}\quad x\in S
+\]
+
+さらにパラメータ $z\in\mathbb{R}^n$ を含む次の凸二次計画問題を考える。
+
+\[
+\text{P}(z):\quad\text{Minimize}\quad \nabla f(z)^T y + \frac{1}{2}(y-z)^T(y-z)\quad
+\text{subject to}\quad y\in S
+\]
+
+ここで，決定変数は $y$ である。任意の $z\in\mathbb{R}^n$ に対して
+問題 $\text{P}(z)$ は唯一の最適解 $\bar{y}(z)$ をもつ。
+以下の問いに答えよ。
+
+\section*{(i)}
+
+$z\in S$ とする。問題 $\text{P}(z)$ のカルーシュ・キューン・タッカー（Karush--Kuhn--Tucker）条件を用いて
+$\bar{y}(z)$ を求めよ。
+
+\section*{(ii)}
+
+$x\in S$ かつ $\bar{y}(x)=x$ であるとき，$x$ は問題 $\text{(P)}$ の最適解であることを示せ。
+
+\section*{(iii)}
+
+$x\in S$ かつ $\bar{y}(x)\neq x$ であるとき，
+$\nabla f(x)^T(\bar{y}(x)-x) < 0$，
+$a^T(\bar{y}(x)-x)=0$ であることを示せ。
+
+\section*{(iv)}
+
+$\bar{y}(x)\neq x$ であるとき，$x$ は問題 $\text{(P)}$ の最適解でないことを示せ。
+
+\end{document}

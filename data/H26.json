@@ -1,0 +1,69 @@
+[
+    {
+        "id":"H26-i",
+        "year":"2014",
+        "common_text": "集合 $I$ を $I=\\{1,\\dots,m\\}$ とし，関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$ を次のように定義する。\n\\[\nf(x)=\\frac12 x^T M x + q^T x\n\\]\nただし，$M$ は $n\\times n$ 対称行列，$q$ は $n$ 次元ベクトルであり，$^T$ は転置記号を表す。\n\n次の凸計画問題 $(P)$ を考える。\n\n\\[\n\\text{(P)}:\\quad \\text{Minimize}\\quad f(x)\n\\qquad\n\\text{subject to}\\quad (a^i)^T x \\le b_i \\ (i\\in I)\n\\]\n\nここで，$a^i\\ (i\\in I)$ は $n$ 次元定数ベクトル，$b_i\\ (i\\in I)$ は定数である。\n\n問題 $(P)$ に対して，次のカルーシュ・キューン・タッカー（Karush--Kuhn--Tucker）条件を満たすベクトル\n$x^*\\in\\mathbb{R}^n$ と $\\lambda^*=(\\lambda_1^*,\\dots,\\lambda_m^*)^T\\in\\mathbb{R}^m$ が存在すると仮定する。\n\n\\[\n\\begin{cases}\n\\nabla f(x^*) + \\sum_{i=1}^m \\lambda_i^* a^i = 0, \\\\\n(a^i)^T x^* \\le b_i, \\quad \\lambda_i^* \\ge 0, \\quad ((a^i)^T x^* - b_i)\\lambda_i^* = 0 \\quad (i\\in I)\n\\end{cases}\n\\]\n\nさらに，\n\n\\[\nJ=\\{i\\in I\\mid (a^i)^T x^* = b_i\\},\n\\qquad\nC=\\{d\\in\\mathbb{R}^n\\mid (a^i)^T d \\le 0\\ (i\\in J)\\},\n\\qquad\nC^0=\\{d\\in\\mathbb{R}^n\\mid (a^i)^T d = 0\\ (i\\in J)\\}\n\\]\n\nとする。",
+        "problem":"i",
+        "type":"導出",
+        "topics":["対称行列"],
+        "keywords":["ベクトル値関数の勾配"],
+        "difficulty":"1",
+        "problem_text":"任意の $d\\in\\mathbb{R}^n$ に対して，$f(x^*+d)-f(x^*) = \\frac12 d^T M d + \\nabla f(x^*)^T d$ となることを示せ。",
+        "solution_text": "本解答では，$f(x)=\\tfrac12 x^T M x + q^T x$ とし，$M$ は対称行列とする。\n制約は $(a^i)^T x \\le b_i\\ (i\\in I)$ で，KKT 条件が成り立つ点を $x^*$，活性制約の添字集合を $J$ と置く。\n\n<b>(i)</b>\n\n任意の $d\\in\\mathbb{R}^n$ に対して Taylor 展開（2 次まで）より\n\n\\[\nf(x^*+d)-f(x^*)\n=\n\\nabla f(x^*)^Td\n+\n\\tfrac12 d^TMd\n\\]\n\nが成り立つ。\n\n直接計算でも確認できる：\n\n\\[\n\\begin{aligned}\nf(x^*+d)-f(x^*)\n&=\n\\tfrac12 (x^*+d)^TM(x^*+d)\n+\nq^T(x^*+d)\n\\\\\n&\\quad-\n\\left(\n\\tfrac12 {x^*}^TMx^*\n+\nq^Tx^*\n\\right)\n\\\\\n&=\n\\tfrac12 d^TMd\n+\n(Mx^*+q)^Td\n\\\\\n&=\n\\tfrac12 d^TMd\n+\n\\nabla f(x^*)^Td.\n\\end{aligned}\n\\]",
+        "latex_source":"H26.tex"
+
+    },
+
+    {   "id":"H26-ii",
+        "year":"2014",
+        "common_text": "集合 $I$ を $I=\\{1,\\dots,m\\}$ とし，関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$ を次のように定義する。\n\\[\nf(x)=\\frac12 x^T M x + q^T x\n\\]\nただし，$M$ は $n\\times n$ 対称行列，$q$ は $n$ 次元ベクトルであり，$^T$ は転置記号を表す。\n\n次の凸計画問題 $(P)$ を考える。\n\n\\[\n\\text{(P)}:\\quad \\text{Minimize}\\quad f(x)\n\\qquad\n\\text{subject to}\\quad (a^i)^T x \\le b_i \\ (i\\in I)\n\\]\n\nここで，$a^i\\ (i\\in I)$ は $n$ 次元定数ベクトル，$b_i\\ (i\\in I)$ は定数である。\n\n問題 $(P)$ に対して，次のカルーシュ・キューン・タッカー（Karush--Kuhn--Tucker）条件を満たすベクトル\n$x^*\\in\\mathbb{R}^n$ と $\\lambda^*=(\\lambda_1^*,\\dots,\\lambda_m^*)^T\\in\\mathbb{R}^m$ が存在すると仮定する。\n\n\\[\n\\begin{cases}\n\\nabla f(x^*) + \\sum_{i=1}^m \\lambda_i^* a^i = 0, \\\\\n(a^i)^T x^* \\le b_i, \\quad \\lambda_i^* \\ge 0, \\quad ((a^i)^T x^* - b_i)\\lambda_i^* = 0 \\quad (i\\in I)\n\\end{cases}\n\\]\n\nさらに，\n\n\\[\nJ=\\{i\\in I\\mid (a^i)^T x^* = b_i\\},\n\\qquad\nC=\\{d\\in\\mathbb{R}^n\\mid (a^i)^T d \\le 0\\ (i\\in J)\\},\n\\qquad\nC^0=\\{d\\in\\mathbb{R}^n\\mid (a^i)^T d = 0\\ (i\\in J)\\}\n\\]\n\nとする。",
+        "problem":"ii",
+        "type":"導出",
+        "topics":["KKT"],
+        "keywords":["相補性条件"],
+        "difficulty":"2",
+        "problem_text":"任意の $d\\in C$ に対して，$\\nabla f(x^*)^T d \\ge 0$ となることを示せ。",
+        "solution_text":"KKT 条件より\n\n\\[\n\\nabla f(x^*) + \\sum_{i\\in J} \\lambda_i^* a^i = 0,\n\\qquad\n\\lambda_i^*\\ge0,\n\\qquad\n(a^i)^Tx^*=b_i\\ (i\\in J)\n\\]\n\nが成り立つ。\n\n任意の $d\\in C$，すなわち\n\n\\[\n(a^i)^Td\\le0\n\\qquad (i\\in J)\n\\]\n\nを満たす $d$ に対して内積を取ると，\n\n\\[\n\\nabla f(x^*)^Td\n=\n-\\sum_{i\\in J}\\lambda_i^*(a^i)^Td\n\\ge0\n\\]\n\nとなる。\n\nここで，各項について\n\n\\[\n\\lambda_i^*\\ge0,\n\\qquad\n(a^i)^Td\\le0\n\\]\n\nが成り立つため，\n\n\\[\n-\\lambda_i^*(a^i)^Td\\ge0\n\\]\n\nであることを用いた。",
+        "latex_source":"H26.tex"
+    },
+
+    {   "id":"H26-iii",
+        "year":"2014",
+        "common_text": "集合 $I$ を $I=\\{1,\\dots,m\\}$ とし，関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$ を次のように定義する。\n\\[\nf(x)=\\frac12 x^T M x + q^T x\n\\]\nただし，$M$ は $n\\times n$ 対称行列，$q$ は $n$ 次元ベクトルであり，$^T$ は転置記号を表す。\n\n次の凸計画問題 $(P)$ を考える。\n\n\\[\n\\text{(P)}:\\quad \\text{Minimize}\\quad f(x)\n\\qquad\n\\text{subject to}\\quad (a^i)^T x \\le b_i \\ (i\\in I)\n\\]\n\nここで，$a^i\\ (i\\in I)$ は $n$ 次元定数ベクトル，$b_i\\ (i\\in I)$ は定数である。\n\n問題 $(P)$ に対して，次のカルーシュ・キューン・タッカー（Karush--Kuhn--Tucker）条件を満たすベクトル\n$x^*\\in\\mathbb{R}^n$ と $\\lambda^*=(\\lambda_1^*,\\dots,\\lambda_m^*)^T\\in\\mathbb{R}^m$ が存在すると仮定する。\n\n\\[\n\\begin{cases}\n\\nabla f(x^*) + \\sum_{i=1}^m \\lambda_i^* a^i = 0, \\\\\n(a^i)^T x^* \\le b_i, \\quad \\lambda_i^* \\ge 0, \\quad ((a^i)^T x^* - b_i)\\lambda_i^* = 0 \\quad (i\\in I)\n\\end{cases}\n\\]\n\nさらに，\n\n\\[\nJ=\\{i\\in I\\mid (a^i)^T x^* = b_i\\},\n\\qquad\nC=\\{d\\in\\mathbb{R}^n\\mid (a^i)^T d \\le 0\\ (i\\in J)\\},\n\\qquad\nC^0=\\{d\\in\\mathbb{R}^n\\mid (a^i)^T d = 0\\ (i\\in J)\\}\n\\]\n\nとする。",
+        "problem":"iii",
+        "type":"証明",
+        "topics":["実行可能解"],
+        "keywords":["集合の要素の確認"],
+        "difficulty":"1",
+        "problem_text":"問題 $(P)$ の任意の実行可能解 $x$ に対して，$x-x^* \\in C$ となることを示せ。",
+        "solution_text": "任意の実行可能解 $x$ に対して，$i\\in J$ について $(a^i)^Tx \\leq b_i$ かつ $(a^i)^Tx^*=b_i$ である。したがって\n\\[\n(a^i)^T(x-x^*)\\leq0 \\quad (i\\in J)\n\\]\nよって $x-x^*\\in C$ が従う。",
+        "latex_source":"H26.tex"
+    },
+
+    {   "id":"H26-iv",
+        "year":"2014",
+        "common_text": "集合 $I$ を $I=\\{1,\\dots,m\\}$ とし，関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$ を次のように定義する。\n\\[\nf(x)=\\frac12 x^T M x + q^T x\n\\]\nただし，$M$ は $n\\times n$ 対称行列，$q$ は $n$ 次元ベクトルであり，$^T$ は転置記号を表す。\n\n次の凸計画問題 $(P)$ を考える。\n\n\\[\n\\text{(P)}:\\quad \\text{Minimize}\\quad f(x)\n\\qquad\n\\text{subject to}\\quad (a^i)^T x \\le b_i \\ (i\\in I)\n\\]\n\nここで，$a^i\\ (i\\in I)$ は $n$ 次元定数ベクトル，$b_i\\ (i\\in I)$ は定数である。\n\n問題 $(P)$ に対して，次のカルーシュ・キューン・タッカー（Karush--Kuhn--Tucker）条件を満たすベクトル\n$x^*\\in\\mathbb{R}^n$ と $\\lambda^*=(\\lambda_1^*,\\dots,\\lambda_m^*)^T\\in\\mathbb{R}^m$ が存在すると仮定する。\n\n\\[\n\\begin{cases}\n\\nabla f(x^*) + \\sum_{i=1}^m \\lambda_i^* a^i = 0, \\\\\n(a^i)^T x^* \\le b_i, \\quad \\lambda_i^* \\ge 0, \\quad ((a^i)^T x^* - b_i)\\lambda_i^* = 0 \\quad (i\\in I)\n\\end{cases}\n\\]\n\nさらに，\n\n\\[\nJ=\\{i\\in I\\mid (a^i)^T x^* = b_i\\},\n\\qquad\nC=\\{d\\in\\mathbb{R}^n\\mid (a^i)^T d \\le 0\\ (i\\in J)\\},\n\\qquad\nC^0=\\{d\\in\\mathbb{R}^n\\mid (a^i)^T d = 0\\ (i\\in J)\\}\n\\]\n\nとする。",
+        "problem":"iv",
+        "type":"証明",
+        "topics":["実行可能解"],
+        "keywords":["大域的最適解","前問の回答を利用"],
+        "difficulty":"1",
+        "problem_text":"任意の $d\\in C$ に対して $d^T M d \\ge 0$ が成り立つとする。このとき，$x^*$ は問題 $(P)$ の大域的最適解となることを示せ。",
+        "solution_text": "任意の実行可能解 $x$ を取り，$d:=x-x^*\\in C$ とすると (i),(ii) より\n\\begin{align*}\nf(x)-f(x^*)\n&=\\nabla f(x^*)^Td+\\frac12d^TMd\\\\\n&\\geq0+\\frac12d^TMd\\\\\n&\\geq0,\n\\end{align*}\nここで第1項は (ii) より非負，第2項は仮定より非負である。\n\nしたがって，任意の実行可能解 $x$ に対して\n\\[\nf(x)\\geq f(x^*)\n\\]\nが成り立つので，$x^*$ は大域的最適解である。",
+        "latex_source":"H26.tex"
+    }, 
+    
+    {   "id":"H26-v",
+        "year":"2014",
+        "common_text": "集合 $I$ を $I=\\{1,\\dots,m\\}$ とし，関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$ を次のように定義する。\n\\[\nf(x)=\\frac12 x^T M x + q^T x\n\\]\nただし，$M$ は $n\\times n$ 対称行列，$q$ は $n$ 次元ベクトルであり，$^T$ は転置記号を表す。\n\n次の凸計画問題 $(P)$ を考える。\n\n\\[\n\\text{(P)}:\\quad \\text{Minimize}\\quad f(x)\n\\qquad\n\\text{subject to}\\quad (a^i)^T x \\le b_i \\ (i\\in I)\n\\]\n\nここで，$a^i\\ (i\\in I)$ は $n$ 次元定数ベクトル，$b_i\\ (i\\in I)$ は定数である。\n\n問題 $(P)$ に対して，次のカルーシュ・キューン・タッカー（Karush--Kuhn--Tucker）条件を満たすベクトル\n$x^*\\in\\mathbb{R}^n$ と $\\lambda^*=(\\lambda_1^*,\\dots,\\lambda_m^*)^T\\in\\mathbb{R}^m$ が存在すると仮定する。\n\n\\[\n\\begin{cases}\n\\nabla f(x^*) + \\sum_{i=1}^m \\lambda_i^* a^i = 0, \\\\\n(a^i)^T x^* \\le b_i, \\quad \\lambda_i^* \\ge 0, \\quad ((a^i)^T x^* - b_i)\\lambda_i^* = 0 \\quad (i\\in I)\n\\end{cases}\n\\]\n\nさらに，\n\n\\[\nJ=\\{i\\in I\\mid (a^i)^T x^* = b_i\\},\n\\qquad\nC=\\{d\\in\\mathbb{R}^n\\mid (a^i)^T d \\le 0\\ (i\\in J)\\},\n\\qquad\nC^0=\\{d\\in\\mathbb{R}^n\\mid (a^i)^T d = 0\\ (i\\in J)\\}\n\\]\n\nとする。",
+        "problem":"v",
+        "type":"導出",
+        "topics":["局所的最適解"],
+        "keywords":["前問の回答を利用"],
+        "difficulty":"2",
+        "problem_text":"$x^*$ が問題 $(P)$ の局所的最適解であれば，任意の $d\\in C^0$ に対して $d^T M d \\ge 0$ が成り立つことを示せ。",
+        "solution_text":"$x^*$ が局所最適解であれば，任意の十分小さい可行方向 $d\\in C^0$（すなわち $(a^i)^Td=0$ for $i\\in J$）について\n\\[\ng(\\epsilon):=f(x^*+\\epsilon d)\\geq f(x^*)\\quad\\text{(小さい }\\epsilon\\text{)}\n\\]\nが成り立つ。Taylor 展開を用いると\n\\[\ng(\\epsilon)-g(0)=\\epsilon\\nabla f(x^*)^Td+\\frac12\\epsilon^2d^TMd+o(\\epsilon^2).\n\\]\nここで $d\\in C^0$ と KKT 条件から $\\nabla f(x^*)^Td=0$ が成り立つため，小さい $\\epsilon$ に対して符号を保つためには\n\\[\nd^TMd\\geq0\n\\]\nが必要である。したがって任意の $d\\in C^0$ に対して $d^TMd\\geq0$ が成立する。",
+        "latex_source":"H26.tex"
+    }
+
+]

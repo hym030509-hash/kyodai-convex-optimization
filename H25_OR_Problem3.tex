@@ -1,0 +1,68 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage[utf8]{inputenc}
+\usepackage{xeCJK}
+
+\setCJKmainfont{Hiragino Sans GB}
+
+\title{京都大学大学院 数理工学専攻}
+\author{凸最適化 過去問}
+\date{H25 (OR)}
+
+\begin{document}
+
+\maketitle
+
+関数 $f:\mathbb{R}^n \to \mathbb{R}$，$g_j:\mathbb{R}^n \to \mathbb{R}$ $(j=1,\dots,m)$ を連続的に微分可能な凸関数とする．
+次の非線形計画問題を考える．
+
+\[
+\text{P}: \quad \text{Minimize}\quad f(x) \qquad \text{subject to}\quad g_j(x) \le 0 \ (j=1,\dots,m)
+\]
+
+この問題に対して，以下のカルーシュ・キューン・タッカー（Karush--Kuhn--Tucker）条件を
+満たすベクトル $x^*\in\mathbb{R}^n$ と $\mu^*=(\mu_1^*,\dots,\mu_m^*)^T\in\mathbb{R}^m$ が
+存在すると仮定する．
+
+\[
+\begin{cases}
+\nabla f(x^*) + \sum_{j=1}^m \mu_j^* \nabla g_j(x^*) = 0, \\
+ g_j(x^*) \le 0, \quad \mu_j^* \ge 0, \quad \mu_j^* g_j(x^*) = 0 \quad (j=1,\dots,m).
+\end{cases}
+\]
+ただし，$\mu_j^*$ は $\mu^*$ の第 $j$ 成分を表す．
+さらに，関数 $\ell:\mathbb{R}^n \to \mathbb{R}$ を
+\[
+\ell(x) = f(x) + \sum_{j=1}^m \mu_j^* g_j(x)
+\]
+と定義する．
+
+以下の問いに答えよ．
+
+\section*{(i)}
+任意の $x,y\in\mathbb{R}^n$ に対して次の不等式が成り立つことを示せ．
+\[
+\ell(x) - \ell(y) \ge \nabla\ell(y)^T(x-y).
+\]
+ただし，$^T$ はベクトルの転置を表す．
+
+\section*{(ii)}
+任意の $x\in\mathbb{R}^n$ に対して次の不等式が成り立つことを示せ．
+\[
+\ell(x) \ge \ell(x^*).
+\]
+
+\section*{(iii)}
+問 (ii) の不等式を用いて，$x^*$ が問題 P の大域的最適解であることを示せ．
+
+\section*{(iv)}
+$n=2, m=2$ とする．さらに，凸関数 $f,g_1,g_2$ を以下のように定義する．
+\[
+ f(x)=\tfrac12 (x_1-1)^2 + \tfrac12 (x_2-1)^2, \qquad g_1(x)=-x_1, \qquad g_2(x)=x_1+x_2-1.
+\]
+ただし，$x=(x_1,x_2)^T$ である．このとき，問題 P のカルーシュ・キューン・タッカー
+条件を満たすベクトル $x^*\in\mathbb{R}^2$ と $\mu^*\in\mathbb{R}^2$ を求めよ．
+
+\end{document}

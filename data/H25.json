@@ -1,0 +1,60 @@
+[
+    {
+        "id":"H25-i",
+        "year":"2013",
+        "common_text": "関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$，$g_j:\\mathbb{R}^n \\to \\mathbb{R}$ $(j=1,\\dots,m)$ を連続的に微分可能な凸関数とする．\n次の非線形計画問題を考える．\n\n\\[\n\\text{P}: \\quad \\text{Minimize}\\quad f(x) \\qquad \\text{subject to}\\quad g_j(x) \\leq 0 \\quad (j=1,\\dots,m)\n\\]\n\nこの問題に対して，以下のカルーシュ・キューン・タッカー（Karush--Kuhn--Tucker）条件を満たすベクトル $x^*\\in\\mathbb{R}^n$ と $\\mu^*=(\\mu_1^*,\\dots,\\mu_m^*)^T\\in\\mathbb{R}^m$ が存在すると仮定する．\n\n\\[\n\\begin{cases}\n\\nabla f(x^*)+\\sum_{j=1}^m\\mu_j^*\\nabla g_j(x^*)=0,\\\\\n g_j(x^*)\\leq0,\\quad \\mu_j^*\\geq0,\\quad \\mu_j^*g_j(x^*)=0 \\quad (j=1,\\dots,m).\n\\end{cases}\n\\]\n\nただし，$\\mu_j^*$ は $\\mu^*$ の第 $j$ 成分を表す．\nさらに，関数 $\\ell:\\mathbb{R}^n\\to\\mathbb{R}$ を\n\\[\n\\ell(x)=f(x)+\\sum_{j=1}^m\\mu_j^*g_j(x)\n\\]\nと定義する．",
+        "problem":"i",
+        "type":"導出",
+        "topics":["凸関数"],
+        "keywords":["凸関数の性質"],
+        "difficulty":"1",
+        "problem_text":"任意の $x,y\\in\\mathbb{R}^n$ に対して次の不等式が成り立つことを示せ．\n\\[\\ell(x) - \\ell(y) \\ge \\nabla\\ell(y)^T(x-y).\\]ただし，$^T$ はベクトルの転置を表す．",
+        "solution_text": "$f$ と $g_j$ が凸関数であるため，$\\ell(x)=f(x)+\\sum_{j=1}^m\\mu_j^*g_j(x)$ も凸関数である。\n凸関数の性質により，任意の $x,y\\in\\mathbb{R}^n$ に対して\n\\[\n\\ell(x)-\\ell(y)\\geq\\nabla\\ell(y)^T(x-y)\n\\]\nが成り立つ。\n\nこれは微分可能な凸関数の一階条件である。\n具体的には，$z:=y+t(x-y)$ とおき ($0<t<1$)，凸性の定義\n\\[\n\\ell(z)\\leq(1-t)\\ell(y)+t\\ell(x)\n\\]\nから\n\\[\n\\frac{\\ell(z)-\\ell(y)}{t}\\leq\\ell(x)-\\ell(y)\n\\]\nを得る。\n\nここで\n\\[\nz-y=t(x-y)\n\\]\nであるから，$t\\to0$ とすると\n\\[\n\\nabla\\ell(y)^T(x-y)\\leq\\ell(x)-\\ell(y)\n\\]\nすなわち\n\\[\n\\ell(x)-\\ell(y)\\geq\\nabla\\ell(y)^T(x-y)\n\\]\nが従う。",
+        "latex_source":"H25.tex"
+    },
+
+    {
+        "id":"H25-ii",
+        "year":"2013",
+        "common_text": "関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$，$g_j:\\mathbb{R}^n \\to \\mathbb{R}$ $(j=1,\\dots,m)$ を連続的に微分可能な凸関数とする．\n次の非線形計画問題を考える．\n\n\\[\n\\text{P}: \\quad \\text{Minimize}\\quad f(x) \\qquad \\text{subject to}\\quad g_j(x) \\leq 0 \\quad (j=1,\\dots,m)\n\\]\n\nこの問題に対して，以下のカルーシュ・キューン・タッカー（Karush--Kuhn--Tucker）条件を満たすベクトル $x^*\\in\\mathbb{R}^n$ と $\\mu^*=(\\mu_1^*,\\dots,\\mu_m^*)^T\\in\\mathbb{R}^m$ が存在すると仮定する．\n\n\\[\n\\begin{cases}\n\\nabla f(x^*)+\\sum_{j=1}^m\\mu_j^*\\nabla g_j(x^*)=0,\\\\\n g_j(x^*)\\leq0,\\quad \\mu_j^*\\geq0,\\quad \\mu_j^*g_j(x^*)=0 \\quad (j=1,\\dots,m).\n\\end{cases}\n\\]\n\nただし，$\\mu_j^*$ は $\\mu^*$ の第 $j$ 成分を表す．\nさらに，関数 $\\ell:\\mathbb{R}^n\\to\\mathbb{R}$ を\n\\[\n\\ell(x)=f(x)+\\sum_{j=1}^m\\mu_j^*g_j(x)\n\\]\nと定義する．",
+        "problem":"ii",
+        "type":"証明",
+        "topics":["KKT"],
+        "keywords":["前問の回答を利用"],
+        "difficulty":"1",
+        "problem_text":"任意の $x\\in\\mathbb{R}^n$ に対して次の不等式が成り立つことを示せ．\n\\[\\ell(x) \\ge \\ell(x^*).\\]",
+        "solution_text": "KKT 条件より $\\nabla\\ell(x^*)=\\nabla f(x^*)+\\sum_{j=1}^m\\mu_j^*\\nabla g_j(x^*)=0$ が成り立つ。\n\n(i) の不等式に $y=x^*$ を代入すると\n\\[\n\\ell(x)-\\ell(x^*)\\geq0\\cdot(x-x^*)=0\n\\]\nすなわち\n\\[\n\\ell(x)\\geq\\ell(x^*)\n\\]\nが任意の $x\\in\\mathbb{R}^n$ に対して成り立つ。",
+        "latex_source":"H25.tex"
+
+    },
+
+        {
+        "id":"H25-iii",
+        "year":"2013",
+        "common_text": "関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$，$g_j:\\mathbb{R}^n \\to \\mathbb{R}$ $(j=1,\\dots,m)$ を連続的に微分可能な凸関数とする．\n次の非線形計画問題を考える．\n\n\\[\n\\text{P}: \\quad \\text{Minimize}\\quad f(x) \\qquad \\text{subject to}\\quad g_j(x) \\leq 0 \\quad (j=1,\\dots,m)\n\\]\n\nこの問題に対して，以下のカルーシュ・キューン・タッカー（Karush--Kuhn--Tucker）条件を満たすベクトル $x^*\\in\\mathbb{R}^n$ と $\\mu^*=(\\mu_1^*,\\dots,\\mu_m^*)^T\\in\\mathbb{R}^m$ が存在すると仮定する．\n\n\\[\n\\begin{cases}\n\\nabla f(x^*)+\\sum_{j=1}^m\\mu_j^*\\nabla g_j(x^*)=0,\\\\\n g_j(x^*)\\leq0,\\quad \\mu_j^*\\geq0,\\quad \\mu_j^*g_j(x^*)=0 \\quad (j=1,\\dots,m).\n\\end{cases}\n\\]\n\nただし，$\\mu_j^*$ は $\\mu^*$ の第 $j$ 成分を表す．\nさらに，関数 $\\ell:\\mathbb{R}^n\\to\\mathbb{R}$ を\n\\[\n\\ell(x)=f(x)+\\sum_{j=1}^m\\mu_j^*g_j(x)\n\\]\nと定義する．",
+        "problem":"iii",
+        "type":"証明",
+        "topics":["大域的最適解"],
+        "keywords":["相補性条件","実行可能解"],
+        "difficulty":"2",
+        "problem_text":"問 (ii) の不等式を用いて，$x^*$ が問題 P の大域的最適解であることを示せ．",
+        "solution_text":"任意の実行可能解 $x$ に対して $g_j(x)\\leq0$ $(j=1,\\dots,m)$ が成り立つ。\nさらに相補性条件 $\\mu_j^*g_j(x^*)=0$ より，\n\\[\n\\sum_{j=1}^m\\mu_j^*g_j(x^*)=0\n\\]\nである。\n\n(ii) の結果を展開すると\n\\begin{align*}\nf(x)+\\sum_{j=1}^m\\mu_j^*g_j(x)\n&\\geq f(x^*)+\\sum_{j=1}^m\\mu_j^*g_j(x^*)\\\\\n&=f(x^*).\n\\end{align*}\n\n$x$ が実行可能であり，かつ $\\mu_j^*\\geq0$ であるから\n\\[\n\\sum_{j=1}^m\\mu_j^*g_j(x)\\leq0\n\\]\nが成り立つ。\n\nしたがって\n\\[\nf(x)\n\\geq f(x^*)-\\sum_{j=1}^m\\mu_j^*g_j(x)\n\\geq f(x^*)\n\\]\nを得る。\n\nよって，$x^*$ は問題 $P$ の大域的最適解である。",
+        "latex_source":"H25.tex"
+
+    },
+
+        {
+        "id":"H25-iv",
+        "year":"2013",
+        "common_text": "関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$，$g_j:\\mathbb{R}^n \\to \\mathbb{R}$ $(j=1,\\dots,m)$ を連続的に微分可能な凸関数とする．\n次の非線形計画問題を考える．\n\n\\[\n\\text{P}: \\quad \\text{Minimize}\\quad f(x) \\qquad \\text{subject to}\\quad g_j(x) \\leq 0 \\quad (j=1,\\dots,m)\n\\]\n\nこの問題に対して，以下のカルーシュ・キューン・タッカー（Karush--Kuhn--Tucker）条件を満たすベクトル $x^*\\in\\mathbb{R}^n$ と $\\mu^*=(\\mu_1^*,\\dots,\\mu_m^*)^T\\in\\mathbb{R}^m$ が存在すると仮定する．\n\n\\[\n\\begin{cases}\n\\nabla f(x^*)+\\sum_{j=1}^m\\mu_j^*\\nabla g_j(x^*)=0,\\\\\n g_j(x^*)\\leq0,\\quad \\mu_j^*\\geq0,\\quad \\mu_j^*g_j(x^*)=0 \\quad (j=1,\\dots,m).\n\\end{cases}\n\\]\n\nただし，$\\mu_j^*$ は $\\mu^*$ の第 $j$ 成分を表す．\nさらに，関数 $\\ell:\\mathbb{R}^n\\to\\mathbb{R}$ を\n\\[\n\\ell(x)=f(x)+\\sum_{j=1}^m\\mu_j^*g_j(x)\n\\]\nと定義する．",
+        "problem":"iv",
+        "type":"計算",
+        "topics":["KKT","ラグランジュ乗数"],
+        "keywords":["相補性条件"],
+        "difficulty":"2",
+        "problem_text":"$f(x)=\\frac12(x_1-1)^2+\\frac12(x_2-1)^2$ より\n\\[\n\\nabla f(x)=\n\\begin{pmatrix}\nx_1-1\\\\\nx_2-1\n\\end{pmatrix}\n\\]\nである。\n\nまた，\n\\[\ng_1(x)=-x_1,\\qquad g_2(x)=x_1+x_2-1\n\\]\nより\n\\[\n\\nabla g_1(x)=\n\\begin{pmatrix}\n-1\\\\\n0\n\\end{pmatrix},\n\\qquad\n\\nabla g_2(x)=\n\\begin{pmatrix}\n1\\\\\n1\n\\end{pmatrix}\n\\]\nである。\n\nKKT 条件は\n\\[\n\\nabla f(x^*)+\\mu_1^*\\nabla g_1(x^*)+\\mu_2^*\\nabla g_2(x^*)=0\n\\]\nすなわち\n\\[\n\\begin{pmatrix}\nx_1^*-1\\\\\nx_2^*-1\n\\end{pmatrix}\n+\n\\mu_1^*\n\\begin{pmatrix}\n-1\\\\\n0\n\\end{pmatrix}\n+\n\\mu_2^*\n\\begin{pmatrix}\n1\\\\\n1\n\\end{pmatrix}\n=\n\\begin{pmatrix}\n0\\\\\n0\n\\end{pmatrix}\n\\]\nであるから\n\\[\n\\begin{cases}\nx_1^*-1-\\mu_1^*+\\mu_2^*=0,\\\\\nx_2^*-1+\\mu_2^*=0\n\\end{cases}\n\\]\nを得る。\n\nさらに実行可能条件\n\\[\n-x_1^*\\leq0,\n\\qquad\nx_1^*+x_2^*-1\\leq0\n\\]\nおよび相補性条件\n\\[\n\\mu_1^*(-x_1^*)=0,\n\\qquad\n\\mu_2^*(x_1^*+x_2^*-1)=0\n\\]\nが成り立つ。\n\n最適点では制約 $x_1+x_2-1=0$ が活性化するので\n\\[\nx_2^*=1-x_1^*\n\\]\nである。\n\nこれを停留条件に代入すると\n\\[\n1-x_1^*-1+\\mu_2^*=0\n\\]\nより\n\\[\n\\mu_2^*=x_1^*\n\\]\nを得る。\n\nさらに\n\\[\nx_1^*-1-\\mu_1^*+x_1^*=0\n\\]\nすなわち\n\\[\n2x_1^*-1-\\mu_1^*=0\n\\]\nである。\n\nここで $x_1^*>0$ となるので，相補性条件より\n\\[\n\\mu_1^*=0\n\\]\nを得る。\n\nしたがって\n\\[\n2x_1^*-1=0\n\\]\nより\n\\[\nx_1^*=\\frac12,\n\\qquad\nx_2^*=\\frac12\n\\]\nとなる。\n\nまた\n\\[\n\\mu_2^*=\\frac12\n\\]\nである。\n\nよって，KKT 条件を満たす解は\n\\[\nx^*=\\begin{pmatrix}\n\\frac12\\\\\n\\frac12\n\\end{pmatrix},\n\\qquad\n\\mu^*=\\begin{pmatrix}\n0\\\\\n\\frac12\n\\end{pmatrix}\n\\]\nである。",
+        "solution_text":"KKT 条件は\n\\[\n\\begin{pmatrix} x_1-1 \\\\ x_2-1 \\end{pmatrix}\n+\\mu_1^*\\begin{pmatrix} -1 \\\\ 0 \\end{pmatrix}\n+\\mu_2^*\\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}\n=\\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}\n\\]\nすなわち\n\\begin{align*}\nx_1-1-\\mu_1^*+\\mu_2^*&=0,\\\\\nx_2-1+\\mu_2^*&=0\n\\end{align*}\nならびに\n\\[\n-x_1\\leq0,\n\\quad\nx_1+x_2-1\\leq0,\n\\quad\n\\mu_1^*\\geq0,\n\\quad\n\\mu_2^*\\geq0\n\\]\n\\[\n\\mu_1^*(-x_1)=0,\n\\quad\n\\mu_2^*(x_1+x_2-1)=0\n\\]\nである。\n\n相補性条件を考察する。\n\n場合 (I): $\\mu_1^*=0$\n\n(I-a) $\\mu_1^*=0$ かつ $\\mu_2^*=0$ のとき，\n第1式から $x_1=1$，第2式から $x_2=1$ となる。しかし\n\\[\nx_1+x_2-1=1\\not\\leq0\n\\]\nであり，実行不可能である。\n\n(I-b) $\\mu_1^*=0$ かつ $x_1+x_2-1=0$ のとき，\n第1式から\n\\[\n\\mu_2^*=1-x_1\n\\]\n第2式から\n\\[\n\\mu_2^*=1-x_2\n\\]\nであるので，$x_1=x_2$ を得る。\nさらに\n\\[\nx_1+x_2-1=0\n\\]\nより\n\\[\nx_1=x_2=\\frac12\n\\]\nとなる。\n\nこのとき\n\\[\n\\mu_2^*=\\frac12>0\n\\]\nであり，また\n\\[\n-x_1=-\\frac12<0\n\\]\nも満たす。\n\nしたがって\n\\[\nx^*=\\begin{pmatrix} \\frac12 \\\\ \\frac12 \\end{pmatrix},\n\\qquad\n\\mu^*=\\begin{pmatrix} 0 \\\\ \\frac12 \\end{pmatrix}\n\\]\nが解となる。\n\n場合 (II): $x_1=0$\n\n(II-a) $x_1=0$ かつ $\\mu_2^*=0$ のとき，\n第2式から $x_2=1$，第1式から\n\\[\n-1-\\mu_1^*=0\n\\]\nより\n\\[\n\\mu_1^*=-1<0\n\\]\nとなり条件に反する。\n\n(II-b) $x_1=0$ かつ $x_1+x_2-1=0$ のとき，\n$x_2=1$ であり，第2式から\n\\[\n\\mu_2^*=0\n\\]\nとなる。\n\nこれを第1式に代入すると\n\\[\n-1-\\mu_1^*=0\n\\]\nより\n\\[\n\\mu_1^*=-1<0\n\\]\nとなり条件に反する。\n\n以上より，唯一の解は\n\\[\nx^*=\\begin{pmatrix} \\frac12 \\\\ \\frac12 \\end{pmatrix},\n\\qquad\n\\mu^*=\\begin{pmatrix} 0 \\\\ \\frac12 \\end{pmatrix}\n\\]\nである。",
+        "latex_source":"H25.tex"
+
+    }
+]

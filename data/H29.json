@@ -17,7 +17,7 @@
       "Complementary slackness"]
       ,    "difficulty":"3",
     "problem_text":"カルーシュ・キューン・タッカー条件を用いて $P_1(z)$ の最適解 $x^1(z)$ を求めよ。",
-    "solution_text":"$P(z)$ は凹計画問題であって適応できないとし，一般性を失わないとする。\nラグランジュ乗数法を使い，$P(z)$ のKKT条件は\n\\[\n\\begin{cases}\n-2x + A_z + \\lambda_x = 0 \\\\\nx_i x - 1 \\leq 0, \\quad \\lambda \\geq 0, \\quad \\lambda(x_i x - 1) = 0\n\\end{cases}\n\\]\n$x = \\frac{1}{2}A_z$, $\\lambda = 0$ のとき,これはKKT条件を満たす。",
+    "solution_text":"$P(z)$ は凹計画問題であって適応できないとし，一般性を失わないとする。\nラグランジュ乗数法を使い,$P(z)$ のKKT条件は\n\\[\n\\begin{cases}\n-2x + A_z + \\lambda_x = 0 \\\\\nx_i x - 1 \\leq 0, \\quad \\lambda \\geq 0, \\quad \\lambda(x_i x - 1) = 0\n\\end{cases}\n\\]\n$x = \\frac{1}{2}A_z$, $\\lambda = 0$ のとき,これはKKT条件を満たす。",
     "latex_source":"H29.tex"
 
   },

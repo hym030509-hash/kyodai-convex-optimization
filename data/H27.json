@@ -1,9 +1,59 @@
 [
     {
         "id":"H27-i",
-        "year":"H27",
+        "year":"2015",
+        "common_text": "関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$ を連続的に微分可能な凸関数とし，\n$S=\\{x\\in\\mathbb{R}^n\\mid a^T x=b\\}$ とする。\nただし,$a$ は $0$ でない $n$ 次元ベクトル，$b$ はスカラー，$^T$ はベクトルの転置を表す。\n次の凸計画問題を考える。\n\n\\[\n\\text{(P)}:\\quad\\text{Minimize}\\quad f(x)\\quad\n\\text{subject to}\\quad x\\in S\n\\]\n\nさらにパラメータ $z\\in\\mathbb{R}^n$ を含む次の凸二次計画問題を考える。\n\n\\[\n\\text{P}(z):\\quad\\text{Minimize}\\quad \\nabla f(z)^T y + \\frac{1}{2}(y-z)^T(y-z)\\quad\n\\text{subject to}\\quad y\\in S\n\\]\n\nここで,決定変数は $y$ である。任意の $z\\in\\mathbb{R}^n$ に対して\n問題 $\\text{P}(z)$ は唯一の最適解 $\\bar{y}(z)$ をもつ。\n以下の問いに答えよ。",
         "problem":"i",
-        "type":""
+        "type":"導出",
+        "topics":["KKT","最適解の導出"],
+        "keywords":["等式制約","ラグランジュ関数"],
+        "difficulty":"1",
+        "problem_text":"$z\\in S$ とする。問題 $\\text{P}(z)$ のカルーシュ・キューン・タッカー(Karush--Kuhn--Tucker)条件を用いて$\\bar{y}(z)$ を求めよ。",
+        "solution_text":"$\\lambda$ をラグランジュ乗数とする。$P(z)$ のKKT条件は\\begin{align}\\begin{cases}\\nabla f(z) + (y^* - z) + \\lambda a = 0 \\\\ a^T y^* - b = 0\\end{cases}\\end{align}これから，$y^* = - \\nabla f(z) + z - \\lambda a$ より，$a^T y^* - b = 0$ に従い入する。\\[-\\nabla f(z)^T a + a^Tz- \\lambda^*a^Ta - b = 0\\]\\[\\lambda = - \\frac{\\nabla f(z)^T a}{a^Ta - a} \\quad (\\because a^Tz = b)\\]\nまた,$y^* = -\\nabla f(z) + z + \\frac{\\nabla f(z)^T a}{a^T - a} $\nこの$y^*$と$\\lambda$はKKT条件を満たす。したがって,\n\\[\n\\bar{y}_1(z)\n=\n-\\nabla f(z)\n+\nz\n+\n\\frac{\\nabla f(z)^Ta}{a^Ta}a\n\\]\n"
+    },
+
+    {
+        "id":"H27-ii",
+        "year":"2015",
+        "common_text": "関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$ を連続的に微分可能な凸関数とし，\n$S=\\{x\\in\\mathbb{R}^n\\mid a^T x=b\\}$ とする。\nただし,$a$ は $0$ でない $n$ 次元ベクトル，$b$ はスカラー，$^T$ はベクトルの転置を表す。\n次の凸計画問題を考える。\n\n\\[\n\\text{(P)}:\\quad\\text{Minimize}\\quad f(x)\\quad\n\\text{subject to}\\quad x\\in S\n\\]\n\nさらにパラメータ $z\\in\\mathbb{R}^n$ を含む次の凸二次計画問題を考える。\n\n\\[\n\\text{P}(z):\\quad\\text{Minimize}\\quad \\nabla f(z)^T y + \\frac{1}{2}(y-z)^T(y-z)\\quad\n\\text{subject to}\\quad y\\in S\n\\]\n\nここで,決定変数は $y$ である。任意の $z\\in\\mathbb{R}^n$ に対して\n問題 $\\text{P}(z)$ は唯一の最適解 $\\bar{y}(z)$ をもつ。\n以下の問いに答えよ。",
+        "problem":"ii",
+        "type":"証明",
+        "topics":["最適解の証明"],
+        "keywords":["ラグランジュ乗数の導出"],
+        "difficulty":"1",
+        "problem_text":"$x\\in S$ かつ $\\bar{y}(x)=x$ であるとき，$x$ は問題 $\\text{(P)}$ の最適解であることを示せ。",
+        "solution_text": "$\\textbf{① 文は P の最適解 $x^*$ に対して，任意の実行可能解 $x_c$ について $f(x^*) \\leq f(x_c)$ が成り立つことを示せ。}$\n\n$\\textbf{② P は凸計画問題であり，さらに $x$ が KKT 条件を満たすとする。}$\n\nラグランジュ乗数を $\\lambda$ とするとき，問題 $P$ の KKT 条件は\n\n\\[\n\\begin{cases}\n\\nabla f(x)+\\lambda a=0 \\\\\na^Tx-b=0\n\\end{cases}\n\\]\n\nである。",
+        "latex_source":"H27.tex"
+
+    },
+
+        {
+        "id":"H27-iii",
+        "year":"2015",
+        "common_text": "関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$ を連続的に微分可能な凸関数とし，\n$S=\\{x\\in\\mathbb{R}^n\\mid a^T x=b\\}$ とする。\nただし,$a$ は $0$ でない $n$ 次元ベクトル，$b$ はスカラー，$^T$ はベクトルの転置を表す。\n次の凸計画問題を考える。\n\n\\[\n\\text{(P)}:\\quad\\text{Minimize}\\quad f(x)\\quad\n\\text{subject to}\\quad x\\in S\n\\]\n\nさらにパラメータ $z\\in\\mathbb{R}^n$ を含む次の凸二次計画問題を考える。\n\n\\[\n\\text{P}(z):\\quad\\text{Minimize}\\quad \\nabla f(z)^T y + \\frac{1}{2}(y-z)^T(y-z)\\quad\n\\text{subject to}\\quad y\\in S\n\\]\n\nここで,決定変数は $y$ である。任意の $z\\in\\mathbb{R}^n$ に対して\n問題 $\\text{P}(z)$ は唯一の最適解 $\\bar{y}(z)$ をもつ。\n以下の問いに答えよ。",
+        "problem":"iii",
+        "type":"導出",
+        "topics":["最適解","実行可能解"],
+        "keywords":["唯一の最適解"],
+        "difficulty":"3",
+        "problem_text":"$x\\in S$ かつ $\\bar{y}(x)\\neq x$ であるとき，$\\nabla f(x)^T(\\bar{y}(x)-x) < 0$,$ a^T(\\bar{y}(x)-x)=0$ であることを示せ。",
+        "solution_text": "\n$f$ が凸関数であるとき，任意の $x,y\\in\\mathbb{R}^n$ および $\\alpha\\in[0,1]$ に対して\n\n\\[\nf(\\alpha x+(1-\\alpha)y)\n\\leq\n\\alpha f(x)+(1-\\alpha)f(y)\n\\]\n\nが成り立つ。\n\nいま，問題 $P(x)$ の最適解を $\\bar{y}(x)$ とする。\n$\\bar{y}(x)\\in S$ かつ $x\\in S$ である。\n\n問題 $P(x)$ の最適性より，\n\n\\[\n\\nabla f(x)^T\\bar{y}(x)\n+\n\\frac12(\\bar{y}(x)-x)^T(\\bar{y}(x)-x)\n\\leq\n\\nabla f(x)^Tx\n\\]\n\nが成り立つ。\n\nしたがって，\n\n\\[\n\\nabla f(x)^T(\\bar{y}(x)-x)\n+\n\\frac12(\\bar{y}(x)-x)^T(\\bar{y}(x)-x)\n\\leq 0\n\\]\n\nとなるので，\n\n\\[\n\\nabla f(x)^T(\\bar{y}(x)-x)\n\\leq\n-\n\\frac12(\\bar{y}(x)-x)^T(\\bar{y}(x)-x)\n<0\n\\]\n\nを得る。\n\nまた，$\\bar{y}(x)\\in S$ および $x\\in S$ より，\n\n\\[\na^T(\\bar{y}(x)-x)\n=\n(a^T\\bar{y}(x)-b)-(a^Tx-b)\n=\n0\n\\]\n\nが成り立つ。",
+        "latex_source":"H27.tex"
+
+    },
+
+        {
+        "id":"H27-iv",
+        "year":"2015",
+        "common_text": "関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$ を連続的に微分可能な凸関数とし，\n$S=\\{x\\in\\mathbb{R}^n\\mid a^T x=b\\}$ とする。\nただし,$a$ は $0$ でない $n$ 次元ベクトル，$b$ はスカラー，$^T$ はベクトルの転置を表す。\n次の凸計画問題を考える。\n\n\\[\n\\text{(P)}:\\quad\\text{Minimize}\\quad f(x)\\quad\n\\text{subject to}\\quad x\\in S\n\\]\n\nさらにパラメータ $z\\in\\mathbb{R}^n$ を含む次の凸二次計画問題を考える。\n\n\\[\n\\text{P}(z):\\quad\\text{Minimize}\\quad \\nabla f(z)^T y + \\frac{1}{2}(y-z)^T(y-z)\\quad\n\\text{subject to}\\quad y\\in S\n\\]\n\nここで，決定変数は $y$ である。任意の $z\\in\\mathbb{R}^n$ に対して\n問題 $\\text{P}(z)$ は唯一の最適解 $\\bar{y}(z)$ をもつ。\n以下の問いに答えよ。",
+        "problem":"iv",
+        "type":"証明",
+        "topics":["KKT","最適解"],
+        "keywords":["背理法"],
+        "difficulty":"2",
+        "problem_text":"$\\bar{y}(x)\\neq x$ であるとき，$x$ は問題 $\\text{(P)}$ の最適解でないことを示せ。",
+        "solution_text": "$x$ が問題 $P$ の最適解でないと仮定する。\nすると，ある実行可能解 $s\\in S$ が存在して\n\n\\[\nf(s)<f(x)\n\\]\n\nとなる。\n\n問題 $P$ は凸計画問題であるため，最適解であれば KKT 条件を満たす。\nしたがって，$x$ が最適解であると仮定すると，ある $\\lambda\\in\\mathbb{R}$ が存在して\n\n\\[\n\\nabla f(x)+\\lambda a=0,\n\\qquad\na^Tx=b\n\\]\n\nが成り立つ。\n\nここで，$\\bar{y}(x)-x$ を考えると，\n\n\\[\n\\nabla f(x)^T(\\bar{y}(x)-x)\n+\n\\lambda a^T(\\bar{y}(x)-x)\n=0\n\\]\n\nを得る。\n\nまた，$x\\in S$ および $\\bar{y}(x)\\in S$ より，\n\n\\[\na^T(\\bar{y}(x)-x)=0\n\\]\n\nが成り立つ。\n\nしたがって，\n\n\\[\n\\nabla f(x)^T(\\bar{y}(x)-x)=0\n\\]\n\nを得る。\n\nしかし，(iii) より\n\n\\[\n\\nabla f(x)^T(\\bar{y}(x)-x)<0\n\\]\n\nが成り立つため矛盾する。\n\nよって，$x$ は問題 $P$ の最適解である。",
+        "latex_source":"H27.tex"
 
     }
 ]

@@ -1,0 +1,74 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage[utf8]{inputenc}
+\usepackage{xeCJK}
+
+\setCJKmainfont{Hiragino Sans GB}
+
+\title{京都大学大学院 数理工学専攻}
+\author{凸最適化 過去問}
+\date{H26 (OR)}
+
+\begin{document}
+
+\maketitle
+
+\section*{解答 (H26)}
+
+本解答では，$f(x)=\tfrac12 x^T M x + q^T x$ とし，$M$ は対称行列とする。
+制約は $(a^i)^T x \le b_i\ (i\in I)$ で，KKT 条件が成り立つ点を $x^*$，活性制約の添字集合を $J$ と置く。
+
+\subsection*{(i)}
+任意の $d\in\mathbb{R}^n$ に対して Taylor 展開（2 次まで）より
+\[
+f(x^*+d)-f(x^*) = \nabla f(x^*)^T d + \tfrac12 d^T M d.
+\]
+直接計算でも確認できる：
+\begin{align*}
+f(x^*+d)-f(x^*) &= \tfrac12 (x^*+d)^T M (x^*+d) + q^T(x^*+d) - \bigl(\tfrac12 {x^*}^T M x^* + q^T x^*\bigr) \\
+&= \tfrac12 d^T M d + (Mx^*+q)^T d \\
+&= \tfrac12 d^T M d + \nabla f(x^*)^T d.
+\end{align*}
+
+\subsection*{(ii)}
+KKT 条件より
+\[
+\nabla f(x^*) + \sum_{i\in J} \lambda_i^* a^i = 0,\qquad \lambda_i^*\ge0,\quad (a^i)^T x^*=b_i\ (i\in J).
+\]
+任意の $d\in C$（すなわち $(a^i)^T d\le0\ (i\in J)$）に対して内積を取ると
+\[
+\nabla f(x^*)^T d = -\sum_{i\in J} \lambda_i^* (a^i)^T d \ge 0
+\]
+となる（各項は $\lambda_i^*\ge0$ と $(a^i)^T d\le0$ より非負）。
+
+\subsection*{(iii)}
+任意の実行可能解 $x$ に対して，$i\in J$ について $(a^i)^T x \le b_i$ かつ $(a^i)^T x^*=b_i$ である。したがって
+\[
+(a^i)^T(x-x^*)\le 0 \quad (i\in J),
+\]
+よって $x-x^*\in C$ が従う。
+
+\subsection*{(iv)}
+任意の実行可能解 $x$ を取り，$d:=x-x^*\in C$ とすると (i),(ii) より
+\begin{align*}
+f(x)-f(x^*) &= \nabla f(x^*)^T d + \tfrac12 d^T M d \\
+&\ge 0 + \tfrac12 d^T M d \ge 0,
+\end{align*}
+ここで第1項は (ii) で非負、第2項は仮定により非負である。
+したがって任意の実行可能解 $x$ に対して $f(x)\ge f(x^*)$ が成り立ち，$x^*$ は大域的最適解である。
+
+\subsection*{(v)}
+$x^*$ が局所最適解であれば，任意の十分小さい可行方向 $d\in C^0$（すなわち $(a^i)^T d=0$ for $i\in J$）について
+\[g(\epsilon):=f(x^*+\epsilon d)\ge f(x^*)\quad\text{(小さい }\epsilon\text{)}\]
+が成り立つ。Taylor 展開を用いると
+\[
+g(\epsilon)-g(0) = \epsilon\nabla f(x^*)^T d + \tfrac12\epsilon^2 d^T M d + o(\epsilon^2).
+\]
+ここで $d\in C^0$ と KKT 条件から $\nabla f(x^*)^T d=0$ が成り立つため，小さい $\epsilon$ に対して符号を保つためには
+\[d^T M d \ge 0
+\]
+が必要である。したがって任意の $d\in C^0$ に対して $d^T M d\ge0$ が成立する。
+
+\end{document}

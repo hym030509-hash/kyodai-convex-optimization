@@ -1,63 +1,71 @@
 [
-    {
-        "id":"H28-i",
-        "year":"H28",
-        "problem":"i",
-        "type":"proof",
-        "topics":["実行可能解"],
-        "keywords":"制約条件より",
-        "difficulty":"1",
-        "latex_source":"H28.tex"
-        
-    },
+  {
+    "id":"H28-i",
+    "year":"2016",
+    "common_text":"関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$ は 2 回連続的に微分可能な関数とし，$a$ は $0$ でない $n$ 次元ベクトルとする。\n次の非線形計画問題を考える。\n\n\\begin{align*}\n\\text{P:} \\quad & \\text{Minimize} \\quad f(x) \\\\\n& \\text{subject to} \\quad a^T x = 0\n\\end{align*}\n\nただし，$^T$ はベクトルの転置を表す。$x^*$ を問題 P の大域的最適解とする。\nさらに,次の非線形計画問題を考える。\n\n\\begin{align*}\n\\text{P}(k): \\quad & \\text{Minimize} \\quad f_k(x) \\\\\n& \\text{subject to} \\quad (x - x^*)^T(x - x^*) \\leq 1\n\\end{align*}\n\nただし，$k$ は非負の整数であり，$f_k:\\mathbb{R}^n \\to \\mathbb{R}$ は以下に定義された関数である。\n\n\\[\nf_k(x)=f(x)+\\frac{k}{2}(a^Tx)^2+\\frac{1}{2}(x-x^*)^T(x-x^*)\n\\]\n\n問題 $P(k)$ の大域的最適解を $x^k$ とする。さらに，\n\\[\n\\lim_{k\\to\\infty}x^k=\\bar{x}, \\qquad\n\\lim_{k\\to\\infty}k(a^Tx^k)=\\bar{\\lambda}\n\\]\nと仮定する。以下の問いに答えよ。",
+    "problem":"i",
+    "type":"proof",
+    "topics":["実行可能解"],
+    "keywords":["制約条件"],
+    "difficulty":"1",
+    "problem_text":"任意の非負の整数 $k$ に対して，$f_k(x^k) \\leq f(x^*)$ が成り立つことを示せ。",
+    "solution_text":"$x^*$ に対して\n\\[\n(x^*-x^*)^T(x^*-x^*)=0\\leq1\n\\]\nであるから，$x^*$ は問題 $P(k)$ の実行可能解である。\n\n$x^k$ は問題 $P(k)$ の大域的最適解であるので，\n\\[\nf_k(x^k)\\leq f_k(x^*)\n\\]\nが成り立つ。\n\nここで，$a^Tx^*=0$ より\n\\[\nf_k(x^*)=f(x^*)+\\frac{k}{2}(a^Tx^*)^2+\\frac{1}{2}(x^*-x^*)^T(x^*-x^*)\n=f(x^*)\n\\]\nである。\n\nしたがって，\n\\[\nf_k(x^k)\\leq f(x^*)\n\\]\nを得る。",
+    "latex_source":"H28.tex"
+  },
 
+  {
+    "id":"H28-ii",
+    "year":"2016",
+    "common_text":"関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$ は 2 回連続的に微分可能な関数とし，$a$ は $0$ でない $n$ 次元ベクトルとする。\n次の非線形計画問題を考える。\n\n\\begin{align*}\n\\text{P:} \\quad & \\text{Minimize} \\quad f(x) \\\\\n& \\text{subject to} \\quad a^T x = 0\n\\end{align*}\n\nただし，$^T$ はベクトルの転置を表す。$x^*$ を問題 P の大域的最適解とする。\nさらに,次の非線形計画問題を考える。\n\n\\begin{align*}\n\\text{P}(k): \\quad & \\text{Minimize} \\quad f_k(x) \\\\\n& \\text{subject to} \\quad (x - x^*)^T(x - x^*) \\leq 1\n\\end{align*}\n\nただし，$k$ は非負の整数であり，$f_k:\\mathbb{R}^n \\to \\mathbb{R}$ は以下に定義された関数である。\n\n\\[\nf_k(x)=f(x)+\\frac{k}{2}(a^Tx)^2+\\frac{1}{2}(x-x^*)^T(x-x^*)\n\\]\n\n問題 $P(k)$ の大域的最適解を $x^k$ とする。さらに，\n\\[\n\\lim_{k\\to\\infty}x^k=\\bar{x}, \\qquad\n\\lim_{k\\to\\infty}k(a^Tx^k)=\\bar{\\lambda}\n\\]\nと仮定する。以下の問いに答えよ。",
+    "problem":"ii",
+    "type":"proof",
+    "topics":["実行可能解","大域的最適解"],
+    "keywords":["極限"],
+    "difficulty":"3",
+    "problem_text":"$a^T\\bar{x}=0,\\ \\bar{x}=x^*$ となることを示せ。",
+    "solution_text":"仮定より\n\\[\n\\lim_{k\\to\\infty}k(a^Tx^k)=\\bar{\\lambda}\n\\]\nであるから，\n\\[\na^Tx^k=\\frac{\\bar{\\lambda}}{k}+o\\left(\\frac1k\\right)\n\\]\nが成り立つ。\n\nしたがって，$k\\to\\infty$ とすると\n\\[\na^Tx^k\\to0\n\\]\nであり，さらに $x^k\\to\\bar{x}$ より\n\\[\na^T\\bar{x}=0\n\\]\nを得る。よって，$\\bar{x}$ は問題 $P$ の実行可能解である。\n\n(i)より\n\\[\nf_k(x^k)\\leq f(x^*)\n\\]\nであり，$k\\to\\infty$ とすると\n\\[\nf(\\bar{x})+\\frac12(\\bar{x}-x^*)^T(\\bar{x}-x^*)\\leq f(x^*)\n\\]\nを得る。\n\n一方，$x^*$ は問題 $P$ の大域的最適解であり，$\\bar{x}$ は実行可能解であるから\n\\[\nf(x^*)\\leq f(\\bar{x})\n\\]\nである。\n\nしたがって，\n\\[\n\\frac12(\\bar{x}-x^*)^T(\\bar{x}-x^*)\\leq0\n\\]\nとなる。\n\n左辺は非負であるから\n\\[\n(\\bar{x}-x^*)^T(\\bar{x}-x^*)=0\n\\]\nであり，\n\\[\n\\bar{x}=x^*\n\\]\nを得る。",
+    "latex_source":"H28.tex"
+  },
 
+  {
+    "id":"H28-iii",
+    "year":"2016",
+    "common_text":"関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$ は 2 回連続的に微分可能な関数とし，$a$ は $0$ でない $n$ 次元ベクトルとする。\n次の非線形計画問題を考える。\n\n\\begin{align*}\n\\text{P:} \\quad & \\text{Minimize} \\quad f(x) \\\\\n& \\text{subject to} \\quad a^T x = 0\n\\end{align*}\n\nただし，$^T$ はベクトルの転置を表す。$x^*$ を問題 P の大域的最適解とする。\nさらに,次の非線形計画問題を考える。\n\n\\begin{align*}\n\\text{P}(k): \\quad & \\text{Minimize} \\quad f_k(x) \\\\\n& \\text{subject to} \\quad (x - x^*)^T(x - x^*) \\leq 1\n\\end{align*}\n\nただし，$k$ は非負の整数であり，$f_k:\\mathbb{R}^n \\to \\mathbb{R}$ は以下に定義された関数である。\n\n\\[\nf_k(x)=f(x)+\\frac{k}{2}(a^Tx)^2+\\frac{1}{2}(x-x^*)^T(x-x^*)\n\\]\n\n問題 $P(k)$ の大域的最適解を $x^k$ とする。さらに，\n\\[\n\\lim_{k\\to\\infty}x^k=\\bar{x}, \\qquad\n\\lim_{k\\to\\infty}k(a^Tx^k)=\\bar{\\lambda}\n\\]\nと仮定する。以下の問いに答えよ。",
+    "problem":"iii",
+    "type":"derivation",
+    "topics":["KKT"],
+    "keywords":["KKT条件"],
+    "difficulty":"2",
+    "problem_text":"問題 $P(k)$ のカルーシュ・キューン・タッカー条件を書け。",
+    "solution_text":"$\\lambda$ をラグランジュ乗数とする。このとき，問題 $P(k)$ の KKT 条件は\n\\begin{align}\n\\begin{cases}\n\\nabla f_k(x)+2\\lambda(x-x^*)=0,\\\\\n(x-x^*)^T(x-x^*)-1\\leq0,\\\\\n\\lambda\\geq0,\\\\\n\\lambda\\bigl((x-x^*)^T(x-x^*)-1\\bigr)=0\n\\end{cases}\n\\tag{★}\n\\end{align}\nである。",
+    "latex_source":"H28.tex"
+  },
 
-    {
-        "id":"H28-ii",
-        "year":"H28",
-        "problem":"ii",
-        "type":"proof",
-        "topics":["実行可能解","大域的最適解"],
-        "keywords":"制約条件より",
-        "difficulty":"3",
-        "latex_source":"H28.tex"
-    },
+  {
+    "id":"H28-iv",
+    "year":"2016",
+    "common_text":"関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$ は 2 回連続的に微分可能な関数とし，$a$ は $0$ でない $n$ 次元ベクトルとする。\n次の非線形計画問題を考える。\n\n\\begin{align*}\n\\text{P:} \\quad & \\text{Minimize} \\quad f(x) \\\\\n& \\text{subject to} \\quad a^T x = 0\n\\end{align*}\n\nただし，$^T$ はベクトルの転置を表す。$x^*$ を問題 P の大域的最適解とする。\nさらに,次の非線形計画問題を考える。\n\n\\begin{align*}\n\\text{P}(k): \\quad & \\text{Minimize} \\quad f_k(x) \\\\\n& \\text{subject to} \\quad (x - x^*)^T(x - x^*) \\leq 1\n\\end{align*}\n\nただし，$k$ は非負の整数であり，$f_k:\\mathbb{R}^n \\to \\mathbb{R}$ は以下に定義された関数である。\n\n\\[\nf_k(x)=f(x)+\\frac{k}{2}(a^Tx)^2+\\frac{1}{2}(x-x^*)^T(x-x^*)\n\\]\n\n問題 $P(k)$ の大域的最適解を $x^k$ とする。さらに，\n\\[\n\\lim_{k\\to\\infty}x^k=\\bar{x}, \\qquad\n\\lim_{k\\to\\infty}k(a^Tx^k)=\\bar{\\lambda}\n\\]\nと仮定する。以下の問いに答えよ。",
+    "problem":"iv",
+    "type":"proof",
+    "topics":["KKT"],
+    "keywords":["相補性条件"],
+    "difficulty":"1",
+    "problem_text":"十分大きな $k$ に対して，$\\nabla f_k(x^k)=0$ となることを示せ。",
+    "solution_text":"$x^k$ は問題 $P(k)$ の最適解であるから，KKT 条件を満たす。したがって，ある $\\lambda\\geq0$ が存在して\n\\[\n\\nabla f_k(x^k)+2\\lambda(x^k-x^*)=0\n\\]\nが成り立つ。\n\n(ii)より\n\\[\nx^k\\to x^*\n\\qquad(k\\to\\infty)\n\\]\nであるから，十分大きな $k$ に対して\n\\[\n(x^k-x^*)^T(x^k-x^*)<1\n\\]\nとなる。\n\nこのとき，相補性条件\n\\[\n\\lambda\\bigl((x^k-x^*)^T(x^k-x^*)-1\\bigr)=0\n\\]\nより\n\\[\n\\lambda=0\n\\]\nを得る。\n\nしたがって，十分大きな $k$ に対して\n\\[\n\\nabla f_k(x^k)=0\n\\]\nが成り立つ。",
+    "latex_source":"H28.tex"
+  },
 
-
-
-    {
-        "id":"H28-iii",
-        "year":"H28",
-        "problem":"iii",
-        "type":"derivation",
-        "topics":["KKT"],
-        "keywords":"条件を書け",
-        "difficulty":"2",
-        "latex_source":"H28.tex"
-    },
-
-
-
-    {
-        "id":"H28-iv",
-        "year":"H28",
-        "problem":"iv",
-        "type":"proof",
-        "topics":["KKT"],
-        "keywords":"Complementary slackness",
-        "difficulty":"1",
-        "latex_source":"H28.tex"
-    },
-
-
-
-    {
-        "id":"H28-v",
-        "year":"H28",
-        "problem":"v",
-        "type":"proof",
-        "topics":["KKT","極限"]
-    }
+  {
+    "id":"H28-v",
+    "year":"2016",
+    "common_text":"関数 $f:\\mathbb{R}^n \\to \\mathbb{R}$ は 2 回連続的に微分可能な関数とし，$a$ は $0$ でない $n$ 次元ベクトルとする。\n次の非線形計画問題を考える。\n\n\\begin{align*}\n\\text{P:} \\quad & \\text{Minimize} \\quad f(x) \\\\\n& \\text{subject to} \\quad a^T x = 0\n\\end{align*}\n\nただし，$^T$ はベクトルの転置を表す。$x^*$ を問題 P の大域的最適解とする。\nさらに,次の非線形計画問題を考える。\n\n\\begin{align*}\n\\text{P}(k): \\quad & \\text{Minimize} \\quad f_k(x) \\\\\n& \\text{subject to} \\quad (x - x^*)^T(x - x^*) \\leq 1\n\\end{align*}\n\nただし，$k$ は非負の整数であり，$f_k:\\mathbb{R}^n \\to \\mathbb{R}$ は以下に定義された関数である。\n\n\\[\nf_k(x)=f(x)+\\frac{k}{2}(a^Tx)^2+\\frac{1}{2}(x-x^*)^T(x-x^*)\n\\]\n\n問題 $P(k)$ の大域的最適解を $x^k$ とする。さらに，\n\\[\n\\lim_{k\\to\\infty}x^k=\\bar{x}, \\qquad\n\\lim_{k\\to\\infty}k(a^Tx^k)=\\bar{\\lambda}\n\\]\nと仮定する。以下の問いに答えよ。",
+    "problem":"v",
+    "type":"proof",
+    "topics":["KKT","極限"],
+    "keywords":["極限操作"],
+    "difficulty":"2",
+    "problem_text":"$\\nabla f(x^*)+\\bar{\\lambda}a=0$ となることを示せ。",
+    "solution_text":"(iv)より，十分大きな $k$ に対して\n\\[\n\\nabla f_k(x^k)=0\n\\]\nである。\n\n$f_k$ の定義より\n\\[\n\\nabla f(x^k)+k(a^Tx^k)a+(x^k-x^*)=0\n\\]\nを得る。\n\nここで，$k\\to\\infty$ とすると，(ii)より\n\\[\nx^k\\to x^*\n\\]\nであり，また仮定より\n\\[\nk(a^Tx^k)\\to\\bar{\\lambda}\n\\]\nである。\n\nしたがって，極限をとることで\n\\[\n\\nabla f(x^*)+\\bar{\\lambda}a=0\n\\]\nを得る。",
+    "latex_source":"H28.tex"
+  }
 ]
-
