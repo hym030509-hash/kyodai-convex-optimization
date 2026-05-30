@@ -1,5 +1,16 @@
 <!DOCTYPE html>
 <html lang="ja">
+  <a href="/">ホーム</a>
+
+<a href="/problems-page">過去問一覧</a>
+
+<a href="/mypage">マイページ</a>
+
+<a href="/login">ログイン</a>
+
+<a href="/register">新規登録</a>
+
+<a href="/logout">ログアウト</a>
 <head>
   <meta charset="UTF-8">
   <title>問題詳細</title>
@@ -105,6 +116,39 @@
       overflow-x: auto;
       word-break: break-word;
     }
+    #add-mistake-btn {
+
+  background: #2563eb;
+
+  color: white;
+
+  border: none;
+
+  padding: 10px 18px;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  margin-bottom: 20px;
+
+  font-size: 15px;
+
+}
+
+#add-mistake-btn:disabled {
+
+    cursor: default;
+
+    opacity: 1;
+
+}
+
+#add-mistake-btn:hover {
+
+  opacity: 0.9;
+
+}
     .pager {
       display: flex;
       justify-content: space-between;
@@ -250,6 +294,18 @@ function renderProblem() {
   content.innerHTML = `
     <h1>${escapeHtml(problem.id)}</h1>
 
+    <button
+
+  id="add-mistake-btn"
+
+  data-saved="false"
+
+  onclick="markAsMistake()">
+
+  錯題本に追加
+
+</button>
+
     <p class="meta"><b>${t("year")}:</b> ${escapeHtml(problem.year)}</p>
     <p class="meta"><b>${t("type")}:</b> ${escapeHtml(label(problem.type))}</p>
     <p class="meta"><b>${t("difficulty")}:</b> ${escapeHtml(problem.difficulty || "")}</p>
@@ -278,7 +334,94 @@ function renderProblem() {
   `;
 
   if (window.MathJax) {
-    MathJax.typesetPromise();
+    MathJax.typesetClear();
+    MathJax.typesetPromise([content]);
+  }
+}
+checkMistakeStatus();
+
+function markAsMistake() {
+
+  const btn = document.getElementById("add-mistake-btn");
+
+  if (!btn) {
+    return;
+  }
+
+  // 已经加入错题本 -> 删除
+  if (btn.dataset.saved === "true") {
+
+    const ok = confirm("錯題本から削除しますか？");
+
+    if (!ok) {
+      return;
+    }
+
+    fetch(`/remove-mistake/${problemId}`, {
+      method: "POST"
+    })
+    .then(response => response.json())
+    .then(data => {
+
+      if (data.success) {
+
+        btn.textContent = "錯題本に追加";
+        btn.style.background = "#2563eb";
+        btn.dataset.saved = "false";
+
+      } else {
+
+        alert("削除に失敗しました");
+
+      }
+    });
+
+    function checkMistakeStatus() {
+      console.log("checkMistakeStatus called");
+  const btn = document.getElementById("add-mistake-btn");
+
+  if (!btn) {
+    return;
+  }
+
+  fetch(`/is-mistake/${problemId}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.saved) {
+        btn.textContent = "✓ 錯題に追加済み";
+        btn.style.background = "#16a34a";
+        btn.dataset.saved = "true";
+      } else {
+        btn.textContent = "錯題本に追加";
+        btn.style.background = "#2563eb";
+        btn.dataset.saved = "false";
+      }
+    });
+}
+  }
+
+  // まだ未登録 -> 追加
+  else {
+
+    fetch(`/add-mistake/${problemId}`, {
+      method: "POST"
+    })
+    .then(response => response.json())
+    .then(data => {
+
+      if (data.success) {
+
+        btn.textContent = "✓ 錯題に追加済み";
+        btn.style.background = "#16a34a";
+        btn.dataset.saved = "true";
+
+      } else {
+
+        alert("ログインしてください");
+
+      }
+    });
+
   }
 }
 

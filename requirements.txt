@@ -4,3 +4,9 @@ jinja2
 python-multipart
 a2wsgi
 a2wsgi
+passlib[bcrypt]
+
+python-multipart
+
+itsdangerous
+bcrypt

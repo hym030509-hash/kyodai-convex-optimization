@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>My Page</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <a href="/">Home</a>
+
+    <a href="/problems-page">Problems</a>
+
+    <a href="/mypage">My Page</a>
+
+    <a href="/logout">Logout</a>
+
+</nav>
+
+<div class="mypage-container">
+
+    <section class="mypage-hero">
+
+        <h1>My Page</h1>
+
+        <p>京大過去問の学習状況を確認できます。</p>
+
+    </section>
+
+    <section class="stats-grid">
+
+        <div class="stat-card">
+
+            <h2>0</h2>
+
+            <p>解いた問題</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>0</h2>
+
+            <p>錯誤問題</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>0</h2>
+
+            <p>復習済み</p>
+
+        </div>
+
+    </section>
+
+    <section class="mypage-section">
+
+        <h2>錯題本</h2>
+
+        <p>間違えた問題を保存し、後から復習できます。</p>
+
+        <div id="mistake-list" class="empty-box">
+
+          <p>読み込み中...</p>
+
+         </div>
+
+    </section>
+
+    <section class="mypage-section">
+
+        <h2>学習メニュー</h2>
+
+        <div class="menu-grid">
+
+            <a href="/problems-page" class="menu-card">
+
+                <h3>問題一覧へ</h3>
+
+                <p>年度・分野ごとに過去問を確認する</p>
+
+            </a>
+
+            <a href="#" class="menu-card">
+
+                <h3>錯題本を見る</h3>
+
+                <p>間違えた問題を復習する</p>
+
+            </a>
+
+        </div>
+
+    </section>
+<script>
+
+fetch("/my-mistakes")
+
+  .then(response => response.json())
+
+  .then(data => {
+
+    const box = document.getElementById("mistake-list");
+
+    if (data.length === 0) {
+
+      box.innerHTML = "<p>まだ錯題は登録されていません。</p>";
+
+      return;
+
+    }
+
+    box.classList.remove("empty-box");
+
+box.innerHTML = data.map(item => `
+
+  <div class="mistake-card">
+
+    <a href="/problem/${item.problem_id}">
+
+      ${item.problem_id}
+
+    </a>
+
+    <p>追加日時：${item.created_at}</p>
+
+  </div>
+
+`).join("");
+
+  });
+
+</script>
+
+</div>
+
+</body>
+
+</html>
