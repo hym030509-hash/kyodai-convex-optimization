@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Riemannian Conjugate Gradient</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="site-logo">京大最適化学習サイト</div>
+
+    <div class="site-nav">
+        <a href="/">ホーム</a>
+        <a href="/problems-page">過去問一覧</a>
+        <a href="/knowledge">基礎知識</a>
+        <a href="/mypage">マイページ</a>
+        <a href="/logout">ログアウト</a>
+    </div>
+</header>
+
+<div class="mypage-container">
+
+    <section class="mypage-hero">
+        <h1>Riemannian Conjugate Gradient</h1>
+        <p>ユークリッド空間上の共役勾配法をリーマン多様体上へ拡張した手法です。</p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>目的</h2>
+        <p>
+        リーマン多様体 \(\mathcal{M}\) 上の関数
+        \[
+        f:\mathcal{M}\to\mathbb{R}
+        \]
+        を最小化することを考える。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>基本形</h2>
+        <p>
+        現在点 \(x_k\) における探索方向 \(d_k\in T_{x_k}\mathcal{M}\) を用いて、
+        次の点を
+        \[
+        x_{k+1}
+        =
+        R_{x_k}(\alpha_k d_k)
+        \]
+        により定める。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>探索方向</h2>
+        <p>
+        最初の方向は通常、
+        \[
+        d_0=-\operatorname{grad} f(x_0)
+        \]
+        とする。
+        </p>
+
+        <p>
+        その後は、前回の方向を新しい接空間に運んで、
+        \[
+        d_{k+1}
+        =
+        -\operatorname{grad} f(x_{k+1})
+        +
+        \beta_k \mathcal{T}_{\alpha_k d_k}(d_k)
+        \]
+        のように更新する。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>必要な要素</h2>
+        <p>
+        Riemannian CG には主に次の要素が必要である。
+        </p>
+
+        <ul>
+            <li>リーマン勾配</li>
+            <li>Retraction</li>
+            <li>Vector Transport</li>
+            <li>ステップサイズ規則</li>
+            <li>\(\beta_k\) の選択</li>
+        </ul>
+    </section>
+
+    <section class="mypage-section">
+        <h2>直感</h2>
+        <p>
+        Riemannian CG は、単に最急降下方向に進むだけでなく、
+        過去の探索方向の情報も利用することで、より効率的な探索を目指す手法である。
+        </p>
+    </section>
+
+</div>
+
+</body>
+</html>

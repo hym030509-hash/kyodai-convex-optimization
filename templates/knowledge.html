@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>最適化基礎知識</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <style>
+        .roadmap-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .roadmap-card {
+            display: block;
+            padding: 24px;
+            border-radius: 16px;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            text-decoration: none;
+            color: inherit;
+            transition: 0.2s;
+        }
+
+        .roadmap-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+        }
+
+        .roadmap-step {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .roadmap-card h3 {
+            margin: 0 0 8px;
+            color: #2563eb;
+        }
+
+        .roadmap-card p {
+            margin: 0;
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 760px) {
+            .roadmap-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="site-logo">
+        京大最適化学習サイト
+    </div>
+
+    <div class="site-nav">
+        <a href="/">ホーム</a>
+        <a href="/problems-page">過去問一覧</a>
+        <a href="/knowledge">基礎知識</a>
+        <a href="/mypage">マイページ</a>
+        <a href="/logout">ログアウト</a>
+    </div>
+</header>
+
+<div class="mypage-container">
+
+    <section class="mypage-hero">
+        <h1>最適化基礎知識</h1>
+        <p>
+            最適化を学ぶための基礎知識を、ユークリッド空間上の理論から
+            リーマン多様体上の最適化まで段階的に整理します。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>最適化学習ロードマップ</h2>
+        <p>
+            まずは線形代数・微分積分から出発し、凸集合、凸関数、双対問題、KKT条件へ進みます。
+            この順序で学ぶことで、京大数理工学の凸最適化の過去問に必要な基礎を整理しやすくなります。
+        </p>
+
+        <div class="roadmap-grid">
+            <a href="/knowledge/linear-algebra" class="roadmap-card">
+                <div class="roadmap-step">Step 1</div>
+                <h3>線形代数</h3>
+                <p>ベクトル、行列、内積、固有値、正定値性など、最適化の基礎となる道具を整理します。</p>
+            </a>
+
+            <a href="/knowledge/calculus" class="roadmap-card">
+                <div class="roadmap-step">Step 2</div>
+                <h3>微分積分</h3>
+                <p>勾配、ヘッセ行列、テイラー展開など、最適性条件を理解するための基礎を扱います。</p>
+            </a>
+
+            <a href="/knowledge/convex-set" class="roadmap-card">
+                <div class="roadmap-step">Step 3</div>
+                <h3>凸集合</h3>
+                <p>線分を含む集合としての凸集合を学び、制約集合の幾何学的な性質を理解します。</p>
+            </a>
+
+            <a href="/knowledge/convex-function" class="roadmap-card">
+                <div class="roadmap-step">Step 4</div>
+                <h3>凸関数</h3>
+                <p>局所最適解が大域最適解になる理由や、一次・二次条件を整理します。</p>
+            </a>
+
+                        <a href="/knowledge/euclidean-duality" class="menu-card">
+                <h3>双対問題</h3>
+                <p>ラグランジュ双対と弱双対・強双対</p>
+            </a>
+
+            <a href="/knowledge/euclidean-kkt" class="menu-card">
+                <h3>KKT条件</h3>
+                <p>制約付き最適化における一次最適性条件</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="mypage-section">
+        <h2>ユークリッド空間上の最適化</h2>
+
+        <div class="menu-grid">
+
+
+            <a href="/knowledge/gradient-descent" class="menu-card">
+                <h3>勾配降下法</h3>
+                <p>最も基本的な反復最適化法</p>
+            </a>
+
+            <a href="/knowledge/newton-method" class="menu-card">
+                <h3>ニュートン法</h3>
+                <p>二階微分情報を用いる高速な手法</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="mypage-section">
+        <h2>リーマン多様体上の最適化</h2>
+
+        <div class="menu-grid">
+            <a href="/knowledge/riemannian-gradient" class="menu-card">
+                <h3>リーマン勾配</h3>
+                <p>接空間上で定義される勾配</p>
+            </a>
+
+            <a href="/knowledge/retraction" class="menu-card">
+                <h3>Retraction</h3>
+                <p>接空間から多様体へ戻す写像</p>
+            </a>
+
+            <a href="/knowledge/vector-transport" class="menu-card">
+                <h3>Vector Transport</h3>
+                <p>異なる接空間間でベクトルを運ぶ操作</p>
+            </a>
+
+            <a href="/knowledge/riemannian-cg" class="menu-card">
+                <h3>Riemannian CG</h3>
+                <p>共役勾配法のリーマン多様体上への拡張</p>
+            </a>
+        </div>
+    </section>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>ニュートン法</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="site-logo">京大最適化学習サイト</div>
+
+    <div class="site-nav">
+        <a href="/">ホーム</a>
+        <a href="/problems-page">過去問一覧</a>
+        <a href="/knowledge">基礎知識</a>
+        <a href="/mypage">マイページ</a>
+        <a href="/logout">ログアウト</a>
+    </div>
+</header>
+
+<div class="mypage-container">
+
+    <section class="mypage-hero">
+        <h1>ニュートン法</h1>
+        <p>二階微分情報を用いて高速な収束を目指す最適化手法です。</p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>基本更新式</h2>
+        <p>
+        微分可能関数 \(f:\mathbb{R}^n\to\mathbb{R}\) に対して、ニュートン法は次の更新を行う。
+        </p>
+
+        <p>
+        \[
+        x_{k+1}
+        =
+        x_k
+        -
+        [\nabla^2 f(x_k)]^{-1}\nabla f(x_k).
+        \]
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>ニュートン方向</h2>
+        <p>
+        ニュートン方向 \(d_k\) は次の線形方程式の解として定義される。
+        </p>
+
+        <p>
+        \[
+        \nabla^2 f(x_k)d_k
+        =
+        -\nabla f(x_k).
+        \]
+        </p>
+
+        <p>
+        したがって、
+        \[
+        x_{k+1}=x_k+d_k.
+        \]
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>直感</h2>
+        <p>
+        ニュートン法は、目的関数を二次関数で近似し、その二次近似の最小点へ進む方法である。
+        勾配降下法が一次情報だけを使うのに対して、ニュートン法は曲率情報も利用する。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>特徴</h2>
+        <p>
+        最適解の近くでは二次収束が期待できる。一方で、ヘッセ行列の計算や線形方程式の求解が必要であり、
+        大規模問題では計算コストが高くなる。
+        </p>
+    </section>
+
+</div>
+
+</body>
+</html>

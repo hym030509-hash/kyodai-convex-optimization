@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Retraction</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="site-logo">京大最適化学習サイト</div>
+
+    <div class="site-nav">
+        <a href="/">ホーム</a>
+        <a href="/problems-page">過去問一覧</a>
+        <a href="/knowledge">基礎知識</a>
+        <a href="/mypage">マイページ</a>
+        <a href="/logout">ログアウト</a>
+    </div>
+</header>
+
+<div class="mypage-container">
+
+    <section class="mypage-hero">
+        <h1>Retraction</h1>
+        <p>接空間上のベクトルを用いて、多様体上の新しい点を生成する写像です。</p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>背景</h2>
+        <p>
+        ユークリッド空間では、現在点 \(x\) と探索方向 \(d\) に対して、
+        \[
+        x+\alpha d
+        \]
+        によって次の点を作ることができる。
+        </p>
+
+        <p>
+        しかしリーマン多様体 \(\mathcal{M}\) 上では、\(x+\alpha d\) が
+        多様体上に残るとは限らない。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>定義</h2>
+        <p>
+        Retraction は写像
+        \[
+        R_x:T_x\mathcal{M}\to\mathcal{M}
+        \]
+        であり、次を満たす。
+        </p>
+
+        <p>
+        \[
+        R_x(0_x)=x
+        \]
+        </p>
+
+        <p>
+        \[
+        DR_x(0_x)=\mathrm{id}_{T_x\mathcal{M}}.
+        \]
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>更新式</h2>
+        <p>
+        リーマン勾配法では、次のように更新する。
+        </p>
+
+        <p>
+        \[
+        x_{k+1}
+        =
+        R_{x_k}(-\alpha_k \operatorname{grad} f(x_k)).
+        \]
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>直感</h2>
+        <p>
+        Retraction は「接空間で一歩進んだ後、多様体上へ戻す操作」と考えることができる。
+        指数写像の代わりに使われることが多く、計算しやすい写像が選ばれる。
+        </p>
+    </section>
+
+</div>
+
+</body>
+</html>

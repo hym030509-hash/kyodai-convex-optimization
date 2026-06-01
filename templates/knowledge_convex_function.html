@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>凸関数</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="site-logo">京大最適化学習サイト</div>
+
+    <div class="site-nav">
+        <a href="/">ホーム</a>
+        <a href="/problems-page">過去問一覧</a>
+        <a href="/knowledge">基礎知識</a>
+        <a href="/mypage">マイページ</a>
+        <a href="/logout">ログアウト</a>
+    </div>
+</header>
+
+<div class="mypage-container">
+
+    <section class="mypage-hero">
+        <h1>凸関数</h1>
+        <p>凸最適化の中心となる関数クラスです。</p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>定義</h2>
+
+        <p>
+            関数 \(f:C\to\mathbb{R}\) が凸関数であるとは、凸集合 \(C\) 上で任意の \(x,y\in C\) と \(\theta\in[0,1]\) に対して
+        </p>
+
+        <p>
+        \[
+        f(\theta x+(1-\theta)y)
+        \le
+        \theta f(x)+(1-\theta)f(y)
+        \]
+        </p>
+
+        <p>
+            が成り立つことをいう。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>一次条件</h2>
+
+        <p>
+            \(f\) が微分可能な凸関数であるとき、任意の \(x,y\) に対して
+        </p>
+
+        <p>
+        \[
+        f(y)
+        \ge
+        f(x)+\nabla f(x)^\top (y-x)
+        \]
+        </p>
+
+        <p>
+            が成り立つ。これは、接平面が関数の下側から支えることを意味する。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>二次条件</h2>
+
+        <p>
+            \(f\) が二階微分可能であるとき、\(f\) が凸関数であることは
+        </p>
+
+        <p>
+        \[
+        \nabla^2 f(x)\succeq 0
+        \]
+        </p>
+
+        <p>
+            がすべての \(x\) で成り立つことと対応する。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+
+         <h2>狭義凸関数</h2>
+
+        <p>
+            関数 \(f:C\to\mathbb{R}\) が狭義凸関数であるとは、
+            任意の異なる \(x,y\in C\) と\(\theta\in(0,1)\) に対して
+        </p>
+        <p>
+            \[(\theta x+(1-\theta)y)<\theta f(x)+(1-\theta)f(y)\]
+
+        </p>
+
+         <p>
+            が成り立つことである。
+            凸関数の不等号が厳密になったものと考えられる。
+        </p>
+        <p>
+            例：\[
+            f(x)=x^2
+            \]は狭義凸関数である。
+        </p>
+    </section>
+    
+
+    <section class="mypage-section">
+        <h2>最適化で重要な理由</h2>
+
+        <p>
+            凸関数を凸集合上で最小化する問題では、局所最適解が大域最適解になる。
+            そのため、凸性は最適化問題を扱いやすくする非常に重要な性質である。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+
+<h2>強凸関数</h2>
+
+<p>
+
+ある定数 \(m>0\) が存在して
+
+</p>
+
+<p>
+
+\[
+f(y)
+\ge
+f(x)
++
+\nabla f(x)^\top (y-x)
++
+\frac{m}{2}\|y-x\|^2
+\]
+
+</p>
+
+<p>
+
+が成り立つとき、
+
+\(f\) を \(m\)-強凸関数という。
+
+</p>
+
+<p>
+
+強凸関数は狭義凸関数よりさらに強い概念であり、
+
+最小解の一意性を保証する。
+
+</p>
+
+<p>
+
+例：
+
+\[
+f(x)=x^2
+\]
+
+は強凸関数である。
+
+</p>
+
+<p>
+
+一方、
+
+\[
+f(x)=x^4
+\]
+
+は狭義凸であるが、
+
+強凸ではない。
+
+</p>
+
+</section>
+<section class="mypage-section">
+
+<h2>準凸関数</h2>
+
+<p>
+
+関数 \(f:C\to\mathbb{R}\) が準凸関数であるとは、
+
+任意の \(x,y\in C\) と
+
+\(\theta\in[0,1]\) に対して
+
+</p>
+
+<p>
+
+\[
+f(\theta x+(1-\theta)y)
+\le
+\max\{f(x),f(y)\}
+\]
+
+</p>
+
+<p>
+
+が成り立つことである。
+
+</p>
+
+<p>
+
+凸関数なら必ず準凸関数であるが、
+
+準凸関数だからといって凸関数とは限らない。
+
+</p>
+
+<p>
+
+例：
+
+\[
+f(x)=x^3
+\]
+
+は凸関数ではないが、
+
+単調増加であるため準凸関数である。
+
+</p>
+
+</section>
+
+<section class="mypage-section">
+
+<h2>凸性の比較</h2>
+
+<table border="1" cellpadding="8">
+
+<tr>
+<th>種類</th>
+<th>関係</th>
+<th>例</th>
+</tr>
+
+<tr>
+<td>凸関数</td>
+<td>基本概念</td>
+<td>x²</td>
+</tr>
+
+<tr>
+<td>狭義凸関数</td>
+<td>凸関数より強い</td>
+<td>x²</td>
+</tr>
+
+<tr>
+<td>強凸関数</td>
+<td>狭義凸より強い</td>
+<td>x²</td>
+</tr>
+
+<tr>
+<td>準凸関数</td>
+<td>凸より弱い</td>
+<td>x³</td>
+</tr>
+
+</table>
+
+<p>
+
+関係は
+
+\[
+\text{強凸}
+\Rightarrow
+\text{狭義凸}
+\Rightarrow
+\text{凸}
+\Rightarrow
+\text{準凸}
+\]
+
+である。
+
+</p>
+
+</section>
+</div>
+
+</body>
+</html>

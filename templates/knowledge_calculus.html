@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>微分積分</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="site-logo">京大最適化学習サイト</div>
+
+    <div class="site-nav">
+        <a href="/">ホーム</a>
+        <a href="/problems-page">過去問一覧</a>
+        <a href="/knowledge">基礎知識</a>
+        <a href="/mypage">マイページ</a>
+        <a href="/logout">ログアウト</a>
+    </div>
+</header>
+
+<div class="mypage-container">
+
+    <section class="mypage-hero">
+        <h1>微分積分</h1>
+        <p>勾配、ヘッセ行列、テイラー展開など、最適化で頻繁に使う微分の道具を整理します。</p>
+    </section>
+
+    <section class="mypage-section">
+    <h2>上極限と下極限</h2>
+
+    <p>
+        数列 \(\{a_n\}\) に対して、上極限と下極限はそれぞれ
+    </p>
+
+    <p>
+    \[
+    \limsup_{n\to\infty} a_n
+    =
+    \lim_{n\to\infty}\sup_{k\ge n} a_k
+    \]
+    </p>
+
+    <p>
+    \[
+    \liminf_{n\to\infty} a_n
+    =
+    \lim_{n\to\infty}\inf_{k\ge n} a_k
+    \]
+    </p>
+
+    <p>
+        で定義される。極限が存在することは、上極限と下極限が一致することと同値である。
+    </p>
+</section>
+
+
+<section class="mypage-section">
+    <h2>一様連続</h2>
+
+    <p>
+        関数 \(f:D\to\mathbb{R}\) が一様連続であるとは、任意の \(\varepsilon>0\) に対して、
+        ある \(\delta>0\) が存在し、任意の \(x,y\in D\) について
+    </p>
+
+    <p>
+    \[
+    |x-y|<\delta
+    \Rightarrow
+    |f(x)-f(y)|<\varepsilon
+    \]
+    </p>
+
+    <p>
+        が成り立つことである。
+        通常の連続性と異なり、\(\delta\) は点 \(x\) に依存しない。
+    </p>
+
+    <p>
+        特に、閉区間上の連続関数は一様連続である。
+    </p>
+</section>
+
+
+<section class="mypage-section">
+    <h2>Cauchy-Schwarzの不等式</h2>
+
+    <p>
+        任意のベクトル \(x,y\in\mathbb{R}^n\) に対して
+    </p>
+
+    <p>
+    \[
+    |\langle x,y\rangle|
+    \le
+    \|x\|\|y\|
+    \]
+    </p>
+
+    <p>
+        が成り立つ。これは内積空間における最も基本的な不等式であり、
+        勾配法の収束解析などでも頻繁に使われる。
+    </p>
+</section>
+
+
+<section class="mypage-section">
+    <h2>ベクトル値関数の微分</h2>
+
+    <p>
+        ベクトル値関数 \(F:\mathbb{R}^n\to\mathbb{R}^m\) を
+    </p>
+
+    <p>
+    \[
+    F(x)
+    =
+    \begin{pmatrix}
+    F_1(x)\\
+    \vdots\\
+    F_m(x)
+    \end{pmatrix}
+    \]
+    </p>
+
+    <p>
+        とする。このとき、各成分関数を偏微分して得られる行列をヤコビ行列という。
+    </p>
+</section>
+
+
+<section class="mypage-section">
+    <h2>ヤコビ行列</h2>
+
+    <p>
+        関数 \(F:\mathbb{R}^n\to\mathbb{R}^m\) のヤコビ行列は
+    </p>
+
+    <p>
+    \[
+    J_F(x)
+    =
+    \left(
+    \frac{\partial F_i}{\partial x_j}(x)
+    \right)_{i,j}
+    \]
+    </p>
+
+    <p>
+        で定義される。
+        制約条件 \(h(x)=0\) の微分や、陰関数定理、KKT条件で重要になる。
+    </p>
+</section>
+
+
+<section class="mypage-section">
+    <h2>ベクトル値関数の積分</h2>
+
+    <p>
+        ベクトル値関数 \(F(t)=(F_1(t),\dots,F_m(t))^\top\) の積分は、
+        各成分ごとに
+    </p>
+
+    <p>
+    \[
+    \int_a^b F(t)\,dt
+    =
+    \begin{pmatrix}
+    \int_a^b F_1(t)\,dt\\
+    \vdots\\
+    \int_a^b F_m(t)\,dt
+    \end{pmatrix}
+    \]
+    </p>
+
+    <p>
+        と定義される。
+    </p>
+</section>
+
+
+<section class="mypage-section">
+    <h2>ヘッシアンと極値判定</h2>
+
+    <p>
+        二階微分可能な関数 \(f:\mathbb{R}^n\to\mathbb{R}\) に対して、
+        停留点 \(x^\ast\) が
+    </p>
+
+    <p>
+    \[
+    \nabla f(x^\ast)=0
+    \]
+    </p>
+
+    <p>
+        を満たすとする。
+        このとき、ヘッセ行列 \(\nabla^2 f(x^\ast)\) によって極値を判定できる。
+    </p>
+
+    <p>
+        \[
+        \nabla^2 f(x^\ast)\succ 0
+        \]
+        ならば \(x^\ast\) は狭義局所最小点である。
+    </p>
+
+    <p>
+        \[
+        \nabla^2 f(x^\ast)\prec 0
+        \]
+        ならば \(x^\ast\) は狭義局所最大点である。
+    </p>
+
+    <p>
+        正定値でも負定値でもない場合は、鞍点となる可能性がある。
+    </p>
+</section>
+
+
+<section class="mypage-section">
+    <h2>陰関数定理</h2>
+
+    <p>
+        方程式
+    </p>
+
+    <p>
+    \[
+    F(x,y)=0
+    \]
+    </p>
+
+    <p>
+        によって \(y\) が \(x\) の関数として局所的に定まるかを調べる定理である。
+    </p>
+
+    <p>
+        直感的には、\(F_y\) が可逆であれば、方程式 \(F(x,y)=0\) から
+        局所的に \(y=\varphi(x)\) と解ける。
+    </p>
+
+    <p>
+        制約条件を持つ最適化問題やラグランジュ未定乗数法の背景にある重要な定理である。
+    </p>
+</section>
+
+
+<section class="mypage-section">
+    <h2>ラグランジュ未定乗数法</h2>
+
+    <p>
+        等式制約
+    </p>
+
+    <p>
+    \[
+    h(x)=0
+    \]
+    </p>
+
+    <p>
+        のもとで \(f(x)\) を最小化する問題を考える。
+        ラグランジュ関数を
+    </p>
+
+    <p>
+    \[
+    L(x,\lambda)
+    =
+    f(x)+\lambda^\top h(x)
+    \]
+    </p>
+
+    <p>
+        と定義すると、局所最適解では適切な条件のもとで
+    </p>
+
+    <p>
+    \[
+    \nabla_x L(x,\lambda)=0,
+    \qquad
+    h(x)=0
+    \]
+    </p>
+
+    <p>
+        が成り立つ。
+        これはKKT条件の基礎となる考え方である。
+    </p>
+</section>
+
+
+<section class="mypage-section">
+    <h2>微分と積分記号の交換</h2>
+
+    <p>
+        パラメータ \(t\) を含む関数 \(f(x,t)\) に対して、
+        適切な条件のもとで
+    </p>
+
+    <p>
+    \[
+    \frac{d}{dx}
+    \int_a^b f(x,t)\,dt
+    =
+    \int_a^b
+    \frac{\partial f}{\partial x}(x,t)\,dt
+    \]
+    </p>
+
+    <p>
+        が成り立つ。
+        重要なのは、単に形式的に交換できるわけではなく、
+        連続性や一様収束、有界性などの条件が必要になることである。
+    </p>
+</section>
+
+
+<section class="mypage-section">
+    <h2>WeierstrassのMテスト</h2>
+
+    <p>
+        関数列 \(\{f_n\}\) に対して、非負数列 \(\{M_n\}\) が存在し、
+        任意の \(x\) について
+    </p>
+
+    <p>
+    \[
+    |f_n(x)|\le M_n
+    \]
+    </p>
+
+    <p>
+        かつ
+    </p>
+
+    <p>
+    \[
+    \sum_{n=1}^{\infty}M_n
+    <
+    \infty
+    \]
+    </p>
+
+    <p>
+        が成り立つならば、
+    </p>
+
+    <p>
+    \[
+    \sum_{n=1}^{\infty}f_n(x)
+    \]
+    </p>
+
+    <p>
+        は一様収束する。
+        一様収束は極限と積分、極限と微分の交換を考える上で重要である。
+    </p>
+</section>
+
+    <section class="mypage-section">
+        <h2>勾配</h2>
+
+        <p>
+            微分可能関数 \(f:\mathbb{R}^n\to\mathbb{R}\) に対して、勾配は
+        </p>
+
+        <p>
+        \[
+        \nabla f(x)
+        =
+        \begin{pmatrix}
+        \frac{\partial f}{\partial x_1}(x)\\
+        \vdots\\
+        \frac{\partial f}{\partial x_n}(x)
+        \end{pmatrix}
+        \]
+        </p>
+
+        <p>
+            で定義される。勾配は関数値が最も増加する方向を表す。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>ヘッセ行列</h2>
+
+        <p>
+            二階微分可能関数に対して、ヘッセ行列は
+        </p>
+
+        <p>
+        \[
+        \nabla^2 f(x)
+        =
+        \left(
+        \frac{\partial^2 f}{\partial x_i \partial x_j}(x)
+        \right)_{i,j}
+        \]
+        </p>
+
+        <p>
+            で定義される。ヘッセ行列は曲率を表し、凸性やニュートン法で重要になる。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+
+<h2>Lipschitz連続</h2>
+
+<p>
+
+関数
+
+\[
+f:D\to\mathbb{R}
+\]
+
+が Lipschitz 連続であるとは、
+
+ある定数
+
+\[
+L>0
+\]
+
+が存在して、
+
+任意の
+
+\[
+x,y\in D
+\]
+
+に対して
+
+</p>
+
+<p>
+
+\[
+|f(x)-f(y)|
+\le
+L\|x-y\|
+\]
+
+</p>
+
+<p>
+
+が成立することである。
+
+</p>
+
+<p>
+
+このとき
+
+\(L\)
+
+を Lipschitz 定数という。
+
+</p>
+
+</section>
+
+<section class="mypage-section">
+
+<h2>勾配のLipschitz連続性</h2>
+
+<p>
+
+最適化では、
+
+関数そのものよりも
+
+勾配
+
+\[
+\nabla f
+\]
+
+が Lipschitz 連続であることが重要である。
+
+</p>
+
+<p>
+
+すなわち、
+
+ある定数
+
+\[
+L>0
+\]
+
+が存在して
+
+</p>
+
+<p>
+
+\[
+\|
+\nabla f(x)
+-
+\nabla f(y)
+\|
+\le
+L
+\|x-y\|
+\]
+
+</p>
+
+<p>
+
+が成り立つとき、
+
+勾配はLipschitz連続であるという。
+
+</p>
+
+</section>
+
+    <section class="mypage-section">
+        <h2>テイラー展開</h2>
+
+        <p>
+            \(f\) が十分滑らかなとき、点 \(x\) の近くで
+        </p>
+
+        <p>
+        \[
+        f(x+d)
+        \approx
+        f(x)
+        +
+        \nabla f(x)^\top d
+        +
+        \frac{1}{2}d^\top \nabla^2 f(x)d
+        \]
+        </p>
+
+        <p>
+            と近似できる。この二次近似はニュートン法の基礎になる。
+        </p>
+    </section>
+
+<section class="mypage-section">
+
+<h2>Lipschitz連続勾配とTaylor評価</h2>
+
+<p>
+
+勾配が Lipschitz 連続ならば、
+
+任意の
+
+\(x,d\)
+
+について
+
+</p>
+
+<p>
+
+\[
+f(x+d)
+\le
+f(x)
++
+\nabla f(x)^\top d
++
+\frac{L}{2}
+\|d\|^2
+\]
+
+</p>
+
+<p>
+
+が成立する。
+
+</p>
+
+<p>
+
+この不等式は
+
+Armijo条件、
+
+勾配法の収束解析、
+
+Newton法の解析などで頻繁に利用される。
+
+</p>
+
+</section>
+
+
+
+    <section class="mypage-section">
+        <h2>最適性条件</h2>
+
+        <p>
+            制約なし最小化問題において、点 \(x^\ast\) が局所最小解で、\(f\) が微分可能なら
+        </p>
+
+        <p>
+        \[
+        \nabla f(x^\ast)=0
+        \]
+        </p>
+
+        <p>
+            が必要条件となる。
+        </p>
+    </section>
+
+</div>
+
+</body>
+</html>

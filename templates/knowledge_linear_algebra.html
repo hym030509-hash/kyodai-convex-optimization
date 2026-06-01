@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>線形代数</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="site-logo">京大最適化学習サイト</div>
+
+    <div class="site-nav">
+        <a href="/">ホーム</a>
+        <a href="/problems-page">過去問一覧</a>
+        <a href="/knowledge">基礎知識</a>
+        <a href="/mypage">マイページ</a>
+        <a href="/logout">ログアウト</a>
+    </div>
+</header>
+
+<div class="mypage-container">
+
+    <section class="mypage-hero">
+        <h1>線形代数</h1>
+        <p>最適化を学ぶための基礎となるベクトル、行列、内積、固有値、正定値性を整理します。</p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>ベクトルと内積</h2>
+
+        <p>
+            ユークリッド空間 \(\mathbb{R}^n\) において、二つのベクトル
+            \(x,y\in\mathbb{R}^n\) の内積は
+        </p>
+
+        <p>
+        \[
+        \langle x,y\rangle = x^\top y
+        =
+        \sum_{i=1}^{n}x_i y_i
+        \]
+        </p>
+
+        <p>
+            で定義される。内積は距離、角度、勾配、射影などを定義するための基本的な道具である。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+
+<h2>トレース</h2>
+
+<p>
+
+正方行列 \(A=(a_{ij})\) のトレースは
+
+</p>
+
+<p>
+
+\[
+\operatorname{tr}(A)
+=
+\sum_{i=1}^{n}
+a_{ii}
+\]
+
+</p>
+
+<p>
+
+で定義される。
+
+</p>
+
+<h3>重要な性質</h3>
+
+<p>
+
+\[
+\operatorname{tr}(A+B)
+=
+\operatorname{tr}(A)
++
+\operatorname{tr}(B)
+\]
+
+</p>
+
+<p>
+
+\[
+\operatorname{tr}(AB)
+=
+\operatorname{tr}(BA)
+\]
+
+</p>
+
+<p>
+
+\[
+\operatorname{tr}(A)
+=
+\sum_{i=1}^{n}
+\lambda_i
+\]
+
+</p>
+
+<p>
+
+（固有値の和）
+
+</p>
+
+</section>
+
+    <section class="mypage-section">
+        <h2>ノルム</h2>
+
+        <p>
+            ベクトル \(x\) のユークリッドノルムは
+        </p>
+
+        <p>
+        \[
+        \|x\| = \sqrt{x^\top x}
+        \]
+        </p>
+
+        <p>
+            で定義される。最適化では、勾配ノルム \(\|\nabla f(x)\|\) が停止条件としてよく使われる。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+
+<h2>Frobeniusノルム</h2>
+
+<p>
+
+行列 \(A=(a_{ij})\) の
+
+Frobeniusノルムは
+
+</p>
+
+<p>
+
+\[
+\|A\|_F
+=
+\sqrt{
+\sum_{i,j}
+a_{ij}^2
+}
+\]
+
+</p>
+
+<p>
+
+で定義される。
+
+</p>
+
+<p>
+
+また
+
+</p>
+
+<p>
+
+\[
+\|A\|_F^2
+=
+\operatorname{tr}(A^\top A)
+\]
+
+</p>
+
+<p>
+
+が成り立つ。
+
+</p>
+
+</section>
+
+<section class="mypage-section">
+
+<h2>固有値と固有ベクトル</h2>
+
+<p>
+
+行列 \(A\in\mathbb{R}^{n\times n}\) に対して、
+
+</p>
+
+<p>
+
+\[
+Ax=\lambda x
+\]
+
+</p>
+
+<p>
+
+を満たす
+
+\(\lambda\)
+
+を固有値、
+
+\(x\neq0\)
+
+を固有ベクトルという。
+
+</p>
+
+<p>
+
+固有値は
+
+</p>
+
+<p>
+
+\[
+\det(A-\lambda I)=0
+\]
+
+</p>
+
+<p>
+
+を解くことで求められる。
+
+</p>
+
+</section>
+
+
+    <section class="mypage-section">
+
+<h2>レイリー商</h2>
+
+<p>
+
+対称行列 \(A\in\mathbb{R}^{n\times n}\) に対して、
+
+レイリー商は
+
+</p>
+
+<p>
+
+\[
+R(x)
+=
+\frac{x^\top A x}
+{x^\top x}
+\]
+
+</p>
+
+<p>
+
+で定義される。
+
+</p>
+
+<p>
+
+対称行列の場合、
+
+レイリー商の最大値・最小値はそれぞれ
+
+最大固有値・最小固有値に一致する。
+
+</p>
+
+<p>
+
+\[
+\lambda_{\min}
+\le
+R(x)
+\le
+\lambda_{\max}
+\]
+
+</p>
+
+</section>
+
+
+    <section class="mypage-section">
+        <h2>正定値性</h2>
+
+        <p>
+            対称行列 \(A\) が正定値であるとは、任意の \(x\ne 0\) に対して
+        </p>
+
+        <p>
+        \[
+        x^\top A x > 0
+        \]
+        </p>
+
+        <p>
+            が成り立つことをいう。
+            正定値性は二次形式や凸性、ニュートン法の解析で重要になる。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+
+<h2>対角化</h2>
+
+<p>
+
+行列 \(A\) が
+
+</p>
+
+<p>
+
+\[
+A=PDP^{-1}
+\]
+
+</p>
+
+<p>
+
+と表せるとき、
+
+\(A\) は対角化可能という。
+
+</p>
+
+<p>
+
+ここで
+
+\(D\)
+
+は固有値を並べた対角行列である。
+
+</p>
+
+<p>
+
+対角化により
+
+\(A^k\)
+
+や
+
+\(\exp(A)\)
+
+の計算が容易になる。
+
+</p>
+
+</section>
+
+
+    <section class="mypage-section">
+
+<h2>対称行列</h2>
+
+<p>
+
+\[
+A^\top=A
+\]
+
+</p>
+
+<p>
+
+を満たす行列を対称行列という。
+
+</p>
+
+<h3>性質</h3>
+
+<p>
+
+・固有値はすべて実数
+
+</p>
+
+<p>
+
+・直交対角化可能
+
+</p>
+
+<p>
+
+\[
+A=Q\Lambda Q^\top
+\]
+
+</p>
+
+</section>
+
+<section class="mypage-section">
+
+    <h2>二次形式</h2>
+
+    <p>
+        対称行列
+        \(A\in\mathbb{R}^{n\times n}\)
+        に対して
+    </p>
+
+    <p>
+    \[
+    q(x)=x^\top A x
+    \]
+    </p>
+
+    <p>
+        を二次形式（Quadratic Form）という。
+    </p>
+
+    <p>
+        例えば
+    </p>
+
+    <p>
+    \[
+    A=
+    \begin{pmatrix}
+    2 & 1\\
+    1 & 3
+    \end{pmatrix}
+    \]
+    </p>
+
+    <p>
+    のとき
+    </p>
+
+    <p>
+    \[
+    q(x)
+    =
+    2x_1^2
+    +
+    2x_1x_2
+    +
+    3x_2^2
+    \]
+    </p>
+
+    <p>
+        となる。
+    </p>
+
+</section>
+
+<section class="mypage-section">
+
+    <h2>二次形式と正定値性</h2>
+
+    <p>
+        行列 \(A\) が正定値であることは
+    </p>
+
+    <p>
+    \[
+    x^\top A x > 0
+    \qquad
+    (\forall x\neq0)
+    \]
+    </p>
+
+    <p>
+        と同値である。
+    </p>
+
+    <p>
+        同様に
+    </p>
+
+    <p>
+    \[
+    x^\top A x \ge 0
+    \]
+    </p>
+
+    <p>
+        が任意の \(x\) に対して成立するとき、
+        \(A\) を半正定値行列という。
+    </p>
+
+    <p>
+        最適化ではヘッセ行列の正定値性判定や凸性判定で頻繁に用いられる。
+    </p>
+
+</section>
+
+<section class="mypage-section">
+
+    <h2>二次形式と固有値</h2>
+
+    <p>
+        対称行列 \(A\) の最小固有値と最大固有値を
+    </p>
+
+    <p>
+    \[
+    \lambda_{\min},
+    \lambda_{\max}
+    \]
+    </p>
+
+    <p>
+        とすると、
+        任意の \(x\neq0\) に対して
+    </p>
+
+    <p>
+    \[
+    \lambda_{\min}\|x\|^2
+    \le
+    x^\top A x
+    \le
+    \lambda_{\max}\|x\|^2
+    \]
+    </p>
+
+    <p>
+        が成立する。
+    </p>
+
+    <p>
+        特に
+    </p>
+
+    <p>
+    \[
+    \lambda_{\min}>0
+    \]
+    </p>
+
+    <p>
+        ならば \(A\) は正定値である。
+    </p>
+
+</section>
+
+<section class="mypage-section">
+
+<h2>歪対称行列</h2>
+
+<p>
+
+\[
+A^\top=-A
+\]
+
+</p>
+
+<p>
+
+を満たす行列を歪対称行列という。
+
+</p>
+
+<h3>性質</h3>
+
+<p>
+
+対角成分はすべて0
+
+</p>
+
+<p>
+
+\[
+x^\top A x
+=
+0
+\]
+
+</p>
+
+<p>
+
+が任意の \(x\) に対して成立する。
+
+</p>
+
+</section>
+
+<section class="mypage-section">
+
+<h2>スペクトル分解</h2>
+
+<p>
+
+対称行列 \(A\) は
+
+</p>
+
+<p>
+
+\[
+A
+=
+Q\Lambda Q^\top
+\]
+
+</p>
+
+<p>
+
+と表せる。
+
+</p>
+
+<p>
+
+ここで
+
+</p>
+
+<p>
+
+\[
+Q^\top Q=I
+\]
+
+</p>
+
+<p>
+
+であり、
+
+\(\Lambda\)
+
+は固有値を並べた対角行列である。
+
+</p>
+
+<p>
+
+これをスペクトル分解という。
+
+</p>
+
+<p>
+
+対称行列の解析や正定値性の判定で頻繁に用いられる。
+
+</p>
+
+</section>
+
+<section class="mypage-section">
+
+<h2>QR分解</h2>
+
+<p>
+
+任意の行列 \(A\) は
+
+</p>
+
+<p>
+
+\[
+A=QR
+\]
+
+</p>
+
+<p>
+
+と分解できる。
+
+</p>
+
+<p>
+
+ここで
+
+</p>
+
+<p>
+
+\[
+Q^\top Q=I
+\]
+
+</p>
+
+<p>
+
+であり、
+
+\(Q\)
+
+は直交行列、
+
+\(R\)
+
+は上三角行列である。
+
+</p>
+
+<p>
+
+QR分解は数値計算や最小二乗問題で重要である。
+
+</p>
+
+</section>
+
+<section class="mypage-section">
+
+<h2>極分解</h2>
+
+<p>
+
+正則行列 \(A\) は
+
+</p>
+
+<p>
+
+\[
+A=QP
+\]
+
+</p>
+
+<p>
+
+と表せる。
+
+</p>
+
+<p>
+
+ここで
+
+</p>
+
+<p>
+
+\[
+Q
+\]
+
+</p>
+
+<p>
+
+は直交行列、
+
+</p>
+
+<p>
+
+\[
+P
+=
+(A^\top A)^{1/2}
+\]
+
+</p>
+
+<p>
+
+は対称正定値行列である。
+
+</p>
+
+<p>
+
+極分解は
+
+「回転」
+
+と
+
+「伸縮」
+
+に分けて考える方法であり、
+
+リーマン多様体最適化でも現れる。
+
+</p>
+
+</section>
+
+    <section class="mypage-section">
+        <h2>最適化との関係</h2>
+
+        <p>
+            線形代数は、最適化において勾配、ヘッセ行列、制約条件、ラグランジュ乗数などを扱うための基礎である。
+            特にヘッセ行列の正定値性は、局所最小性や凸性を判断する上で重要である。
+        </p>
+    </section>
+
+
+   
+
+</div>
+
+</body>
+</html>

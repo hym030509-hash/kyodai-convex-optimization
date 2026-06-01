@@ -1,55 +1,22 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <a href="/">ホーム</a>
 
-<a href="/problems-page">過去問一覧</a>
-
-<a href="/mypage">マイページ</a>
-
-<a href="/login">ログイン</a>
-
-<a href="/register">新規登録</a>
-
-<a href="/logout">ログアウト</a>
 <head>
   <meta charset="UTF-8">
   <title>京大数理工学 凸最適化過去問</title>
+
+  <link rel="stylesheet" href="/static/style.css">
+
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
-      background: #f5f6f8;
-      color: #1f2933;
-      margin: 0;
-      padding: 32px;
-    }
-    nav, main {
+    main {
       max-width: 1000px;
-      margin: 0 auto;
+      margin: 40px auto;
     }
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-    nav a, .language-button {
-      background: white;
-      color: #2563eb;
-      border: 0;
-      border-radius: 8px;
-      padding: 10px 16px;
-      text-decoration: none;
-      font: inherit;
-      font-weight: 700;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
-      cursor: pointer;
-    }
-    .language-button {
-      margin-left: auto;
-    }
+
     h1 {
       margin: 0 0 18px;
     }
+
     .toolbar {
       background: white;
       border: 1px solid #e5e7eb;
@@ -58,6 +25,7 @@
       margin-bottom: 18px;
       box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
     }
+
     .search {
       width: 100%;
       box-sizing: border-box;
@@ -67,11 +35,13 @@
       border-radius: 8px;
       margin-bottom: 12px;
     }
+
     .filters {
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 10px;
     }
+
     select {
       width: 100%;
       padding: 10px;
@@ -80,11 +50,13 @@
       background: white;
       font-size: 14px;
     }
+
     .summary {
       color: #64748b;
       font-size: 14px;
       margin: 0 0 14px;
     }
+
     .card {
       background: white;
       border: 1px solid #e5e7eb;
@@ -93,14 +65,17 @@
       margin-bottom: 12px;
       box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
     }
+
     .card h2 {
       margin: 0 0 10px;
       font-size: 22px;
     }
+
     .card a {
       color: #1d4ed8;
       text-decoration: none;
     }
+
     .meta-row {
       display: flex;
       flex-wrap: wrap;
@@ -109,6 +84,7 @@
       font-size: 14px;
       margin-bottom: 8px;
     }
+
     .tag {
       display: inline-block;
       background: #e8f0fe;
@@ -119,10 +95,12 @@
       margin-top: 4px;
       font-size: 14px;
     }
+
     .tag.skill {
       background: #ecfdf5;
       color: #047857;
     }
+
     .empty {
       background: white;
       border: 1px dashed #cbd5e1;
@@ -131,49 +109,61 @@
       text-align: center;
       color: #64748b;
     }
+
     @media (max-width: 760px) {
-      body {
-        padding: 18px;
+      main {
+        margin: 24px auto;
+        padding: 0 16px;
       }
-      nav {
-        flex-wrap: wrap;
-      }
-      .language-button {
-        margin-left: 0;
-      }
+
       .filters {
         grid-template-columns: 1fr 1fr;
       }
     }
   </style>
 </head>
+
 <body>
-  <nav>
-    <a href="/" data-i18n="navHome">ホーム</a>
-    <a href="/problems-page" data-i18n="navProblems">過去問一覧</a>
+
+<header class="site-header">
+  <div class="site-logo">京大最適化学習サイト</div>
+
+  <div class="site-nav">
+    <a href="/">ホーム</a>
+    <a href="/problems-page">過去問一覧</a>
+    <a href="/knowledge">基礎知識</a>
+    <a href="/mypage">マイページ</a>
+    <a href="/logout">ログアウト</a>
     <button id="languageButton" class="language-button" type="button">英語</button>
-  </nav>
-  <main>
-    <h1 data-i18n="title">京大数理工学 凸最適化過去問</h1>
-    <section class="toolbar">
-      <input id="search" class="search" placeholder="KKT，ヘッセ行列，H29 などで検索">
-      <div class="filters">
-        <select id="yearFilter"></select>
-        <select id="typeFilter"></select>
-        <select id="topicFilter"></select>
-        <select id="difficultyFilter"></select>
-        <select id="sort">
-          <option value="">並び替えなし</option>
-          <option value="year-asc">年度：古い順</option>
-          <option value="year-desc">年度：新しい順</option>
-          <option value="difficulty-asc">難易度：低い順</option>
-          <option value="difficulty-desc">難易度：高い順</option>
-        </select>
-      </div>
-    </section>
-    <p id="summary" class="summary"></p>
-    <div id="container"></div>
-  </main>
+  </div>
+</header>
+
+<main>
+  <h1 data-i18n="title">京大数理工学 凸最適化過去問</h1>
+
+  <section class="toolbar">
+    <input id="search" class="search" placeholder="KKT，ヘッセ行列，H29 などで検索">
+
+    <div class="filters">
+      <select id="yearFilter"></select>
+      <select id="typeFilter"></select>
+      <select id="topicFilter"></select>
+      <select id="difficultyFilter"></select>
+
+      <select id="sort">
+        <option value="">並び替えなし</option>
+        <option value="year-asc">年度：古い順</option>
+        <option value="year-desc">年度：新しい順</option>
+        <option value="difficulty-asc">難易度：低い順</option>
+        <option value="difficulty-desc">難易度：高い順</option>
+      </select>
+    </div>
+  </section>
+
+  <p id="summary" class="summary"></p>
+
+  <div id="container"></div>
+</main>
 
 <script>
 let allProblems = [];

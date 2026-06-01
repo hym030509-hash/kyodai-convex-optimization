@@ -1,166 +1,289 @@
 <!DOCTYPE html>
 <html lang="ja">
-<a href="/">ホーム</a>
 
-<a href="/problems-page">過去問一覧</a>
-
-<a href="/mypage">マイページ</a>
-
-<a href="/login">ログイン</a>
-
-<a href="/register">新規登録</a>
-
-<a href="/logout">ログアウト</a>
 <head>
   <meta charset="UTF-8">
-  <title>京大数理工学 凸最適化過去問システム</title>
+  <title>京大最適化学習サイト</title>
+
+  <link rel="stylesheet" href="/static/style.css">
+
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
-      background: #f4f6f8;
-      color: #1f2933;
-      margin: 0;
-      padding: 40px;
+    .home-container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
-    nav, .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 28px;
-    }
-    nav a, .language-button {
-      background: white;
-      color: #2563eb;
-      border: 0;
-      border-radius: 8px;
-      padding: 10px 18px;
-      text-decoration: none;
-      font: inherit;
-      font-weight: 700;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
-      cursor: pointer;
-    }
-    .language-button {
-      margin-left: auto;
-    }
-    .container {
-      background: white;
-      padding: 48px;
-      border-radius: 8px;
+
+    .home-hero {
+      background: linear-gradient(135deg, #eef4ff, #ffffff);
+      padding: 56px;
+      border-radius: 24px;
       box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      margin-bottom: 32px;
     }
-    h1 {
-      font-size: 52px;
-      margin: 0 0 28px;
-      line-height: 1.2;
+
+    .home-hero h1 {
+      font-size: 48px;
+      margin: 0 0 20px;
+      color: #1f2937;
+      line-height: 1.25;
     }
-    p {
+
+    .home-hero p {
       font-size: 20px;
       line-height: 1.9;
-      color: #444;
-      margin-bottom: 20px;
+      color: #475569;
+      margin-bottom: 28px;
     }
-    .button {
+
+    .home-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .home-button {
       display: inline-block;
-      margin-top: 28px;
-      padding: 16px 32px;
+      padding: 14px 24px;
+      border-radius: 12px;
       background: #2563eb;
       color: white;
-      border-radius: 8px;
       text-decoration: none;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 16px;
     }
+
+    .home-button.secondary {
+      background: white;
+      color: #2563eb;
+      border: 1px solid #dbe3ef;
+    }
+
+    .home-section {
+      background: white;
+      padding: 36px;
+      border-radius: 20px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.07);
+      margin-bottom: 28px;
+    }
+
+    .home-section h2 {
+      font-size: 28px;
+      margin: 0 0 18px;
+      color: #1f2937;
+    }
+
+    .home-section p {
+      font-size: 17px;
+      line-height: 1.9;
+      color: #475569;
+      margin-bottom: 16px;
+    }
+
+    .quote {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1f2937;
+      border-left: 6px solid #2563eb;
+      padding-left: 18px;
+      margin: 24px 0;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 20px;
+    }
+
+    .feature-card {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .feature-card h3 {
+      color: #2563eb;
+      margin-bottom: 10px;
+    }
+
+    .notice {
+      font-size: 15px;
+      color: #64748b;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 20px;
+      line-height: 1.8;
+    }
+
     @media (max-width: 760px) {
-      body {
-        padding: 18px;
+      .home-hero {
+        padding: 32px;
       }
-      nav {
-        flex-wrap: wrap;
+
+      .home-hero h1 {
+        font-size: 34px;
       }
-      .language-button {
-        margin-left: 0;
-      }
-      .container {
-        padding: 28px;
-      }
-      h1 {
-        font-size: 36px;
-      }
-      p {
-        font-size: 17px;
+
+      .feature-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
+
 <body>
-  <nav>
-    <a href="/" data-i18n="navHome">ホーム</a>
-    <a href="/problems-page" data-i18n="navProblems">過去問一覧</a>
-    <button id="languageButton" class="language-button" type="button">英語</button>
-  </nav>
 
-  <div class="container">
-    <h1 data-i18n="title">京大数理工学 凸最適化過去問システム</h1>
-    <p data-i18n="lead">
-      京都大学大学院 数理工学専攻の凸最適化過去問を，年度・知識点・題型ごとに整理する学習支援サイトです。
-    </p>
-    <p data-i18n="sublead">
-      KKT条件，凸性，ヘッセ行列，双対問題などの知識点から，過去問を検索・復習できます。
-    </p>
-    <a class="button" href="/problems-page" data-i18n="cta">過去問一覧</a>
+<header class="site-header">
+  <div class="site-logo">京大最適化学習サイト</div>
+
+  <div class="site-nav">
+    <a href="/">ホーム</a>
+    <a href="/problems-page">過去問一覧</a>
+    <a href="/knowledge">基礎知識</a>
+    <a href="/mypage">マイページ</a>
+    <a href="/logout">ログアウト</a>
   </div>
+</header>
 
-<script>
-let currentLanguage = localStorage.getItem("language") || "ja";
+<div class="home-container">
 
-const messages = {
-  ja: {
-    documentTitle: "京大数理工学 凸最適化過去問システム",
-    navHome: "ホーム",
-    navProblems: "過去問一覧",
-    languageButton: "英語",
-    title: "京大数理工学 凸最適化過去問システム",
-    lead: "京都大学大学院 数理工学専攻の凸最適化過去問を，年度・知識点・題型ごとに整理する学習支援サイトです。",
-    sublead: "KKT条件，凸性，ヘッセ行列，双対問題などの知識点から，過去問を検索・復習できます。",
-    cta: "過去問一覧"
-  },
-  en: {
-    documentTitle: "Kyoto Mathematical Engineering Convex Optimization Archive",
-    navHome: "Home",
-    navProblems: "Problems",
-    languageButton: "Japanese",
-    title: "Kyoto Mathematical Engineering Convex Optimization Archive",
-    lead: "A study support site that organizes Kyoto University Mathematical Engineering convex optimization entrance exam problems by year, topic, and problem type.",
-    sublead: "Search and review past problems by topics such as KKT conditions, convexity, Hessian matrices, and duality.",
-    cta: "View Problems"
-  }
-};
+  <section class="home-hero">
+    <h1>過去問だけでなく、最適化を基礎から学ぶ。</h1>
 
-function t(key) {
-  return messages[currentLanguage][key];
-}
+    <p>
+      本サイトは、京都大学大学院数理工学系の入試問題、とくに凸最適化を中心に、
+      基礎知識・過去問演習・錯題復習・学習進捗を結びつける学習支援サイトです。
+    </p>
 
-function applyLanguage() {
-  document.documentElement.lang = currentLanguage;
-  document.title = t("documentTitle");
-  document.querySelectorAll("[data-i18n]").forEach(element => {
-    element.textContent = t(element.dataset.i18n);
-  });
-  document.getElementById("languageButton").textContent = t("languageButton");
-}
+    <div class="home-actions">
+      <a class="home-button" href="/problems-page">過去問を解く</a>
+      <a class="home-button secondary" href="/knowledge">基礎知識を見る</a>
+      <a class="home-button secondary" href="/mypage">学習状況を見る</a>
+    </div>
+  </section>
 
-document.getElementById("languageButton").addEventListener("click", () => {
-  currentLanguage = currentLanguage === "ja" ? "en" : "ja";
-  localStorage.setItem("language", currentLanguage);
-  applyLanguage();
-});
+  <section class="home-section">
+    <h2>このサイトでできること</h2>
 
-applyLanguage();
-</script>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>過去問演習</h3>
+        <p>年度・題型・知識点ごとに過去問を整理し、検索・復習できるようにしています。</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>基礎知識の整理</h3>
+        <p>KKT条件、双対問題、勾配法、リーマン多様体上の最適化などを体系的に学べます。</p>
+      </div>
+
+      <div class="feature-card">
+        <h3>学習管理</h3>
+        <p>錯題本、解答済み問題、年度別進捗、知識点分析を通じて、自分の弱点を確認できます。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section">
+    <h2>開発者メッセージ</h2>
+
+    <div class="quote">
+      「私を殺さないものは、私をより強くする」<br>
+      ―― フリードリヒ・ニーチェ
+    </div>
+
+    <p>
+      私は立命館大学理工学部数理科学科に在籍し、佐藤研究室に所属して最適化を学んできました。
+      京都大学大学院情報学研究科数理工学専攻は、自分の学びたい研究分野に最も近い進学先だと考え、
+      2025年夏入試と2026年冬入試の二度にわたり受験しました。
+      しかし、残念ながらどちらも合格には至りませんでした。
+    </p>
+
+    <p>
+      それでも、受験勉強の期間に全力を尽くしたことに後悔はありません。
+      むしろ、その過程で数学の奥深さと面白さを知り、
+      自分自身の数学力だけでなく、忍耐力や挑戦する姿勢も大きく成長させることができたと感じています。
+    </p>
+
+    <p>
+      私は今でも京都大学数理工学専攻の入試を非常に挑戦的なものだと思っています。
+      そして、その難しさを知っているからこそ、
+      これから同じ道を目指す人たちの助けになるような学習サイトを作りたいと考えました。
+    </p>
+  </section>
+
+  <section class="home-section">
+    <h2>このサイトを作った理由</h2>
+
+    <p>
+      受験勉強の期間中、私は最適化だけで4冊以上の参考書を読み、25年分以上の過去問を解きました。
+      演習に使用したA4用紙は1000枚を超えます。
+    </p>
+
+    <p>
+      特に苦労したのは双対問題でした。
+      なぜ主問題から双対問題が導かれるのか。
+      双対問題にはどのような意味があるのか。
+      双対定理はどのような場面で利用されるのか。
+      最初はまったく理解できませんでした。
+    </p>
+
+    <p>
+      多くの専門書は厳密で高度な説明を行っていますが、
+      初学者にとっては「何を学んでいるのか分からない」という状態になりがちです。
+      私自身も何度も壁にぶつかりました。
+    </p>
+
+    <p>
+      その後、佐藤教授の授業「データサイエンスII」を通じて双対問題やKKT条件を理解できるようになり、
+      最適化の世界が一気に開けた感覚を覚えました。
+      この経験から、過去問を解くだけではなく、
+      基礎知識と過去問を結び付けて学べる環境が必要だと考えるようになりました。
+    </p>
+  </section>
+
+  <section class="home-section">
+    <h2>本サイトの意義</h2>
+
+    <p>
+      本サイトは、単に過去問と解答を掲載するだけのサイトではありません。
+      基礎知識の整理、知識点ごとの分類、過去問との対応付け、錯題本による復習支援、
+      学習進捗の可視化を通じて、「理解」と「演習」を結び付ける学習環境を目指しています。
+    </p>
+
+    <p>
+      最適化は、AI・機械学習・物流・金融・エネルギー・製造業など、
+      現代社会のさまざまな分野を支える重要な学問です。
+      本サイトを通じて、一人でも多くの学習者が数学や最適化に興味を持ち、
+      将来研究者や技術者として新たな価値を創造できるようになれば、これ以上嬉しいことはありません。
+    </p>
+
+    <p>
+      もし本サイトの中に、皆様の理解を深める一問や、
+      一つの疑問を解決する一文があれば、
+      それだけでもこのサイトを作った意味があると私は考えています。
+    </p>
+  </section>
+
+  <section class="home-section">
+    <h2>利用について</h2>
+
+    <div class="notice">
+      本サイトの内容はすべて無料で公開しており、学習目的での利用を想定しています。
+      商用利用はご遠慮ください。掲載内容について権利上の問題や誤り等がございましたら、
+      開発者までご連絡ください。確認後、速やかに修正または削除いたします。<br><br>
+
+      連絡先：hym030509@gmail.com<br><br>
+
+      また、数学や最適化、本サイトの内容に関するご質問やご意見も歓迎しております。
+      本サイトが、皆様の学習や研究の一助となれば幸いです。
+    </div>
+  </section>
+
+</div>
+
 </body>
 </html>

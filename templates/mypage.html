@@ -1,150 +1,280 @@
 <!DOCTYPE html>
-
 <html lang="ja">
-
 <head>
-
     <meta charset="UTF-8">
-
     <title>My Page</title>
-
     <link rel="stylesheet" href="/static/style.css">
-
 </head>
 
 <body>
 
-<nav class="navbar">
+<nav class="top-navbar">
 
-    <a href="/">Home</a>
+    <div class="nav-logo">
 
-    <a href="/problems-page">Problems</a>
+        京大最適化学習サイト
 
-    <a href="/mypage">My Page</a>
+    </div>
 
-    <a href="/logout">Logout</a>
+    <div class="nav-links">
+
+        <a href="/">ホーム</a>
+
+        <a href="/problems-page">
+
+            過去問一覧
+
+        </a>
+
+        <a href="/knowledge">
+
+            基礎知識
+
+        </a>
+
+        <a href="/mypage">
+
+            マイページ
+
+        </a>
+
+        <a href="/logout">
+
+            ログアウト
+
+        </a>
+
+    </div>
 
 </nav>
 
 <div class="mypage-container">
 
     <section class="mypage-hero">
-
         <h1>My Page</h1>
-
         <p>京大過去問の学習状況を確認できます。</p>
-
     </section>
 
     <section class="stats-grid">
-
         <div class="stat-card">
-
-            <h2>0</h2>
-
+            <h2 id="solved-count">0</h2>
             <p>解いた問題</p>
-
         </div>
 
         <div class="stat-card">
-
-            <h2>0</h2>
-
+            <h2 id="mistake-count">0</h2>
             <p>錯誤問題</p>
-
         </div>
 
         <div class="stat-card">
-
-            <h2>0</h2>
-
+            <h2 id="reviewed-count">0</h2>
             <p>復習済み</p>
-
         </div>
-
     </section>
 
-    <section class="mypage-section">
+<section class="mypage-section">
+    <h2>錯題本</h2>
+    <p>間違えた問題を保存し、後から復習できます。</p>
 
-        <h2>錯題本</h2>
+    <div id="mistake-list" class="empty-box">
+        <p>読み込み中...</p>
+    </div>
+</section>
 
-        <p>間違えた問題を保存し、後から復習できます。</p>
+<section class="mypage-section">
+    <h2>総合進捗</h2>
 
-        <div id="mistake-list" class="empty-box">
+    <div class="progress-bar">
+        <div id="total-progress-fill" class="progress-fill"></div>
+    </div>
 
-          <p>読み込み中...</p>
+    <p id="total-progress-text">読み込み中...</p>
+</section>
 
-         </div>
+<section class="mypage-section">
+    <h2 style="color:rgb(10, 10, 10);">年度別進捗</h2>
 
-    </section>
+    <div id="year-progress-list">
+        <p>読み込み中...</p>
+    </div>
+</section>
 
-    <section class="mypage-section">
+<section class="mypage-section">
 
-        <h2>学習メニュー</h2>
+    <h2>最近解いた問題</h2>
 
-        <div class="menu-grid">
+    <div id="recent-solved-list" class="empty-box">
 
-            <a href="/problems-page" class="menu-card">
+        <p>読み込み中...</p>
 
-                <h3>問題一覧へ</h3>
+    </div>
 
-                <p>年度・分野ごとに過去問を確認する</p>
+</section>
 
-            </a>
+<section class="mypage-section">
 
-            <a href="#" class="menu-card">
+    <h2>錯題の知識点分析</h2>
 
-                <h3>錯題本を見る</h3>
+    <div id="mistake-topic-list">
 
-                <p>間違えた問題を復習する</p>
+        <p>読み込み中...</p>
 
-            </a>
+    </div>
 
-        </div>
+</section>
 
-    </section>
+<section class="mypage-section">
+    <h2>学習メニュー</h2>
+
+    <div class="menu-grid">
+        <a href="/problems-page" class="menu-card">
+            <h3>問題一覧へ</h3>
+            <p>年度・分野ごとに過去問を確認する</p>
+        </a>
+
+        <a href="#mistake-list" class="menu-card">
+            <h3>錯題本を見る</h3>
+            <p>間違えた問題を復習する</p>
+        </a>
+    </div>
+</section>
+
+</div>
+
 <script>
-
 fetch("/my-mistakes")
-
   .then(response => response.json())
-
   .then(data => {
-
     const box = document.getElementById("mistake-list");
+    const mistakeCount = document.getElementById("mistake-count");
+
+    mistakeCount.textContent = data.length;
 
     if (data.length === 0) {
-
       box.innerHTML = "<p>まだ錯題は登録されていません。</p>";
-
       return;
-
     }
 
     box.classList.remove("empty-box");
 
-box.innerHTML = data.map(item => `
+    box.innerHTML = data.map(item => `
+      <div class="mistake-card" id="mistake-${item.problem_id}">
+        <a href="/problem/${item.problem_id}">
+          ${item.problem_id}
+        </a>
 
-  <div class="mistake-card">
+        <p>追加日時：${item.created_at}</p>
 
-    <a href="/problem/${item.problem_id}">
-
-      ${item.problem_id}
-
-    </a>
-
-    <p>追加日時：${item.created_at}</p>
-
-  </div>
-
-`).join("");
-
+        <button onclick="removeMistake('${item.problem_id}')">
+          復習した
+        </button>
+      </div>
+    `).join("");
+  })
+  .catch(error => {
+    const box = document.getElementById("mistake-list");
+    box.innerHTML = "<p>錯題本の読み込みに失敗しました。</p>";
+    console.error(error);
   });
 
+
+fetch("/mypage-stats")
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById("solved-count").textContent = data.solved;
+    document.getElementById("mistake-count").textContent = data.mistakes;
+    document.getElementById("reviewed-count").textContent = data.reviewed;
+  });
+
+
+fetch("/year-progress")
+  .then(response => response.json())
+  .then(data => {
+    const totalFill = document.getElementById("total-progress-fill");
+    const totalText = document.getElementById("total-progress-text");
+    const yearBox = document.getElementById("year-progress-list");
+
+    if (totalFill && totalText) {
+      totalFill.style.width = data.total.rate + "%";
+      totalText.textContent =
+        `${data.total.solved} / ${data.total.problems} 問 (${data.total.rate}%)`;
+    }
+
+    yearBox.innerHTML = data.years.map(item => `
+      <div class="year-progress-card">
+        <div class="year-progress-header">
+          <strong>${item.year}</strong>
+          <span>${item.solved} / ${item.total} 問 (${item.rate}%)</span>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: ${item.rate}%"></div>
+        </div>
+      </div>
+    `).join("");
+  });
+
+
+fetch("/recent-solved")
+  .then(response => response.json())
+  .then(data => {
+    const box = document.getElementById("recent-solved-list");
+
+    if (data.length === 0) {
+      box.innerHTML = "<p>まだ解いた問題はありません。</p>";
+      return;
+    }
+
+    box.classList.remove("empty-box");
+
+    box.innerHTML = data.map(item => `
+      <div class="mistake-card">
+        <a href="/problem/${item.problem_id}">
+          ${item.problem_id}
+        </a>
+        <p>解答日時：${item.created_at}</p>
+      </div>
+    `).join("");
+  });
+
+
+fetch("/mistake-topic-stats")
+  .then(response => response.json())
+  .then(data => {
+    const box = document.getElementById("mistake-topic-list");
+
+    if (data.length === 0) {
+      box.innerHTML = "<p>まだ分析できる錯題がありません。</p>";
+      return;
+    }
+
+    box.innerHTML = data.map(item => `
+      <div class="year-progress-card">
+        <div class="year-progress-header">
+          <strong>${item.topic}</strong>
+          <span>${item.count} 問</span>
+        </div>
+      </div>
+    `).join("");
+  });
+
+
+function removeMistake(problemId) {
+  fetch(`/remove-mistake/${problemId}`, {
+    method: "POST"
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        const card = document.getElementById(`mistake-${problemId}`);
+
+        if (card) {
+          card.remove();
+        }
+      }
+    });
+}
 </script>
 
-</div>
-
 </body>
-
 </html>

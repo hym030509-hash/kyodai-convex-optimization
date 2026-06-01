@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>凸集合</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="site-logo">京大最適化学習サイト</div>
+
+    <div class="site-nav">
+        <a href="/">ホーム</a>
+        <a href="/problems-page">過去問一覧</a>
+        <a href="/knowledge">基礎知識</a>
+        <a href="/mypage">マイページ</a>
+        <a href="/logout">ログアウト</a>
+    </div>
+</header>
+
+<div class="mypage-container">
+
+    <section class="mypage-hero">
+        <h1>凸集合</h1>
+        <p>凸最適化の制約集合を理解するための基本概念です。</p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>定義</h2>
+
+        <p>
+            集合 \(C\subset\mathbb{R}^n\) が凸集合であるとは、任意の \(x,y\in C\) と任意の \(\theta\in[0,1]\) に対して
+        </p>
+
+        <p>
+        \[
+        \theta x+(1-\theta)y\in C
+        \]
+        </p>
+
+        <p>
+            が成り立つことをいう。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>直感</h2>
+
+        <p>
+            凸集合とは、集合内の任意の二点を結ぶ線分がすべて集合内に含まれる集合である。
+            つまり、へこみのない集合と考えることができる。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>例</h2>
+
+        <p>
+            半空間
+        </p>
+
+        <p>
+        \[
+        \{x\in\mathbb{R}^n\mid a^\top x\le b\}
+        \]
+        </p>
+
+        <p>
+            やアフィン集合
+        </p>
+
+        <p>
+        \[
+        \{x\in\mathbb{R}^n\mid Ax=b\}
+        \]
+        </p>
+
+        <p>
+            は凸集合である。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>最適化との関係</h2>
+
+        <p>
+            凸最適化では、制約集合が凸集合であることが重要である。
+            凸集合上で凸関数を最小化する問題では、局所最適解が大域最適解になる。
+        </p>
+    </section>
+
+</div>
+
+</body>
+</html>

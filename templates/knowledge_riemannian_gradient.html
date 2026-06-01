@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>リーマン勾配</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="site-logo">京大最適化学習サイト</div>
+
+    <div class="site-nav">
+        <a href="/">ホーム</a>
+        <a href="/problems-page">過去問一覧</a>
+        <a href="/knowledge">基礎知識</a>
+        <a href="/mypage">マイページ</a>
+        <a href="/logout">ログアウト</a>
+    </div>
+</header>
+
+<div class="mypage-container">
+
+    <section class="mypage-hero">
+        <h1>リーマン勾配</h1>
+        <p>リーマン多様体上で関数を最小化するための基本概念です。</p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>接空間</h2>
+
+        <p>
+            リーマン多様体 \(\mathcal{M}\) 上の点 \(x\) に対して、
+            その点での可能な微小変化方向の集合を接空間といい、\(T_x\mathcal{M}\) と書く。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>リーマン計量</h2>
+
+        <p>
+            各接空間 \(T_x\mathcal{M}\) 上に内積
+            \(\langle \cdot,\cdot\rangle_x\) が与えられているとき、
+            それをリーマン計量という。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>リーマン勾配の定義</h2>
+
+        <p>
+            滑らかな関数 \(f:\mathcal{M}\to\mathbb{R}\) に対して、
+            リーマン勾配 \(\operatorname{grad} f(x)\in T_x\mathcal{M}\) は、
+            任意の \(\xi\in T_x\mathcal{M}\) に対して次を満たすベクトルとして定義される。
+        </p>
+
+        <p>
+        \[
+        Df(x)[\xi]
+        =
+        \langle \operatorname{grad} f(x), \xi\rangle_x.
+        \]
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>ユークリッド勾配との関係</h2>
+
+        <p>
+            ユークリッド空間では、通常の勾配 \(\nabla f(x)\) がこの条件を満たす。
+            一方、制約多様体上では、ユークリッド勾配を接空間へ射影してリーマン勾配を得ることが多い。
+        </p>
+
+        <p>
+        \[
+        \operatorname{grad} f(x)
+        =
+        \operatorname{Proj}_{T_x\mathcal{M}}(\nabla f(x)).
+        \]
+        </p>
+    </section>
+
+</div>
+
+</body>
+</html>

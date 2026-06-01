@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>勾配降下法</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="site-logo">京大最適化学習サイト</div>
+
+    <div class="site-nav">
+        <a href="/">ホーム</a>
+        <a href="/problems-page">過去問一覧</a>
+        <a href="/knowledge">基礎知識</a>
+        <a href="/mypage">マイページ</a>
+        <a href="/logout">ログアウト</a>
+    </div>
+</header>
+
+<div class="mypage-container">
+
+    <section class="mypage-hero">
+        <h1>勾配降下法</h1>
+        <p>目的関数の勾配の反対方向へ進む最も基本的な最適化手法です。</p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>基本更新式</h2>
+
+        <p>
+        微分可能関数 \(f:\mathbb{R}^n\to\mathbb{R}\) を最小化するために、次の反復を考える。
+        </p>
+
+        <p>
+        \[
+        x_{k+1}
+        =
+        x_k
+        -
+        \alpha_k \nabla f(x_k).
+        \]
+        </p>
+
+        <p>
+            ここで \(\alpha_k>0\) はステップサイズである。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>直感</h2>
+
+        <p>
+            勾配 \(\nabla f(x_k)\) は関数値が最も増加する方向を表す。
+            したがって、その反対方向 \(-\nabla f(x_k)\) に進むことで、関数値を下げることを目指す。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>停止条件</h2>
+
+        <p>
+        実装では、例えば次の条件を用いる。
+        </p>
+
+        <p>
+        \[
+        \|\nabla f(x_k)\| \le \varepsilon.
+        \]
+        </p>
+
+        <p>
+            勾配ノルムが小さいことは、一次最適性条件に近いことを意味する。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>特徴</h2>
+
+        <p>
+            勾配降下法は実装が簡単で大規模問題にも適用しやすい。
+            一方で、条件数が悪い問題では収束が遅くなることがある。
+        </p>
+    </section>
+
+</div>
+
+</body>
+</html>

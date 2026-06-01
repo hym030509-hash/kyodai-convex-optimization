@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Vector Transport</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="site-logo">京大最適化学習サイト</div>
+
+    <div class="site-nav">
+        <a href="/">ホーム</a>
+        <a href="/problems-page">過去問一覧</a>
+        <a href="/knowledge">基礎知識</a>
+        <a href="/mypage">マイページ</a>
+        <a href="/logout">ログアウト</a>
+    </div>
+</header>
+<div class="mypage-container">
+
+    <section class="mypage-hero">
+        <h1>Vector Transport</h1>
+        <p>異なる接空間の間でベクトルを移すための操作です。</p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>背景</h2>
+        <p>
+        リーマン多様体上では、点 \(x\) における探索方向は
+        \(T_x\mathcal{M}\) に属する。
+        一方、次の点 \(y\) では探索方向は \(T_y\mathcal{M}\) に属する。
+        </p>
+
+        <p>
+        一般に、
+        \[
+        T_x\mathcal{M}
+        \neq
+        T_y\mathcal{M}
+        \]
+        であるため、ベクトルをそのまま比較・加算できない。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>役割</h2>
+        <p>
+        Vector Transport は、ある点の接空間上のベクトルを、別の点の接空間へ運ぶ写像である。
+        </p>
+
+        <p>
+        \[
+        \mathcal{T}_{\eta_x}(\xi_x)
+        \in
+        T_{R_x(\eta_x)}\mathcal{M}.
+        \]
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>なぜ必要か</h2>
+        <p>
+        リーマン共役勾配法では、前回の探索方向を次の点の接空間へ移してから、
+        新しい探索方向を作る必要がある。
+        </p>
+
+        <p>
+        例えば、
+        \[
+        d_{k+1}
+        =
+        -\operatorname{grad} f(x_{k+1})
+        +
+        \beta_k \mathcal{T}_{\eta_k}(d_k)
+        \]
+        のように使われる。
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>直感</h2>
+        <p>
+        Vector Transport は「前の点で使っていた方向を、新しい点でも使える形に変換する操作」
+        と考えると分かりやすい。
+        </p>
+    </section>
+
+</div>
+
+</body>
+</html>

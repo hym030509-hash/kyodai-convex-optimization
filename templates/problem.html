@@ -1,19 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <a href="/">ホーム</a>
 
-<a href="/problems-page">過去問一覧</a>
-
-<a href="/mypage">マイページ</a>
-
-<a href="/login">ログイン</a>
-
-<a href="/register">新規登録</a>
-
-<a href="/logout">ログアウト</a>
 <head>
   <meta charset="UTF-8">
   <title>問題詳細</title>
+
+  <link rel="stylesheet" href="/static/style.css">
 
   <script>
     window.MathJax = {
@@ -23,6 +15,7 @@
       }
     };
   </script>
+
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 
   <style>
@@ -30,28 +23,32 @@
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif;
       background: #f4f6f8;
       margin: 0;
-      padding: 40px;
+      padding: 0;
       color: #1f2933;
     }
+
     .container {
       max-width: 900px;
-      margin: 0 auto;
+      margin: 48px auto;
       background: white;
       padding: 36px;
       border-radius: 8px;
       box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
     }
+
     .topbar {
       display: flex;
       align-items: center;
       gap: 12px;
       margin-bottom: 24px;
     }
+
     a, .language-button {
       color: #2563eb;
       text-decoration: none;
       font-weight: 700;
     }
+
     .language-button {
       margin-left: auto;
       background: #f8fafc;
@@ -61,19 +58,23 @@
       font: inherit;
       cursor: pointer;
     }
+
     h1 {
       font-size: 40px;
       margin: 0 0 20px;
     }
+
     h2 {
       margin-top: 32px;
       border-left: 6px solid #2563eb;
       padding-left: 12px;
     }
+
     .meta {
       color: #475569;
       margin: 8px 0;
     }
+
     .tag {
       display: inline-block;
       background: #e0ecff;
@@ -84,24 +85,25 @@
       margin-top: 6px;
       font-size: 14px;
     }
+
     .tag.skill {
       background: #ecfdf5;
       color: #047857;
     }
+
     .section {
       line-height: 1.9;
       font-size: 18px;
       margin-top: 12px;
-      white-space: normal;
-    }
-    /* Allow long inline/display math and long words to wrap instead of overflowing */
-    .section {
+      white-space: pre-wrap;
       overflow-wrap: anywhere;
       word-break: break-word;
-      white-space: pre-wrap;
     }
-    /* MathJax v3 rendered elements: allow wrapping and constrain width */
-    .section .mjx-chtml, .section mjx-container, .section .MathJax, .section .mjx-math {
+
+    .section .mjx-chtml,
+    .section mjx-container,
+    .section .MathJax,
+    .section .mjx-math {
       max-width: 100%;
       display: inline-block;
       overflow-wrap: anywhere;
@@ -109,46 +111,39 @@
       white-space: normal;
       vertical-align: baseline;
     }
-    /* For display math, allow it to break lines and not overflow container */
-    .section .mjx-chtml[display="true"], .section mjx-container[display="true"] {
+
+    .section .mjx-chtml[display="true"],
+    .section mjx-container[display="true"] {
       display: block;
       max-width: 100%;
       overflow-x: auto;
       word-break: break-word;
     }
-    #add-mistake-btn {
 
-  background: #2563eb;
+    #add-mistake-btn,
+    #solved-btn {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      margin-right: 8px;
+      font-size: 15px;
+    }
 
-  color: white;
+    #add-mistake-btn:disabled,
+    #solved-btn:disabled {
+      cursor: default;
+      opacity: 1;
+    }
 
-  border: none;
+    #add-mistake-btn:hover,
+    #solved-btn:hover {
+      opacity: 0.9;
+    }
 
-  padding: 10px 18px;
-
-  border-radius: 8px;
-
-  cursor: pointer;
-
-  margin-bottom: 20px;
-
-  font-size: 15px;
-
-}
-
-#add-mistake-btn:disabled {
-
-    cursor: default;
-
-    opacity: 1;
-
-}
-
-#add-mistake-btn:hover {
-
-  opacity: 0.9;
-
-}
     .pager {
       display: flex;
       justify-content: space-between;
@@ -158,6 +153,21 @@
   </style>
 </head>
 
+<body>
+
+<nav class="top-navbar">
+  <div class="nav-logo">
+    京大最適化学習サイト
+  </div>
+
+  <div class="nav-links">
+    <a href="/">ホーム</a>
+    <a href="/problems-page">過去問一覧</a>
+    <a href="/knowledge">基礎知識</a>
+    <a href="/mypage">マイページ</a>
+    <a href="/logout">ログアウト</a>
+  </div>
+</nav>
 <body>
   <div class="container">
     <div class="topbar">
@@ -294,17 +304,13 @@ function renderProblem() {
   content.innerHTML = `
     <h1>${escapeHtml(problem.id)}</h1>
 
-    <button
+    <button id="add-mistake-btn" data-saved="false" onclick="markAsMistake()">
+      錯題本に追加
+    </button>
 
-  id="add-mistake-btn"
-
-  data-saved="false"
-
-  onclick="markAsMistake()">
-
-  錯題本に追加
-
-</button>
+    <button id="solved-btn" onclick="markSolved()">
+      解いた
+    </button>
 
     <p class="meta"><b>${t("year")}:</b> ${escapeHtml(problem.year)}</p>
     <p class="meta"><b>${t("type")}:</b> ${escapeHtml(label(problem.type))}</p>
@@ -337,20 +343,19 @@ function renderProblem() {
     MathJax.typesetClear();
     MathJax.typesetPromise([content]);
   }
+
+  checkMistakeStatus();
+  checkSolvedStatus();
 }
-checkMistakeStatus();
 
 function markAsMistake() {
-
   const btn = document.getElementById("add-mistake-btn");
 
   if (!btn) {
     return;
   }
 
-  // 已经加入错题本 -> 删除
   if (btn.dataset.saved === "true") {
-
     const ok = confirm("錯題本から削除しますか？");
 
     if (!ok) {
@@ -360,24 +365,35 @@ function markAsMistake() {
     fetch(`/remove-mistake/${problemId}`, {
       method: "POST"
     })
-    .then(response => response.json())
-    .then(data => {
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          btn.textContent = "錯題本に追加";
+          btn.style.background = "#2563eb";
+          btn.dataset.saved = "false";
+        } else {
+          alert("削除に失敗しました");
+        }
+      });
 
-      if (data.success) {
+  } else {
+    fetch(`/add-mistake/${problemId}`, {
+      method: "POST"
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          btn.textContent = "✓ 錯題に追加済み";
+          btn.style.background = "#16a34a";
+          btn.dataset.saved = "true";
+        } else {
+          alert("ログインしてください");
+        }
+      });
+  }
+}
 
-        btn.textContent = "錯題本に追加";
-        btn.style.background = "#2563eb";
-        btn.dataset.saved = "false";
-
-      } else {
-
-        alert("削除に失敗しました");
-
-      }
-    });
-
-    function checkMistakeStatus() {
-      console.log("checkMistakeStatus called");
+function checkMistakeStatus() {
   const btn = document.getElementById("add-mistake-btn");
 
   if (!btn) {
@@ -398,31 +414,47 @@ function markAsMistake() {
       }
     });
 }
+
+function markSolved() {
+  const btn = document.getElementById("solved-btn");
+
+  if (!btn) {
+    return;
   }
 
-  // まだ未登録 -> 追加
-  else {
-
-    fetch(`/add-mistake/${problemId}`, {
-      method: "POST"
-    })
+  fetch(`/mark-solved/${problemId}`, {
+    method: "POST"
+  })
     .then(response => response.json())
     .then(data => {
-
       if (data.success) {
-
-        btn.textContent = "✓ 錯題に追加済み";
-        btn.style.background = "#16a34a";
-        btn.dataset.saved = "true";
-
+        btn.textContent = "✓ 解答済み";
+        btn.style.background = "#9333ea";
+        btn.style.color = "white";
+        btn.disabled = true;
       } else {
-
         alert("ログインしてください");
-
       }
     });
+}
 
+function checkSolvedStatus() {
+  const btn = document.getElementById("solved-btn");
+
+  if (!btn) {
+    return;
   }
+
+  fetch(`/is-solved/${problemId}`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.solved) {
+        btn.textContent = "✓ 解答済み";
+        btn.style.background = "#9333ea";
+        btn.style.color = "white";
+        btn.disabled = true;
+      }
+    });
 }
 
 document.getElementById("languageButton").addEventListener("click", () => {

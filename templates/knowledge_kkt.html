@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>KKT条件</title>
+    <link rel="stylesheet" href="/static/style.css">
+
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="site-logo">京大最適化学習サイト</div>
+
+    <div class="site-nav">
+        <a href="/">ホーム</a>
+        <a href="/problems-page">過去問一覧</a>
+        <a href="/knowledge">基礎知識</a>
+        <a href="/mypage">マイページ</a>
+        <a href="/logout">ログアウト</a>
+    </div>
+</header>
+
+<div class="mypage-container">
+
+    <section class="mypage-hero">
+        <h1>KKT条件</h1>
+        <p>制約付き最適化問題における代表的な一次最適性条件です。</p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>標準形</h2>
+
+        <p>次の制約付き最適化問題を考える。</p>
+
+        <p>
+        \[
+        \min_x f(x)
+        \quad
+        \text{s.t.}
+        \quad
+        g_i(x) \le 0,\ i=1,\dots,m,
+        \quad
+        h_j(x)=0,\ j=1,\dots,l.
+        \]
+        </p>
+
+        <p>ラグランジアンは次で定義される。</p>
+
+        <p>
+        \[
+        L(x,\lambda,\mu)
+        =
+        f(x)
+        +
+        \sum_{i=1}^{m}\lambda_i g_i(x)
+        +
+        \sum_{j=1}^{l}\mu_j h_j(x).
+        \]
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>KKT条件</h2>
+
+        <p>点 \(x^\ast\) が適切な正則性条件のもとで局所最適解なら、ある乗数 \(\lambda_i,\mu_j\) が存在して、次を満たす。</p>
+
+        <p>
+        \[
+        \nabla_x L(x^\ast,\lambda,\mu)=0
+        \]
+        </p>
+
+        <p>
+        \[
+        g_i(x^\ast)\le 0,\quad h_j(x^\ast)=0
+        \]
+        </p>
+
+        <p>
+        \[
+        \lambda_i \ge 0
+        \]
+        </p>
+
+        <p>
+        \[
+        \lambda_i g_i(x^\ast)=0
+        \]
+        </p>
+    </section>
+
+    <section class="mypage-section">
+        <h2>直感</h2>
+
+        <p>
+            KKT条件は、目的関数の勾配が制約の勾配の線形結合で表されることを意味する。
+            特に相補性条件 \(\lambda_i g_i(x^\ast)=0\) は、
+            有効でない不等式制約は最適性に影響しないことを表す。
+        </p>
+    </section>
+
+</div>
+
+</body>
+</html>
